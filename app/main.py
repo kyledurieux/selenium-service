@@ -5,7 +5,7 @@ from my_script import run_task
 
 API_TOKEN = os.getenv("API_TOKEN", "CHANGE_ME_123")
 
-app = FastAPI(title="Selenium Runner")
+app = FastAPI(title="Selenium Runner (v2)")
 
 @app.get("/healthz")
 def healthz():
