@@ -19,3 +19,5 @@ Small FastAPI service that runs a Selenium task and returns the result.
 docker compose up -d
 ```
 >>>>>>> aaa346b (Add README documentation)
+
+Updated: testing deploy pipeline
