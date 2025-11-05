@@ -21,3 +21,5 @@ docker compose up -d
 >>>>>>> aaa346b (Add README documentation)
 
 Updated: testing deploy pipeline
+
+(trigger redeploy)
