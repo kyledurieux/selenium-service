@@ -1,0 +1,4919 @@
+{
+    "N/A": {
+        "name": "N/A",
+        "htmlId": "",
+        "diagcode": [""],
+        "defaults": [""],
+        "plancode": [""],
+        "listings": {
+            "paltlisting": {
+                "root": "",            
+                "problems": [""],
+                "shortcodemappings":""
+            },
+            "paltseverity": {
+                "default": "",
+                "root": "",
+                "problems": [""],
+                "shortcodemappings":{
+                    "N": "",
+                    "VMILD ": "",
+                    "VM": "",
+                    "M": "",
+                    "VMOD": "",
+                    "S": "",
+                    "MOD": ""
+                }
+                    
+            }
+        }
+    },
+    
+    "RETRACING": {
+        "name": "Retracing",
+        "htmlId": "",
+        "diagcode": [""],
+        "defaults": [""],
+        "plancode": [""],
+        "listings": {
+            "paltlisting": {
+                "root": "",            
+                "problems": [""],
+                "shortcodemappings":""
+            },
+            "paltseverity": {
+                "default": "",
+                "root": "",
+                "problems": [""],
+                "shortcodemappings":{
+                    "N": "",
+                    "VMILD ": "",
+                    "VM": "",
+                    "M": "",
+                    "VMOD": "",
+                    "S": "",
+                    "MOD": ""
+                }
+                    
+            }
+        }
+    },
+    
+    "SCRM": {
+        "name": "sacrum",
+        "htmlId": "soapsubcategory_660922",
+        "diagcode": ["M54.5", "M99.14"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjSac"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjSacPalT",            
+                "problems": ["SAR", "SAL", "PR", "PL", "Ant", "P"],
+                "shortcodemappings":{
+                    "SAR": "SAR",
+                    "SAL": "SAL",
+                    "PR": "PR",
+                    "PL": "PL",
+                    "Ant": "Ant",
+                    "P": "Post"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjSacPalTen",
+                "problems": ["N", "VM", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD ": "Vmild",
+                    "VM": "Vmild",
+                    "M": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+                    
+            }
+        }
+    },
+
+    "RSI": {
+        "name": "Right Sacroiliac Joint",
+        "htmlId": "soapsubcategory_660922",
+        "diagcode": ["M54.5", "M99.14"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjSir"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjSacIJPalT",            
+                "problems": ["AS", "PI", "EX", "IN"],
+                "shortcodemappings":{
+                    "AS": "AS",
+                    "PI": "PI",
+                    "EX": "EX",
+                    "IN": "IN"
+                }
+
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjSacIJPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "root": "KyleObjSacIJPal",
+                "default": "TsRyt",
+                "problems": "R",
+                "shortcodemappings": {
+                    "R": "TsRyt",
+                    "L": "1TsLft",
+                    "B": "TsBi"
+                }
+            }
+        }
+    },               
+
+    "LSI": {
+        "name": "Left Sacroiliac Joint",
+        "htmlId": "soapsubcategory_660922",
+        "diagcode": ["M54.5", "M99.14"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjSil"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjSacIJPal1T",            
+                "problems": ["AS", "PI", "EX", "IN"],
+                "shortcodemappings":{
+                    "AS": "AS",
+                    "PI": "PI",
+                    "EX": "EX",
+                    "IN": "IN"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjSacIJPal1Ten",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "1TsLft",
+                "root": "KyleObjSacIJPal",
+                "problems": ["L"],
+                "shortcodemappings": {
+                    "R": "TsRyt",
+                    "L": "1TsLft",
+                    "B": "TsBi"
+                }
+                
+            }
+        }
+    },
+    
+    "BSI": {
+        "name": "Bilateral Sacroiliac Joint",
+        "htmlId": "soapsubcategory_660922",
+        "diagcode": ["M54.5", "M99.14"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjSir", "KylPlnSegAdjSil"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjSacIJPalT",            
+                "problems": ["AS", "PI", "EX", "IN"],
+                "shortcodemappings":{
+                    "AS": "AS",
+                    "PI": "PI",
+                    "EX": "EX",
+                    "IN": "IN"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjSacIJPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "root": "KyleObjSacIJPal",
+                "default": "TsBi",
+                "problems": ["B"],
+                "shortcodemappings": {
+                    "R": "TsRyt",
+                    "L": "1TsLft",
+                    "B": "TsBi"
+                }
+                
+            }
+        }
+    },
+    
+    "CCYX": {
+        "name": "Coccyx",
+        "htmlId": "soapsubcategory_660922",
+        "diagcode": ["M54.50", "M99.15"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjCocyx"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjCocxPalT",            
+                "problems": ["AS", "AL", "P", "ANT"],
+                "shortcodemappings":{
+                    "AS": "AS",
+                    "AL": "AL",
+                    "P": "Pst",
+                    "ANT": "Ant"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjCocxPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            }
+        }
+    }, 
+    
+    "PLVS": {
+        "name": "Pelvis",
+        "htmlId": "soapsubcategory_660922",
+        "diagcode": ["M54.50", "M99.15"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjPelv"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjPelvPalT",            
+                "problems": ["SUP", "INF", "P", "ANT"],
+                "shortcodemappings":{
+                    "P": "Pst",
+                    "INF": "AL",
+                    "SUP": "AR",
+                    "ANT": "Ant"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjPelvPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "root": "KyleObjPelvPal",
+                "default": "TsBi",
+                "problems": ["R", "L", "B"],
+                "shortcodemappings": {
+                    "R": "TsRyt",
+                    "L": "1TsLft",
+                    "B": "TsBi"
+                }
+                
+            }
+        }
+    }, 
+
+    "C1": {
+        "name": "cervical",
+        "htmlId": "soapsubcategory_660919",
+        "diagcode": ["M54.2", "M99.11"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjC1"],
+        "index": [1, 2, 3, 4, 5, 6, 7],
+        "listings":{
+            "paltlisting":{
+                "root": "KylObjCerv1PalT",
+                "problems": ["ASR", "ASL", "PIR", "PIL"],
+                "shortcodemappings":{
+                    "ASR": "ASR",
+                    "ASL": "ASL",
+                    "PIR": "PIR",
+                    "PIL": "PIL"
+                }
+            },
+            "paltseverity":{
+                "default": "mild",
+                "root": "KylObjCerv1PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            }
+        }
+    },
+
+    "C2": {
+        "name": "cervical",
+        "htmlId": "soapsubcategory_660919",
+        "diagcode": ["M54.2", "M99.11"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjC2"],
+        "index": [1, 2, 3, 4, 5, 6, 7],
+        "listings":{
+            "paltlisting":{
+                "root": "KylObjCerv2PalT",
+                "problems": ["ARS", "ALS", "PRI", "PLI"],
+                "shortcodemappings":{
+                    "ARS":"ASR",
+                    "ALS":"ASL",
+                    "PRI":"PIR",
+                    "PLI":"PIL"
+                }
+            },
+            "paltseverity":{
+                "default": "mild",
+                "root": "KylObjCerv2PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            }
+        }
+    },
+
+    "C3": {
+        "name": "cervical",
+        "htmlId": "soapsubcategory_660919",
+        "diagcode": ["M54.2", "M99.11"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjC3"],
+        "index": [1, 2, 3, 4, 5, 6, 7],
+        "listings":{
+            "paltlisting":{
+                "root": "KylObjCerv3PalT",
+                "problems": ["ARS", "ALS", "PRI", "PLI"],
+                "shortcodemappings":{
+                    "ARS":"ASR",
+                    "ALS":"ASL",
+                    "PRI":"PIR",
+                    "PLI":"PIL"
+                }
+            },
+            "paltseverity":{
+                "default": "mild",
+                "root": "KylObjCerv3PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            }
+        }
+    },
+
+    "C4": {
+        "name": "cervical",
+        "htmlId": "soapsubcategory_660919",
+        "diagcode": ["M54.2", "M99.11"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjC4"],
+        "index": [1, 2, 3, 4, 5, 6, 7],
+        "listings":{
+            "paltlisting":{
+                "root": "KylObjCerv4PalT",
+                "problems": ["ARS", "ALS", "PRI", "PLI"],
+                "shortcodemappings":{
+                    "ARS":"ASR",
+                    "ALS":"ASL",
+                    "PRI":"PIR",
+                    "PLI":"PIL"
+                }
+            },
+            "paltseverity":{
+                "default": "mild",
+                "root": "KylObjCerv4PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            }
+        }
+    },
+    
+    "C5": {
+        "name": "cervical",
+        "htmlId": "soapsubcategory_660919",
+        "diagcode": ["M54.2", "M99.11"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjC5"],
+        "index": [1, 2, 3, 4, 5, 6, 7],
+        "listings":{
+            "paltlisting":{
+                "root": "KylObjCerv5PalT",
+                "problems": ["ARS", "ALS", "PRI", "PLI"],
+                "shortcodemappings":{
+                    "ARS":"ASR",
+                    "ALS":"ASL",
+                    "PRI":"PIR",
+                    "PLI":"PIL"
+                }
+            },
+            "paltseverity":{
+                "default": "mild",
+                "root": "KylObjCerv5PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            }
+        }
+    },
+    
+    "C6": {
+        "name": "cervical",
+        "htmlId": "soapsubcategory_660919",
+        "diagcode": ["M54.2", "M99.11"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjC6"],
+        "index": [1, 2, 3, 4, 5, 6, 7],
+        "listings":{
+            "paltlisting":{
+                "root": "KylObjCerv6PalT",
+                "problems": ["ARS", "ALS", "PRI", "PLI", "PR", "PL", "P"],
+                "shortcodemappings":{
+                    "ARS":"ASR",
+                    "ALS":"ASL",
+                    "PRI":"PIR",
+                    "PLI":"PIL",
+                    "PR":"PR",
+                    "PL":"PL",
+                    "P":"Post"
+                }
+            },
+            "paltseverity":{
+                "default": "mild",
+                "root": "KylObjCerv6PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            }
+        }
+    },
+        
+    "C7": {
+        "name": "cervical",
+        "htmlId": "soapsubcategory_660919",
+        "diagcode": ["M54.2", "M99.11"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjC7"],
+        "index": [1, 2, 3, 4, 5, 6, 7],
+        "listings":{
+            "paltlisting":{
+                "root": "KylObjCerv7PalT",
+                "problems": ["ARS", "ALS", "PRI", "PLI", "PR", "PL", "P"],
+                "shortcodemappings":{
+                    "ARS":"ASR",
+                    "ALS":"ASL",
+                    "PRI":"PIR",
+                    "PLI":"PIL",
+                    "PR":"PR",
+                    "PL":"PL",
+                    "P":"Post"
+                }
+            },
+            "paltseverity":{
+                "default": "mild",
+                "root": "KylObjCerv7PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            }
+        }
+    },
+
+    "T1": {
+        "name": "thoracic",
+        "htmlId": "soapsubcategory_660920",
+        "diagcode": ["M54.6", "M99.12"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjT1"],
+        "index": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        "listings":{
+            "paltlisting":{
+                "root": "KyleObjThor1PalT",
+                "problems": ["PR", "PL", "PRA", "PLA", "P", "Ant"],
+                "shortcodemappings":{
+                    "PR":"PR",
+                    "PL":"PL",
+                    "PRA":"PRA",
+                    "PLA":"PLA",
+                    "P":"Post",
+                    "Ant":"Ant"
+                }
+            },
+            "paltseverity":{
+                "default": "mild",
+                "root": "KyleObjThor1PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            }
+        }
+    },
+
+    "T2": {
+        "name": "thoracic",
+        "htmlId": "soapsubcategory_660920",
+        "diagcode": ["M54.6", "M99.12"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjT2"],
+        "index": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        "listings":{
+            "paltlisting":{
+                "root": "KyleObjThor2PalT",
+                "problems": ["PR", "PL", "PRA", "PLA", "P", "Ant"],
+                "shortcodemappings":{
+                    "PR":"PR",
+                    "PL":"PL",
+                    "PRA":"PRA",
+                    "PLA":"PLA",
+                    "P":"Post",
+                    "Ant":"Ant"
+                }
+            },
+            "paltseverity":{
+                "default": "mild",
+                "root": "KyleObjThor2PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            }
+        }
+    },
+
+    "T3": {
+        "name": "thoracic",
+        "htmlId": "soapsubcategory_660920",
+        "diagcode": ["M54.6", "M99.12"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjT3"],
+        "index": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        "listings":{
+            "paltlisting":{
+                "root": "KyleObjThor3PalT",
+                "problems": ["PR", "PL", "PRA", "PLA", "P", "Ant"],
+                "shortcodemappings":{
+                    "PR":"PR",
+                    "PL":"PL",
+                    "PRA":"PRA",
+                    "PLA":"PLA",
+                    "P":"Post",
+                    "Ant":"Ant"
+                }
+            },
+            "paltseverity":{
+                "default": "mild",
+                "root": "KyleObjThor3PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            }
+        }
+    },
+
+    "T4": {
+        "name": "thoracic",
+        "htmlId": "soapsubcategory_660920",
+        "diagcode": ["M54.6", "M99.12"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjT4"],
+        "index": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        "listings":{
+            "paltlisting":{
+                "root": "KyleObjThor4PalT",
+                "problems": ["PR", "PL", "PRA", "PLA", "P", "Ant"],
+                "shortcodemappings":{
+                    "PR":"PR",
+                    "PL":"PL",
+                    "PRA":"PRA",
+                    "PLA":"PLA",
+                    "P":"Post",
+                    "Ant":"Ant"
+                }
+            },
+            "paltseverity":{
+                "default": "mild",
+                "root": "KyleObjThor4PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            }
+        }
+    },
+
+    "T5": {
+        "name": "thoracic",
+        "htmlId": "soapsubcategory_660920",
+        "diagcode": ["M54.6", "M99.12"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjT5"],
+        "index": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        "listings":{
+            "paltlisting":{
+                "root": "KyleObjThor5PalT",
+                "problems": ["PR", "PL", "PRA", "PLA", "P", "Ant"],
+                "shortcodemappings":{
+                    "PR":"PR",
+                    "PL":"PL",
+                    "PRA":"PRA",
+                    "PLA":"PLA",
+                    "P":"Post",
+                    "Ant":"Ant"
+                }
+            },
+            "paltseverity":{
+                "default": "mild",
+                "root": "KyleObjThor5PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            }
+        }
+    },
+
+    "T6": {
+        "name": "thoracic",
+        "htmlId": "soapsubcategory_660920",
+        "diagcode": ["M54.6", "M99.12"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjT6"],
+        "index": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        "listings":{
+            "paltlisting":{
+                "root": "KyleObjThor6PalT",
+                "problems": ["PR", "PL", "PRA", "PLA", "P", "Ant"],
+                "shortcodemappings":{
+                    "PR":"PR",
+                    "PL":"PL",
+                    "PRA":"PRA",
+                    "PLA":"PLA",
+                    "P":"Post",
+                    "Ant":"Ant"
+                }
+            },
+            "paltseverity":{
+                "default": "mild",
+                "root": "KyleObjThor6PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            }
+        }
+    },
+
+    "T7": {
+        "name": "thoracic",
+        "htmlId": "soapsubcategory_660920",
+        "diagcode": ["M54.6", "M99.12"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjT7"],
+        "index": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        "listings":{
+            "paltlisting":{
+                "root": "KyleObjThor7PalT",
+                "problems": ["PR", "PL", "PRA", "PLA", "P", "Ant"],
+                "shortcodemappings":{
+                    "PR":"PR",
+                    "PL":"PL",
+                    "PRA":"PRA",
+                    "PLA":"PLA",
+                    "P":"Post",
+                    "Ant":"Ant"
+                }
+            },
+            "paltseverity":{
+                "default": "mild",
+                "root": "KyleObjThor7PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            }
+        }
+    },
+
+    "T8": {
+        "name": "thoracic",
+        "htmlId": "soapsubcategory_660920",
+        "diagcode": ["M54.6", "M99.12"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjT8"],
+        "index": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        "listings":{
+            "paltlisting":{
+                "root": "KyleObjThor8PalT",
+                "problems": ["PR", "PL", "PRA", "PLA", "P", "Ant"],
+                "shortcodemappings":{
+                    "PR":"PR",
+                    "PL":"PL",
+                    "PRA":"PRA",
+                    "PLA":"PLA",
+                    "P":"Post",
+                    "Ant":"Ant"
+                }
+            },
+            "paltseverity":{
+                "default": "mild",
+                "root": "KyleObjThor8PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            }
+        }
+    },
+
+    "T9": {
+        "name": "thoracic",
+        "htmlId": "soapsubcategory_660920",
+        "diagcode": ["M54.6", "M99.12"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjT9"],
+        "index": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        "listings":{
+            "paltlisting":{
+                "root": "KyleObjThor9PalT",
+                "problems": ["PR", "PL", "PRA", "PLA", "P", "Ant"],
+                "shortcodemappings":{
+                    "PR":"PR",
+                    "PL":"PL",
+                    "PRA":"PRA",
+                    "PLA":"PLA",
+                    "P":"Post",
+                    "Ant":"Ant"
+                }
+            },
+            "paltseverity":{
+                "default": "mild",
+                "root": "KyleObjThor9PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            }
+        }
+    },
+
+    "T10": {
+        "name": "thoracic",
+        "htmlId": "soapsubcategory_660920",
+        "diagcode": ["M54.6", "M99.12"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjT10"],
+        "index": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        "listings":{
+            "paltlisting":{
+                "root": "KyleObjThor10PalT",
+                "problems": ["PR", "PL", "PRA", "PLA", "P", "Ant"],
+                "shortcodemappings":{
+                    "PR":"PR",
+                    "PL":"PL",
+                    "PRA":"PRA",
+                    "PLA":"PLA",
+                    "P":"Post",
+                    "Ant":"Ant"
+                }
+            },
+            "paltseverity":{
+                "default": "mild",
+                "root": "KyleObjThor10PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            }
+        }
+    },
+
+    "T11": {
+        "name": "thoracic",
+        "htmlId": "soapsubcategory_660920",
+        "diagcode": ["M54.6", "M99.12"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjT11"],
+        "index": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        "listings":{
+            "paltlisting":{
+                "root": "KyleObjThor11PalT",
+                "problems": ["PR", "PL", "PRA", "PLA", "P", "Ant"],
+                "shortcodemappings":{
+                    "PR":"PR",
+                    "PL":"PL",
+                    "PRA":"PRA",
+                    "PLA":"PLA",
+                    "P":"Post",
+                    "Ant":"Ant"
+                }
+            },
+            "paltseverity":{
+                "default": "mild",
+                "root": "KyleObjThor11PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            }
+        }
+    },
+
+    "T12": {
+        "name": "thoracic",
+        "htmlId": "soapsubcategory_660920",
+        "diagcode": ["M54.6", "M99.12"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjT12"],
+        "index": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        "listings":{
+            "paltlisting":{
+                "root": "KyleObjThor12PalT",
+                "problems": ["PR", "PL", "PRA", "PLA", "P", "Ant"],
+                "shortcodemappings":{
+                    "PR":"PR",
+                    "PL":"PL",
+                    "PRA":"PRA",
+                    "PLA":"PLA",
+                    "P":"Post",
+                    "Ant":"Ant"
+                }
+            },
+            "paltseverity":{
+                "default": "mild",
+                "root": "KyleObjThor12PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            }
+        }
+    },
+
+    "T1RIB": {
+        "name": "T1Rib",
+        "htmlId": "soapsubcategory_660920",
+        "diagcode": ["M54.6", "M99.08"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjrib"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjThor1PalR",            
+                "problems": ["SUP", "INF", "P", "ANT", "IR", "SR"],
+                "shortcodemappings":{
+                    "P": "Post",
+                    "INF": "Inf",
+                    "SUP": "Sup",
+                    "ANT": "Ant",
+                    "IR": "InfR",
+                    "SR": "SupR"                     
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjThor1PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "root": "KyleObjThor1Pal",
+                "problems": ["R", "L", "B"],
+                "shortcodemappings": {
+                    "R": "RibRyt",
+                    "L": "1RibLft",
+                    "B": "RibBi"
+                }
+                
+            }
+        }
+    },
+    "T2RIB": {
+        "name": "T2Rib",
+        "htmlId": "soapsubcategory_660920",
+        "diagcode": ["M54.6", "M99.08"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjrib2"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjThor2PalR",            
+                "problems": ["SUP", "INF", "P", "ANT", "IR", "SR"],
+                "shortcodemappings":{
+                    "P": "Post",
+                    "INF": "Inf",
+                    "SUP": "Sup",
+                    "ANT": "Ant",
+                    "IR": "InfR",
+                    "SR": "SupR"                     
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjThor2PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "root": "KyleObjThor2Pal",
+                "problems": ["R", "L", "B"],
+                "shortcodemappings": {
+                    "R": "RibRyt",
+                    "L": "2RibLft",
+                    "B": "RibBi"
+                }
+                
+            }
+        }
+    },
+
+    "T3RIB": {
+        "name": "T3Rib",
+        "htmlId": "soapsubcategory_660920",
+        "diagcode": ["M54.6", "M99.08"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjrib3"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjThor3PalR",            
+                "problems": ["SUP", "INF", "P", "ANT", "IR", "SR"],
+                "shortcodemappings":{
+                    "P": "Post",
+                    "INF": "Inf",
+                    "SUP": "Sup",
+                    "ANT": "Ant",
+                    "IR": "InfR",
+                    "SR": "SupR"                     
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjThor3PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "root": "KyleObjThor3Pal",
+                "problems": ["R", "L", "B"],
+                "shortcodemappings": {
+                    "R": "RibRyt",
+                    "L": "3RibLft",
+                    "B": "RibBi"
+                }
+                
+            }
+        }
+    },
+
+    "T4RIB": {
+        "name": "T4Rib",
+        "htmlId": "soapsubcategory_660920",
+        "diagcode": ["M54.6", "M99.08"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjrib4"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjThor4PalR",            
+                "problems": ["SUP", "INF", "P", "ANT", "IR", "SR"],
+                "shortcodemappings":{
+                    "P": "Post",
+                    "INF": "Inf",
+                    "SUP": "Sup",
+                    "ANT": "Ant",
+                    "IR": "InfR",
+                    "SR": "SupR"                     
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjThor4PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "root": "KyleObjThor4Pal",
+                "problems": ["R", "L", "B"],
+                "shortcodemappings": {
+                    "R": "RibRyt",
+                    "L": "4RibLft",
+                    "B": "RibBi"
+                }
+                
+            }
+        }
+    },
+
+    "T5RIB": {
+        "name": "T5Rib",
+        "htmlId": "soapsubcategory_660920",
+        "diagcode": ["M54.6", "M99.08"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjrib5"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjThor5PalR",            
+                "problems": ["SUP", "INF", "P", "ANT", "IR", "SR"],
+                "shortcodemappings":{
+                    "P": "Post",
+                    "INF": "Inf",
+                    "SUP": "Sup",
+                    "ANT": "Ant",
+                    "IR": "InfR",
+                    "SR": "SupR"                     
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjThor5PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "root": "KyleObjThor5Pal",
+                "problems": ["R", "L", "B"],
+                "shortcodemappings": {
+                    "R": "RibRyt",
+                    "L": "5RibLft",
+                    "B": "RibBi"
+                }
+                
+            }
+        }
+    },
+   
+    "T6RIB": {
+        "name": "T6Rib",
+        "htmlId": "soapsubcategory_660920",
+        "diagcode": ["M54.6", "M99.08"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjrib6"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjThor6PalR",            
+                "problems": ["SUP", "INF", "P", "ANT", "IR", "SR"],
+                "shortcodemappings":{
+                    "P": "Post",
+                    "INF": "Inf",
+                    "SUP": "Sup",
+                    "ANT": "Ant",
+                    "IR": "InfR",
+                    "SR": "SupR"                     
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjThor6PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "root": "KyleObjThor6Pal",
+                "problems": ["R", "L", "B"],
+                "shortcodemappings": {
+                    "R": "RibRyt",
+                    "L": "RibLft",
+                    "B": "RibBi"
+                }
+                
+            }
+        }
+    },
+   
+    "T7RIB": {
+        "name": "T7Rib",
+        "htmlId": "soapsubcategory_660920",
+        "diagcode": ["M54.6", "M99.08"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjrib7"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjThor7PalR",            
+                "problems": ["SUP", "INF", "P", "ANT", "IR", "SR"],
+                "shortcodemappings":{
+                    "P": "Post",
+                    "INF": "Inf",
+                    "SUP": "Sup",
+                    "ANT": "Ant",
+                    "IR": "InfR",
+                    "SR": "SupR"                     
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjThor7PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "root": "KyleObjThor7Pal",
+                "problems": ["R", "L", "B"],
+                "shortcodemappings": {
+                    "R": "RibRyt",
+                    "L": "RibLft",
+                    "B": "RibBi"
+                }
+                
+            }
+        }
+    },
+   
+    "T8RIB": {
+        "name": "T8Rib",
+        "htmlId": "soapsubcategory_660920",
+        "diagcode": ["M54.6", "M99.08"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjrib8"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjThor8PalR",            
+                "problems": ["SUP", "INF", "P", "ANT", "IR", "SR"],
+                "shortcodemappings":{
+                    "P": "Post",
+                    "INF": "Inf",
+                    "SUP": "Sup",
+                    "ANT": "Ant",
+                    "IR": "InfR",
+                    "SR": "SupR"                     
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjThor8PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "root": "KyleObjThor8Pal",
+                "problems": ["R", "L", "B"],
+                "shortcodemappings": {
+                    "R": "RibRyt",
+                    "L": "8RibLft",
+                    "B": "RibBi"
+                }
+                
+            }
+        }
+    },
+   
+    "T9RIB": {
+        "name": "T9Rib",
+        "htmlId": "soapsubcategory_660920",
+        "diagcode": ["M54.6", "M99.08"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjrib9"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjThor9PalR",            
+                "problems": ["SUP", "INF", "P", "ANT", "IR", "SR"],
+                "shortcodemappings":{
+                    "P": "Post",
+                    "INF": "Inf",
+                    "SUP": "Sup",
+                    "ANT": "Ant",
+                    "IR": "InfR",
+                    "SR": "SupR"                     
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjThor9PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "root": "KyleObjThor9Pal",
+                "problems": ["R", "L", "B"],
+                "shortcodemappings": {
+                    "R": "RibRyt",
+                    "L": "9RibLft",
+                    "B": "RibBi"
+                }
+                
+            }
+        }
+    },
+   
+    "T10RIB": {
+        "name": "T10Rib",
+        "htmlId": "soapsubcategory_660920",
+        "diagcode": ["M54.6", "M99.08"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjrib10"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjThor10PalR",            
+                "problems": ["SUP", "INF", "P", "ANT", "IR", "SR"],
+                "shortcodemappings":{
+                    "P": "Post",
+                    "INF": "Inf",
+                    "SUP": "Sup",
+                    "ANT": "Ant",
+                    "IR": "InfR",
+                    "SR": "SupR"                     
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjThor10PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "root": "KyleObjThor10Pal",
+                "problems": ["R", "L", "B"],
+                "shortcodemappings": {
+                    "R": "RibRyt",
+                    "L": "10RibLft",
+                    "B": "RibBi"
+                }
+                
+            }
+        }
+    },
+   
+    "T11RIB": {
+        "name": "T11Rib",
+        "htmlId": "soapsubcategory_660920",
+        "diagcode": ["M54.6", "M99.08"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjrib11"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjThor11PalR",            
+                "problems": ["SUP", "INF", "P", "ANT", "IR", "SR"],
+                "shortcodemappings":{
+                    "P": "Post",
+                    "INF": "Inf",
+                    "SUP": "Sup",
+                    "ANT": "Ant",
+                    "IR": "InfR",
+                    "SR": "SupR"                     
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjThor11PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "root": "KyleObjThor11Pal",
+                "problems": ["R", "L", "B"],
+                "shortcodemappings": {
+                    "R": "RibRyt",
+                    "L": "11RibLft",
+                    "B": "RibBi"
+                }
+                
+            }
+        }
+    },
+   
+    "T12RIB": {
+        "name": "T12Rib",
+        "htmlId": "soapsubcategory_660920",
+        "diagcode": ["M54.6", "M99.08"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjrib12"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjThor12PalR",            
+                "problems": ["SUP", "INF", "P", "ANT", "IR", "SR"],
+                "shortcodemappings":{
+                    "P": "Post",
+                    "INF": "Inf",
+                    "SUP": "Sup",
+                    "ANT": "Ant",
+                    "IR": "InfR",
+                    "SR": "SupR"                     
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjThor12PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "root": "KyleObjThor12Pal",
+                "problems": ["R", "L", "B"],
+                "shortcodemappings": {
+                    "R": "RibRyt",
+                    "L": "12RibLft",
+                    "B": "RibBi"
+                }
+                
+            }
+        }
+    },
+
+    "L1": {
+        "name": "lumbar",
+        "htmlId": "soapsubcategory_660921",
+        "diagcode": ["M54.5", "M99.13"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjL1"],
+        "listings": {
+            "paltlisting": {
+                "root": "KylObjLumb1PalT",            
+                "problems": ["PRA", "PLA", "PR", "PL", "Ant", "P"],
+                "shortcodemappings":{
+                    "P": "Post",
+                    "PL": "PL",
+                    "PR": "PR",
+                    "PLA": "PLA",
+                    "PRA": "PRA",
+                    "Ant": "Ant"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KylObjLumb1PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            }
+        }
+    },
+    
+    "L2": {
+        "name": "lumbar",
+        "htmlId": "soapsubcategory_660921",
+        "diagcode": ["M54.5", "M99.13"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjL2"],
+        "listings": {
+            "paltlisting": {
+                "root": "KylObjLumb2PalT",            
+                "problems": ["PRA", "PLA", "PR", "PL", "Ant", "P"],
+                "shortcodemappings":{
+                    "P": "Post",
+                    "PL": "PL",
+                    "PR": "PR",
+                    "PLA": "PLA",
+                    "PRA": "PRA",
+                    "Ant": "Ant"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KylObjLumb2PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            }
+        }
+    },
+    
+    "L3": {
+        "name": "lumbar",
+        "htmlId": "soapsubcategory_660921",
+        "diagcode": ["M54.5", "M99.13"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjL3"],
+        "listings": {
+            "paltlisting": {
+                "root": "KylObjLumb3PalT",            
+                "problems": ["PRA", "PLA", "PR", "PL", "Ant", "P"],
+                "shortcodemappings":{
+                    "P": "Post",
+                    "PL": "PL",
+                    "PR": "PR",
+                    "PLA": "PLA",
+                    "PRA": "PRA",
+                    "Ant": "Ant"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KylObjLumb3PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            }
+        }
+    },
+    
+    "L4": {
+        "name": "lumbar",
+        "htmlId": "soapsubcategory_660921",
+        "diagcode": ["M54.5", "M99.13"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjL4"],
+        "listings": {
+            "paltlisting": {
+                "root": "KylObjLumb4PalT",            
+                "problems": ["PRA", "PLA", "PR", "PL", "Ant", "P"],
+                "shortcodemappings":{
+                    "P": "Post",
+                    "PL": "PL",
+                    "PR": "PR",
+                    "PLA": "PLA",
+                    "PRA": "PRA",
+                    "Ant": "Ant"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KylObjLumb4PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            }
+        }
+    },
+    
+    "L5": {
+        "name": "lumbar",
+        "htmlId": "soapsubcategory_660921",
+        "diagcode": ["M54.5", "M99.13"],
+        "defaults": ["paltseverity"],
+        "plancode": ["KylPlnSegAdjL5"],
+        "listings": {
+            "paltlisting": {
+                "root": "KylObjLumb5PalT",            
+                "problems": ["PRA", "PLA", "PR", "PL", "Ant", "P"],
+                "shortcodemappings":{
+                    "P": "Post",
+                    "PL": "PL",
+                    "PR": "PR",
+                    "PLA": "PLA",
+                    "PRA": "PRA",
+                    "Ant": "Ant"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KylObjLumb5PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            }
+        }
+    },
+
+    "RSCAP":{
+        "name": "right scapula",
+        "htmlId": "soapsubcategory_660923",
+        "diagcode": ["M25.511", "M99.07"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjScapr"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjScapPal",            
+                "problems": ["LAT", "MED", "SUP", "ANT"],
+                "shortcodemappings":{
+                    "LAT": "Lat",
+                    "MED": "Med",
+                    "SUP": "Sup",
+                    "ANT": "Ant"                
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjScapPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsRyt",
+                "root": "KyleObjScapPal",
+                "problems": ["R"],
+                "shortcodemappings": {
+                    "R": "TsRyt"                    
+                }
+                
+            }
+        }
+    },
+
+    "LSCAP":{
+        "name": "left scapula",
+        "htmlId": "soapsubcategory_660923",
+        "diagcode": ["M25.512", "M99.07"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjScapl"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjScapPal1",            
+                "problems": ["LAT", "MED", "SUP", "ANT"],
+                "shortcodemappings":{
+                    "MED": "Med",
+                    "LAT": "Lat",
+                    "SUP": "Sup",
+                    "ANT": "Ant"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjScapPal1Ten",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "1TsLft",
+                "root": "KyleObjScapPal",
+                "problems": ["L"],
+                "shortcodemappings": {
+                    "L": "1TsLft"                    
+                }
+                
+            }
+        }
+    },
+    
+    "BSCAP":{
+        "name": "bilateral scapula",
+        "htmlId": "soapsubcategory_660923",
+        "diagcode": ["M25.511", "M25.512", "M99.07"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjScapr", "KylPlnSegAdjScapl"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjScapPal",            
+                "problems": ["LAT", "MED", "SUP", "ANT", "S"],
+                "shortcodemappings":{
+                    "S": "Sup",
+                    "MED": "Med",
+                    "LAT": "Lat",
+                    "SUP": "Sup",
+                    "ANT": "Ant"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjScapPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsLft",
+                "root": "KyleObjScapPal",
+                "problems": ["B"],
+                "shortcodemappings": {
+                    "B": "TsLft"                    
+                }
+                
+            }
+        }
+    },
+
+    "RCLAV":{
+        "name": "right clavical",
+        "htmlId": "soapsubcategory_660923",
+        "diagcode": ["M25.511", "M99.07"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjClav"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjClavPal",            
+                "problems": ["INF", "MED", "SUP", "LAT", "S"],
+                "shortcodemappings":{
+                    "S": "Sup",
+                    "INF": "Inf",
+                    "MED": "Med",
+                    "SUP": "Sup",
+                    "LAT": "Lat"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjClavPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsRyt",
+                "root": "KyleObjClavPal",
+                "problems": ["R"],
+                "shortcodemappings": {
+                    "R": "TsRyt"                    
+                }
+            }
+        }
+    },
+    
+    "LCLAV":{
+        "name": "left clavical",
+        "htmlId": "soapsubcategory_660923",
+        "diagcode": ["M25.512", "M99.07"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjClavl"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjClavPal1",            
+                "problems": ["INF", "MED", "SUP", "LAT", "S"],
+                "shortcodemappings":{
+                    "S": "Sup",
+                    "INF": "Inf",
+                    "MED": "Med",
+                    "SUP": "Sup",
+                    "LAT": "Lat"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjClavPal1Ten",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "1TsLft",
+                "root": "KyleObjClavPal",
+                "problems": ["L"],
+                "shortcodemappings": {
+                    "L": "1TsLft"                    
+                }
+                
+            }
+        }
+    },
+     
+    "BCLAV":{
+        "name": "bilateral clavical",
+        "htmlId": "soapsubcategory_660923",
+        "diagcode": ["M25.511", "M25.512", "M99.07"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjClavl", "KylPlnSegAdjClav"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjClavPal",            
+                "problems": ["INF", "MED", "SUP", "LAT", "S"],
+                "shortcodemappings":{
+                    "S": "Sup",
+                    "INF": "Inf",
+                    "MED": "Med",
+                    "SUP": "Sup",
+                    "LAT": "Lat"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjClavPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsLft",
+                "root": "KyleObjClavPal",
+                "problems": ["B"],
+                "shortcodemappings": {
+                    "B": "TsLft"                    
+                }
+                
+            }
+        }
+    },
+    
+    "RGH":{
+        "name": "right glenohumeral joint",
+        "htmlId": "soapsubcategory_660923",
+        "diagcode": ["M25.511", "M99.07"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjShld"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjGlenHJPal",            
+                "problems": ["MR", "LR", "SUP", "INF"],
+                "shortcodemappings":{
+                    "INF": "INfr",
+                    "MR": "LRt",
+                    "SUP": "Supr",
+                    "LR": "MrT"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjGlenHJPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsRyt",
+                "root": "KyleObjGlenHJPal",
+                "problems": ["R"],
+                "shortcodemappings": {
+                    "R": "TsRyt"                    
+                }
+                
+            }
+        }
+    },
+      
+    "LGH":{
+        "name": "left glenohumeral joint",
+        "htmlId": "soapsubcategory_660923",
+        "diagcode": ["M25.512", "M99.07"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjShld"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjGlenHJPal1",            
+                "problems": ["MR", "LR", "SUP", "INF"],
+                "shortcodemappings":{
+                    "INF": "INfr",
+                    "MR": "LRt",
+                    "SUP": "Supr",
+                    "LR": "MrT"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjGlenHJPal1Ten",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "1TsLft",
+                "root": "KyleObjGlenHJPal",
+                "problems": ["L"],
+                "shortcodemappings": {
+                    "L": "1TsLft"                    
+                }
+                
+            }
+        }
+    },
+      
+    "BGH":{
+        "name": "bilateral glenohumeral joint",
+        "htmlId": "soapsubcategory_660923",
+        "diagcode": ["M25.511", "M25.512", "M99.07"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjShld"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjGlenHJPal",            
+                "problems": ["MR", "LR", "SUP", "INF"],
+                "shortcodemappings":{
+                    "INF": "INfr",
+                    "MR": "LRt",
+                    "SUP": "Supr",
+                    "LR": "MrT"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjGlenHJPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsLft",
+                "root": "KyleObjGlenHJPal",
+                "problems": ["B"],
+                "shortcodemappings": {
+                    "B": "TsLft"                    
+                }
+                
+            }
+        }
+    },
+     
+    "RELBW":{
+        "name": "right elbow",
+        "htmlId": "soapsubcategory_660923",
+        "diagcode": ["M25.521", "M99.07"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjElbw"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjElbwPal",            
+                "problems": ["MED", "LAT", "ANT", "POST"],
+                "shortcodemappings":{
+                    "MED": "MrT",
+                    "LAT": "LRt",
+                    "ANT": "Supr",
+                    "POST": "INfr"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjElbwPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsRyt",
+                "root": "KyleObjElbwPal",
+                "problems": ["R"],
+                "shortcodemappings": {
+                    "R": "TsRyt"                    
+                }
+                
+            }
+        }
+    }, 
+    "LELBW":{
+        "name": "left elbow",
+        "htmlId": "soapsubcategory_660923",
+        "diagcode": ["M25.522", "M99.07"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjElbw"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjElbwPal1",            
+                "problems": ["MED", "LAT", "ANT", "POST"],
+                "shortcodemappings":{
+                    "MED": "MrT",
+                    "LAT": "LRt",
+                    "ANT": "Supr",
+                    "POST": "INfr"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjElbwPal1Ten",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "1TsLft",
+                "root": "KyleObjElbwPal",
+                "problems": ["L"],
+                "shortcodemappings": {
+                    "L": "1TsLft"                    
+                }
+                
+            }
+        }
+    },
+
+    "BELBW":{
+        "name": "bilateral elbow",
+        "htmlId": "soapsubcategory_660923",
+        "diagcode": ["M25.521", "M25.522", "M99.07"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjElbw"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjElbwPal",            
+                "problems": ["MED", "LAT", "ANT", "POST"],
+                "shortcodemappings":{
+                    "MED": "MrT",
+                    "LAT": "LRt",
+                    "ANT": "Supr",
+                    "POST": "INfr"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjElbwPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsLft",
+                "root": "KyleObjElbwPal",
+                "problems": ["B"],
+                "shortcodemappings": {
+                    "B": "TsLft"                    
+                }
+                
+            }
+        }
+    },
+
+    "RWRST":{
+        "name": "right wrist",
+        "htmlId": "soapsubcategory_660923",
+        "diagcode": ["M25.531", "M99.07"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjWrst"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjWrstPal",            
+                "problems": ["POST", "ANT", "POSTDU", "ANTDU", "POSTDR", "ANTDR"],
+                "shortcodemappings":{
+                    "POST": "PosCa",
+                    "ANT": "AntCa",
+                    "POSTDU": "PsDU",
+                    "ANTDU": "AtDU",
+                    "POSTDR": "PsDR",
+                    "ANTDR": "AtDR"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjWrstPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsRyt",
+                "root": "KyleObjWrstPal",
+                "problems": ["R"],
+                "shortcodemappings": {
+                    "R": "TsRyt"                    
+                }
+                
+            }
+        }
+    },
+
+    "LWRST":{
+        "name": "left wrist",
+        "htmlId": "soapsubcategory_660923",
+        "diagcode": ["M25.532", "M99.07"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjWrst"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjWrstPal1",            
+                "problems": ["POST", "ANT", "POSTDU", "ANTDU", "POSTDR", "ANTDR"],
+                "shortcodemappings":{
+                    "POST": "PosCa",
+                    "ANT": "AntCa",
+                    "POSTDU": "PsDU",
+                    "ANTDU": "AtDU",
+                    "POSTDR": "PsDR",
+                    "ANTDR": "AtDR"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjWrstPal1Ten",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "1TsLft",
+                "root": "KyleObjWrstPal",
+                "problems": ["L"],
+                "shortcodemappings": {
+                    "L": "1TsLft"                    
+                }
+                
+            }
+        }
+    },
+
+    "BWRST":{
+        "name": "bilateral wrist",
+        "htmlId": "soapsubcategory_660923",
+        "diagcode": ["M25.531", "M25.532", "M99.07"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjWrst"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjWrstPal",            
+                "problems": ["POST", "ANT", "POSTDU", "ANTDU", "POSTDR", "ANTDR"],
+                "shortcodemappings":{
+                    "POST": "PosCa",
+                    "ANT": "AntCa",
+                    "POSTDU": "PsDU",
+                    "ANTDU": "AtDU",
+                    "POSTDR": "PsDR",
+                    "ANTDR": "AtDR"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjWrstPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsLft",
+                "root": "KyleObjWrstPal",
+                "problems": ["B"],
+                "shortcodemappings": {
+                    "B": "TsLft"                    
+                }
+                
+            }
+        }
+    },
+
+    "RTHMB":{
+        "name": "right 1st digit",
+        "htmlId": "soapsubcategory_660923",
+        "diagcode": ["M25.541", "M99.07"],
+        "defaults": ["paltseverity", "Sides", "fingers"],
+        "plancode": ["KylPlnSegAdjPhalan"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjUphPal",            
+                "problems": ["MC", "PM", "PIP", "DIP"],
+                "shortcodemappings":{
+                    "PM": "PMJt",
+                    "MC": "MCJt",
+                    "PIP": "PIPJt",
+                    "DIP": "DIPJt"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjUphPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsRyt",
+                "root": "KyleObjUphPal",
+                "problems": ["R"],
+                "shortcodemappings": {
+                    "R": "TsRyt"                    
+                }
+                
+            },
+            "fingers":{
+                "default": "Thmb",
+                "root": "KyleObjUphPal",
+                "problems": ["Thmb"],
+                "shortcodemappings": {
+                    "Thmb": "Thmb"                    
+                }
+                
+            }
+        }
+    },
+
+    "LTHMB":{
+        "name": "left 1st digit",
+        "htmlId": "soapsubcategory_660923",
+        "diagcode": ["M25.542", "M99.07"],
+        "defaults": ["paltseverity", "Sides", "fingers"],
+        "plancode": ["KylPlnSegAdjPhalan"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjUphPal1",            
+                "problems": ["MC", "PM", "PIP", "DIP"],
+                "shortcodemappings":{
+                    "PM": "PMJt",
+                    "MC": "MCJt",
+                    "PIP": "PIPJt",
+                    "DIP": "DIPJt"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjUphPal1Ten",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "1TsLft",
+                "root": "KyleObjUphPal",
+                "problems": ["L"],
+                "shortcodemappings": {
+                    "L": "1TsLft"                    
+                }
+                
+            },
+            "fingers":{
+                "default": "1Thmb",
+                "root": "KyleObjUphPal1",
+                "problems": ["1Thmb"],
+                "shortcodemappings": {
+                    "1Thmb": "1Thmb"                    
+                }
+                
+            }
+        }
+    },
+
+    "BTHMB": {
+        "name": "bilateral 1st digit",
+        "htmlId": "soapsubcategory_660923",
+        "diagcode": ["M25.541", "M25.542", "M99.07"],
+        "defaults": ["paltseverity", "Sides", "fingers"],
+        "plancode": ["KylPlnSegAdjPhalan"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjUphPal",            
+                "problems": ["MC", "PM", "PIP", "DIP"],
+                "shortcodemappings":{
+                    "PM": "PMJt",
+                    "MC": "MCJt",
+                    "PIP": "PIPJt",
+                    "DIP": "DIPJt"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjUphPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsLft",
+                "root": "KyleObjUphPal",
+                "problems": ["B"],
+                "shortcodemappings": {
+                    "B": "TsLft"                    
+                }
+                
+            },
+            "fingers":{
+                "default": "Thmb",
+                "root": "KyleObjUphPal",
+                "problems": ["Thmb"],
+                "shortcodemappings": {
+                    "Thmb": "Thmb"                    
+                }
+                
+            }
+        }
+    },
+
+    "R2DIG":{
+        "name": "right 2nd digit",
+        "htmlId": "soapsubcategory_660923",
+        "diagcode": ["M25.541", "M99.07"],
+        "defaults": ["paltseverity", "Sides", "fingers"],
+        "plancode": ["KylPlnSegAdjPhalan"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjUphPal",            
+                "problems": ["MC", "PM", "PIP", "DIP"],
+                "shortcodemappings":{
+                    "PM": "PMJt",
+                    "MC": "MCJt",
+                    "PIP": "PIPJt",
+                    "DIP": "DIPJt"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjUphPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsRyt",
+                "root": "KyleObjUphPal",
+                "problems": ["R"],
+                "shortcodemappings": {
+                    "R": "TsRyt"                    
+                }
+                
+            },
+            "fingers":{
+                "default": "2nd",
+                "root": "KyleObjUphPal",
+                "problems": ["2nd"],
+                "shortcodemappings": {
+                    "2nd": "2nd"                    
+                }
+                
+            }
+        }
+    },
+
+    "L2DIG":{
+        "name": "left 2nd digit",
+        "htmlId": "soapsubcategory_660923",
+        "diagcode": ["M25.542", "M99.07"],
+        "defaults": ["paltseverity", "Sides", "fingers"],
+        "plancode": ["KylPlnSegAdjPhalan"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjUphPal1",            
+                "problems": ["MC", "PM", "PIP", "DIP"],
+                "shortcodemappings":{
+                    "PM": "PMJt",
+                    "MC": "MCJt",
+                    "PIP": "PIPJt",
+                    "DIP": "DIPJt"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjUphPal1Ten",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "1TsLft",
+                "root": "KyleObjUphPal",
+                "problems": ["L"],
+                "shortcodemappings": {
+                    "L": "1TsLft"                    
+                }
+                
+            },
+            "fingers":{
+                "default": "12nd",
+                "root": "KyleObjUphPal1",
+                "problems": ["12nd"],
+                "shortcodemappings": {
+                    "12nd": "12nd"                    
+                }
+                
+            }
+        }
+    },
+
+    "B2DIG": {
+        "name": "bilateral 2nd digit",
+        "htmlId": "soapsubcategory_660923",
+        "diagcode": ["M25.541", "M25.542", "M99.07"],
+        "defaults": ["paltseverity", "Sides", "fingers"],
+        "plancode": ["KylPlnSegAdjPhalan"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjUphPal",            
+                "problems": ["MC", "PM", "PIP", "DIP"],
+                "shortcodemappings":{
+                    "PM": "PMJt",
+                    "MC": "MCJt",
+                    "PIP": "PIPJt",
+                    "DIP": "DIPJt"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjUphPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsLft",
+                "root": "KyleObjUphPal",
+                "problems": ["B"],
+                "shortcodemappings": {
+                    "B": "TsLft"                    
+                }
+                
+            },
+            "fingers":{
+                "default": "2nd",
+                "root": "KyleObjUphPal",
+                "problems": ["2nd"],
+                "shortcodemappings": {
+                    "2nd": "2nd"                    
+                }
+            }
+        }
+    },
+
+    "R3DIG": {
+        "name": "right 3rd digit",
+        "htmlId": "soapsubcategory_660923",
+        "diagcode": ["M25.541", "M99.07"],
+        "defaults": ["paltseverity", "Sides", "fingers"],
+        "plancode": ["KylPlnSegAdjPhalan"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjUphPal",            
+                "problems": ["MC", "PM", "PIP", "DIP"],
+                "shortcodemappings":{
+                    "PM": "PMJt",
+                    "MC": "MCJt",
+                    "PIP": "PIPJt",
+                    "DIP": "DIPJt"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjUphPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsRyt",
+                "root": "KyleObjUphPal",
+                "problems": ["R"],
+                "shortcodemappings": {
+                    "R": "TsRyt"                    
+                }
+                
+            },
+            "fingers":{
+                "default": "3rd",
+                "root": "KyleObjUphPal",
+                "problems": ["3rd"],
+                "shortcodemappings": {
+                    "3rd": "3rd"                    
+                }    
+            }
+        }
+    },
+
+    "L3DIG":{
+        "name": "left 3rd digit",
+        "htmlId": "soapsubcategory_660923",
+        "diagcode": ["M25.542", "M99.07"],
+        "defaults": ["paltseverity", "Sides", "fingers"],
+        "plancode": ["KylPlnSegAdjPhalan"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjUphPal1",            
+                "problems": ["MC", "PM", "PIP", "DIP"],
+                "shortcodemappings":{
+                    "PM": "PMJt",
+                    "MC": "MCJt",
+                    "PIP": "PIPJt",
+                    "DIP": "DIPJt"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjUphPal1Ten",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "1TsLft",
+                "root": "KyleObjUphPal",
+                "problems": ["L"],
+                "shortcodemappings": {
+                    "L": "1TsLft"                    
+                }
+                
+            },
+            "fingers":{
+                "default": "13rd",
+                "root": "KyleObjUphPal1",
+                "problems": ["13rd"],
+                "shortcodemappings": {
+                    "13rd": "13rd"                    
+                }               
+            }
+        }
+    },
+
+    "B3DIG": {
+        "name": "bilateral 3rd digit",
+        "htmlId": "soapsubcategory_660923",
+        "diagcode": ["M25.541", "M25.542", "M99.07"],
+        "defaults": ["paltseverity", "Sides", "fingers"],
+        "plancode": ["KylPlnSegAdjPhalan"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjUphPal",            
+                "problems": ["MC", "PM", "PIP", "DIP"],
+                "shortcodemappings":{
+                    "PM": "PMJt",
+                    "MC": "MCJt",
+                    "PIP": "PIPJt",
+                    "DIP": "DIPJt"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjUphPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsLft",
+                "root": "KyleObjUphPal",
+                "problems": ["B"],
+                "shortcodemappings": {
+                    "B": "TsLft"                    
+                }
+                
+            },
+            "fingers":{
+                "default": "3rd",
+                "root": "KyleObjUphPal",
+                "problems": ["3rd"],
+                "shortcodemappings": {
+                    "3rd": "3rd"                    
+                }
+                
+            }
+        }
+    },
+
+    "R4DIG": {
+        "name": "right 4th digit",
+        "htmlId": "soapsubcategory_660923",
+        "diagcode": ["M25.541", "M99.07"],
+        "defaults": ["paltseverity", "Sides", "fingers"],
+        "plancode": ["KylPlnSegAdjPhalan"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjUphPal",            
+                "problems": ["MC", "PM", "PIP", "DIP"],
+                "shortcodemappings":{
+                    "PM": "PMJt",
+                    "MC": "MCJt",
+                    "PIP": "PIPJt",
+                    "DIP": "DIPJt"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjUphPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsRyt",
+                "root": "KyleObjUphPal",
+                "problems": ["R"],
+                "shortcodemappings": {
+                    "R": "TsRyt"                    
+                }
+                
+            },
+            "fingers":{
+                "default": "4th",
+                "root": "KyleObjUphPal",
+                "problems": ["4TH"],
+                "shortcodemappings": {
+                    "4th": "4th"                    
+                }
+                
+            }
+        }
+    },
+
+    "L4DIG":{
+        "name": "left 4th digit",
+        "htmlId": "soapsubcategory_660923",
+        "diagcode": ["M25.542", "M99.07"],
+        "defaults": ["paltseverity", "Sides", "fingers"],
+        "plancode": ["KylPlnSegAdjPhalan"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjUphPal1",            
+                "problems": ["MC", "PM", "PIP", "DIP"],
+                "shortcodemappings":{
+                    "PM": "PMJt",
+                    "MC": "MCJt",
+                    "PIP": "PIPJt",
+                    "DIP": "DIPJt"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjUphPal1Ten",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "1TsLft",
+                "root": "KyleObjUphPal",
+                "problems": ["L"],
+                "shortcodemappings": {
+                    "L": "1TsLft"                    
+                }
+                
+            },
+            "fingers":{
+                "default": "14th",
+                "root": "KyleObjUphPal1",
+                "problems": ["14th"],
+                "shortcodemappings": {
+                    "14th": "14th"                    
+                }
+                
+            }
+        }
+    },
+
+    "B4DIG": {
+        "name": "bilateral 4th digit",
+        "htmlId": "soapsubcategory_660923",
+        "diagcode": ["M25.541", "M25.542", "M99.07"],
+        "defaults": ["paltseverity", "Sides", "fingers"],
+        "plancode": ["KylPlnSegAdjPhalan"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjUphPal",            
+                "problems": ["MC", "PM", "PIP", "DIP"],
+                "shortcodemappings":{
+                    "PM": "PMJt",
+                    "MC": "MCJt",
+                    "PIP": "PIPJt",
+                    "DIP": "DIPJt"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjUphPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsLft",
+                "root": "KyleObjUphPal",
+                "problems": ["B"],
+                "shortcodemappings": {
+                    "B": "TsLft"                    
+                }
+                
+            },
+            "fingers":{
+                "default": "4th",
+                "root": "KyleObjUphPal",
+                "problems": ["4TH"],
+                "shortcodemappings": {
+                    "4th": "4th"                    
+                }
+                
+            }
+        }
+    },
+
+    "R5DIG": {
+        "name": "right 5th digit",
+        "htmlId": "soapsubcategory_660923",
+        "diagcode": ["M25.541", "M99.07"],
+        "defaults": ["paltseverity", "Sides", "fingers"],
+        "plancode": ["KylPlnSegAdjPhalan"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjUphPal",            
+                "problems": ["MC", "PM", "PIP", "DIP"],
+                "shortcodemappings":{
+                    "PM": "PMJt",
+                    "MC": "MCJt",
+                    "PIP": "PIPJt",
+                    "DIP": "DIPJt"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjUphPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsRyt",
+                "root": "KyleObjUphPal",
+                "problems": ["R"],
+                "shortcodemappings": {
+                    "R": "TsRyt"                    
+                }
+                
+            },
+            "fingers":{
+                "default": "5th",
+                "root": "KyleObjUphPal",
+                "problems": ["5th"],
+                "shortcodemappings": {
+                    "5th": "5th"                    
+                }
+                
+            }
+        }
+    },
+
+    "L5DIG":{
+        "name": "left 5th digit",
+        "htmlId": "soapsubcategory_660923",
+        "diagcode": ["M25.542", "M99.07"],
+        "defaults": ["paltseverity", "Sides", "fingers"],
+        "plancode": ["KylPlnSegAdjPhalan"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjUphPal1",            
+                "problems": ["MC", "PM", "PIP", "DIP"],
+                "shortcodemappings":{
+                    "PM": "PMJt",
+                    "MC": "MCJt",
+                    "PIP": "PIPJt",
+                    "DIP": "DIPJt"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjUphPal1Ten",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "1TsLft",
+                "root": "KyleObjUphPal",
+                "problems": ["L"],
+                "shortcodemappings": {
+                    "L": "1TsLft"                    
+                }
+                
+            },
+            "fingers":{
+                "default": "15th",
+                "root": "KyleObjUphPal1",
+                "problems": ["15th"],
+                "shortcodemappings": {
+                    "15th": "15th"                    
+                }
+                
+            }
+        }
+    },
+
+    "B5DIG": {
+        "name": "bilateral 5th digit",
+        "htmlId": "soapsubcategory_660923",
+        "diagcode": ["M25.541", "M25.542", "M99.07"],
+        "defaults": ["paltseverity", "Sides", "fingers"],
+        "plancode": ["KylPlnSegAdjPhalan"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjUphPal",            
+                "problems": ["MC", "PM", "PIP", "DIP"],
+                "shortcodemappings":{
+                    "PM": "PMJt",
+                    "MC": "MCJt",
+                    "PIP": "PIPJt",
+                    "DIP": "DIPJt"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjUphPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsLft",
+                "root": "KyleObjUphPal",
+                "problems": ["B"],
+                "shortcodemappings": {
+                    "B": "TsLft"                    
+                }
+                
+            },
+            "fingers":{
+                "default": "5th",
+                "root": "KyleObjUphPal",
+                "problems": ["5th"],
+                "shortcodemappings": {
+                    "5th": "5th"                    
+                }
+                
+            }
+        }
+    },
+
+    "RHIP": {
+        "name": "right hip",
+        "htmlId": "soapsubcategory_660924",
+        "diagcode": ["M25.551", "M99.06"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjHip"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjLEHipJtPal",            
+                "problems": ["MR", "LR", "ANT", "P"],
+                "shortcodemappings":{
+                    "MR": "Lat",
+                    "LR": "Med",
+                    "ANT": "Sup",
+                    "P": "Ant"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjLEHipJTPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsRyt",
+                "root": "KyleObjLEHipJTPal",
+                "problems": ["R"],
+                "shortcodemappings": {
+                    "R": "TsRyt"                    
+                }
+            }
+        }
+    },
+
+    "LHIP": {
+        "name": "left hip",
+        "htmlId": "soapsubcategory_660924",
+        "diagcode": ["M25.552", "M99.06"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjHip"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjLEHip1JtPal",            
+                "problems": ["MR", "LR", "ANT", "P"],
+                "shortcodemappings":{
+                    "MR": "Lat",
+                    "LR": "Med",
+                    "ANT": "Sup",
+                    "P": "Ant"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjLEHip1JTPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsLft",
+                "root": "KyleObjLEHip1JTPal",
+                "problems": ["L"],
+                "shortcodemappings": {
+                    "L": "TsLft"                    
+                }
+            }
+        }
+    },
+
+    "BHIP": {
+        "name": "bilateral hip",
+        "htmlId": "soapsubcategory_660924",
+        "diagcode": ["M25.551", "M25.552", "M99.06"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjHip"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjLEHipJtPal",            
+                "problems": ["MR", "LR", "ANT", "P"],
+                "shortcodemappings":{
+                    "MR": "Lat",
+                    "LR": "Med",
+                    "ANT": "Sup",
+                    "P": "Ant"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjLEHipJTPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsLft",
+                "root": "KyleObjLEHipJTPal",
+                "problems": ["B"],
+                "shortcodemappings": {
+                    "B": "TsLft"                    
+                }
+            }
+        }
+    },
+
+    "RKNEE": {
+        "name": "right knee",
+        "htmlId": "soapsubcategory_660924",
+        "diagcode": ["M25.561", "M99.06"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjKnee"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjLEKneePal",            
+                "problems": ["MR", "LR", "ANT", "P"],
+                "shortcodemappings":{
+                    "MR": "Lat",
+                    "LR": "Med",
+                    "ANT": "Sup",
+                    "P": "Ant"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjLEKneePalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsRyt",
+                "root": "KyleObjLEKneePal",
+                "problems": ["R"],
+                "shortcodemappings": {
+                    "R": "TsRyt"                    
+                }
+            }
+        }
+    },
+
+    "LKNEE": {
+        "name": "left knee",
+        "htmlId": "soapsubcategory_660924",
+        "diagcode": ["M25.562", "M99.06"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjKnee"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjLEKnee1Pal",            
+                "problems": ["MR", "LR", "ANT", "P"],
+                "shortcodemappings":{
+                    "MR": "Lat",
+                    "LR": "Med",
+                    "ANT": "Sup",
+                    "P": "Ant"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjLEKnee1PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsLft",
+                "root": "KyleObjLEKnee1Pal",
+                "problems": ["L"],
+                "shortcodemappings": {
+                    "L": "TsLft"                    
+                }
+            }
+        }
+    },
+
+    "BKNEE": {
+        "name": "bilateral knee",
+        "htmlId": "soapsubcategory_660924",
+        "diagcode": ["M25.561", "M25.562", "M99.06"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjKnee"],
+        "listings": {
+            "paltlisting": {
+                "root": ["KyleObjLEKneePal", "KyleObjLEKnee1Pal"],            
+                "problems": ["MR", "LR", "ANT", "P"],
+                "shortcodemappings":{
+                    "MR": "Lat",
+                    "LR": "Med",
+                    "ANT": "Sup",
+                    "P": "Ant"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": ["KyleObjLEKneeJTPalTen","KyleObjLEKnee1PalTen"],
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": ["TsLft", "1TsLft"],
+                "root": "KyleObjLEKneeJTPal",
+                "problems": ["B"],
+                "shortcodemappings": {
+                    "B": ["TsLft", "1TsLft"]                    
+                }
+            }
+        }
+    },
+
+    "RANKL": {
+        "name": "right ankle",
+        "htmlId": "soapsubcategory_660924",
+        "diagcode": ["M25.571", "M99.06"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjAnk"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjLEAnklPal",            
+                "problems": ["POST", "ANT", "POSTDF", "ANTDF", "POSTDT", "ANTDT"],
+                "shortcodemappings":{
+                    "POST": "PosCa",
+                    "ANT": "AntCa",
+                    "POSTDT": "PsDU",
+                    "ANTDT": "AtDU",
+                    "POSTDR": "PsDR",
+                    "ANTDR": "AtDR"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjLEAnklPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsRyt",
+                "root": "KyleObjLEAnklPal",
+                "problems": ["R"],
+                "shortcodemappings": {
+                    "R": "TsRyt"                    
+                }
+            }
+        }
+    },
+
+    "LANKL": {
+        "name": "left ankle",
+        "htmlId": "soapsubcategory_660924",
+        "diagcode": ["M25.572", "M99.06"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjAnk"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjLEAnkl1Pal",            
+                "problems": ["POST", "ANT", "POSTDF", "ANTDF", "POSTDT", "ANTDT"],
+                "shortcodemappings":{
+                    "POST": "PosCa",
+                    "ANT": "AntCa",
+                    "POSTDT": "PsDU",
+                    "ANTDT": "AtDU",
+                    "POSTDR": "PsDR",
+                    "ANTDR": "AtDR"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjLEAnkl1PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsLft",
+                "root": "KyleObjLEAnkl1Pal",
+                "problems": ["L"],
+                "shortcodemappings": {
+                    "L": "TsLft"                    
+                }
+            }
+        }
+    },
+
+    "BANKL": {
+        "name": "both ankles",
+        "htmlId": "soapsubcategory_660924",
+        "diagcode": ["M25.571", "M25.572", "M99.06"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjAnk"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjLEAnklPal",            
+                "problems": ["POST", "ANT", "POSTDF", "ANTDF", "POSTDT", "ANTDT"],
+                "shortcodemappings":{
+                    "POST": "PosCa",
+                    "ANT": "AntCa",
+                    "POSTDT": "PsDU",
+                    "ANTDT": "AtDU",
+                    "POSTDR": "PsDR",
+                    "ANTDR": "AtDR"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjLEAnklPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsLft",
+                "root": "KyleObjLEAnklPal",
+                "problems": ["B"],
+                "shortcodemappings": {
+                    "B": "TsLft"                   
+                }
+            }
+        }
+    },
+
+    "R1TOE": {
+        "name": "right 1st Toe",
+        "htmlId": "soapsubcategory_660924",
+        "diagcode": ["M25.571", "M99.06"],
+        "defaults": ["paltseverity", "Sides", "toes"],
+        "plancode": ["KylPlnSegAdjPhalan"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjLELowPal",            
+                "problems": ["MT", "PM","PIP", "DIP"],
+                "shortcodemappings":{
+                    "MT": "MCJt",
+                    "PM": "PMJt",
+                    "PIP": "PIPJt",
+                    "DIP": "DIPJt"
+                    
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjLELowPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsRyt",
+                "root": "KyleObjLELowPal",
+                "problems": ["R"],
+                "shortcodemappings": {
+                    "R": "TsRyt"                    
+                }
+            },
+            "toes":{
+                "default": "Thmb",
+                "root": "KyleObjLELowPal",
+                "problems": ["Thmb"],
+                "shortcodemappings": {
+                    "Thmb": "Thmb"                    
+                }
+            }
+        }
+    },
+
+    "L1TOE": {
+        "name": "left 1st Toe",
+        "htmlId": "soapsubcategory_660924",
+        "diagcode": ["M25.572", "M99.06"],
+        "defaults": ["paltseverity", "Sides", "toes"],
+        "plancode": ["KylPlnSegAdjPhalan"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjLELow1Pal",            
+                "problems": ["MT", "PM","PIP", "DIP"],
+                "shortcodemappings":{
+                    "MT": "MCJt",
+                    "PM": "PMJt",
+                    "PIP": "PIPJt",
+                    "DIP": "DIPJt"
+                    
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjLELow1PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsLft",
+                "root": "KyleObjLELow1Pal",
+                "problems": ["L"],
+                "shortcodemappings": {
+                    "L": "TsLft"                    
+                }
+            },
+            "toes":{
+                "default": "Thmb",
+                "root": "KyleObjLELow1Pal",
+                "problems": ["Thmb"],
+                "shortcodemappings": {
+                    "Thmb": "Thmb"                    
+                }
+            }
+        }
+    },
+
+    "B1TOE": {
+        "name": "both 1st Toes",
+        "htmlId": "soapsubcategory_660924",
+        "diagcode": ["M25.571", "M25.572", "M99.06"],
+        "defaults": ["paltseverity", "Sides", "toes"],
+        "plancode": ["KylPlnSegAdjPhalan"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjLELowPal",            
+                "problems": ["MT", "PM","PIP", "DIP"],
+                "shortcodemappings":{
+                    "MT": "MCJt",
+                    "PM": "PMJt",
+                    "PIP": "PIPJt",
+                    "DIP": "DIPJt"
+                    
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjLELowPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsLft",
+                "root": "KyleObjLELowPal",
+                "problems": ["B"],
+                "shortcodemappings": {
+                    "B": "TsLft"                    
+                }
+            },
+            "toes":{
+                "default": "Thmb",
+                "root": "KyleObjLELowPal",
+                "problems": ["Thmb"],
+                "shortcodemappings": {
+                    "Thmb": "Thmb"                    
+                }
+            }
+        }
+    },
+
+    "R2TOE": {
+        "name": "right 2nd Toe",
+        "htmlId": "soapsubcategory_660924",
+        "diagcode": ["M25.571", "M99.06"],
+        "defaults": ["paltseverity", "Sides", "toes"],
+        "plancode": ["KylPlnSegAdjPhalan"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjLELowPal",            
+                "problems": ["MT", "PM","PIP", "DIP"],
+                "shortcodemappings":{
+                    "MT": "MCJt",
+                    "PM": "PMJt",
+                    "PIP": "PIPJt",
+                    "DIP": "DIPJt"
+                    
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjLELowPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsRyt",
+                "root": "KyleObjLELowPal",
+                "problems": ["R"],
+                "shortcodemappings": {
+                    "R": "TsRyt"                    
+                }
+            },
+            "toes":{
+                "default": "2nd",
+                "root": "KyleObjLELowPal",
+                "problems": ["2ND"],
+                "shortcodemappings": {
+                    "2ND": "2nd"                    
+                }
+            }
+        }
+    },
+
+    "L2TOE": {
+        "name": "left 2nd Toe",
+        "htmlId": "soapsubcategory_660924",
+        "diagcode": ["M25.572", "M99.06"],
+        "defaults": ["paltseverity", "Sides", "toes"],
+        "plancode": ["KylPlnSegAdjPhalan"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjLELow1Pal",            
+                "problems": ["MT", "PM","PIP", "DIP"],
+                "shortcodemappings":{
+                    "MT": "MCJt",
+                    "PM": "PMJt",
+                    "PIP": "PIPJt",
+                    "DIP": "DIPJt"
+                    
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjLELow1PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsLft",
+                "root": "KyleObjLELow1Pal",
+                "problems": ["L"],
+                "shortcodemappings": {
+                    "L": "TsLft"                    
+                }
+            },
+            "toes":{
+                "default": "2nd",
+                "root": "KyleObjLELow1Pal",
+                "problems": ["2ND"],
+                "shortcodemappings": {
+                    "2ND": "2nd"                    
+                }
+            }
+        }
+    },
+
+    "B2TOE": {
+        "name": "both 2nd Toes",
+        "htmlId": "soapsubcategory_660924",
+        "diagcode": ["M25.571", "M25.572", "M99.06"],
+        "defaults": ["paltseverity", "Sides", "toes"],
+        "plancode": ["KylPlnSegAdjPhalan"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjLELowPal",            
+                "problems": ["MT", "PM","PIP", "DIP"],
+                "shortcodemappings":{
+                    "MT": "MCJt",
+                    "PM": "PMJt",
+                    "PIP": "PIPJt",
+                    "DIP": "DIPJt"
+                    
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjLELowPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsLft",
+                "root": "KyleObjLELowPal",
+                "problems": ["B"],
+                "shortcodemappings": {
+                    "B": "TsLft"                    
+                }
+            },
+            "toes":{
+                "default": "2nd",
+                "root": "KyleObjLELowPal",
+                "problems": ["2ND"],
+                "shortcodemappings": {
+                    "2ND": "2nd"                    
+                }
+            }
+        }
+    },
+
+    "R3TOE": {
+        "name": "right 3rd Toe",
+        "htmlId": "soapsubcategory_660924",
+        "diagcode": ["M25.571", "M99.06"],
+        "defaults": ["paltseverity", "Sides", "toes"],
+        "plancode": ["KylPlnSegAdjPhalan"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjLELowPal",            
+                "problems": ["MT", "PM","PIP", "DIP"],
+                "shortcodemappings":{
+                    "MT": "MCJt",
+                    "PM": "PMJt",
+                    "PIP": "PIPJt",
+                    "DIP": "DIPJt"
+                    
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjLELowPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsRyt",
+                "root": "KyleObjLELowPal",
+                "problems": ["R"],
+                "shortcodemappings": {
+                    "R": "TsRyt"                    
+                }
+            },
+            "toes":{
+                "default": "3rd",
+                "root": "KyleObjLELowPal",
+                "problems": ["3RD"],
+                "shortcodemappings": {
+                    "3RD": "3rd"                    
+                }
+            }
+        }
+    },
+
+    "L3TOE": {
+        "name": "left 3rd Toe",
+        "htmlId": "soapsubcategory_660924",
+        "diagcode": ["M25.572", "M99.06"],
+        "defaults": ["paltseverity", "Sides", "toes"],
+        "plancode": ["KylPlnSegAdjPhalan"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjLELow1Pal",            
+                "problems": ["MT", "PM","PIP", "DIP"],
+                "shortcodemappings":{
+                    "MT": "MCJt",
+                    "PM": "PMJt",
+                    "PIP": "PIPJt",
+                    "DIP": "DIPJt"
+                    
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjLELow1PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsLft",
+                "root": "KyleObjLELow1Pal",
+                "problems": ["L"],
+                "shortcodemappings": {
+                    "L": "TsLft"                    
+                }
+            },
+            "toes":{
+                "default": "3rd",
+                "root": "KyleObjLELow1Pal",
+                "problems": ["3RD"],
+                "shortcodemappings": {
+                    "3RD": "3rd"                    
+                }
+            }
+        }
+    },
+
+    "B3TOE": {
+        "name": "both 3rd Toes",
+        "htmlId": "soapsubcategory_660924",
+        "diagcode": ["M25.571", "M25.572", "M99.06"],
+        "defaults": ["paltseverity", "Sides", "toes"],
+        "plancode": ["KylPlnSegAdjPhalan"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjLELowPal",            
+                "problems": ["MT", "PM","PIP", "DIP"],
+                "shortcodemappings":{
+                    "MT": "MCJt",
+                    "PM": "PMJt",
+                    "PIP": "PIPJt",
+                    "DIP": "DIPJt"
+                    
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjLELowPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsLft",
+                "root": "KyleObjLELowPal",
+                "problems": ["B"],
+                "shortcodemappings": {
+                    "B": "TsLft"                    
+                }
+            },
+            "toes":{
+                "default": "3rd",
+                "root": "KyleObjLELowPal",
+                "problems": ["3RD"],
+                "shortcodemappings": {
+                    "3RD": "3rd"                    
+                }
+            }
+        }
+    },
+
+    "R4TOE": {
+        "name": "right 4th Toe",
+        "htmlId": "soapsubcategory_660924",
+        "diagcode": ["M25.571", "M99.06"],
+        "defaults": ["paltseverity", "Sides", "toes"],
+        "plancode": ["KylPlnSegAdjPhalan"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjLELowPal",            
+                "problems": ["MT", "PM","PIP", "DIP"],
+                "shortcodemappings":{
+                    "MT": "MCJt",
+                    "PM": "PMJt",
+                    "PIP": "PIPJt",
+                    "DIP": "DIPJt"
+                    
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjLELowPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsRyt",
+                "root": "KyleObjLELowPal",
+                "problems": ["R"],
+                "shortcodemappings": {
+                    "R": "TsRyt"                    
+                }
+            },
+            "toes":{
+                "default": "4th",
+                "root": "KyleObjLELowPal",
+                "problems": ["4TH"],
+                "shortcodemappings": {
+                    "4TH": "4th"                    
+                }
+            }
+        }
+    },
+
+    "L4TOE": {
+        "name": "left 4th Toe",
+        "htmlId": "soapsubcategory_660924",
+        "diagcode": ["M25.572", "M99.06"],
+        "defaults": ["paltseverity", "Sides", "toes"],
+        "plancode": ["KylPlnSegAdjPhalan"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjLELow1Pal",            
+                "problems": ["MT", "PM","PIP", "DIP"],
+                "shortcodemappings":{
+                    "MT": "MCJt",
+                    "PM": "PMJt",
+                    "PIP": "PIPJt",
+                    "DIP": "DIPJt"
+                    
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjLELow1PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsLft",
+                "root": "KyleObjLELow1Pal",
+                "problems": ["L"],
+                "shortcodemappings": {
+                    "L": "TsLft"                    
+                }
+            },
+            "toes":{
+                "default": "4th",
+                "root": "KyleObjLELow1Pal",
+                "problems": ["4TH"],
+                "shortcodemappings": {
+                    "4TH": "4th"                    
+                }
+            }
+        }
+    },
+
+    "B4TOE": {
+        "name": "both 4th Toes",
+        "htmlId": "soapsubcategory_660924",
+        "diagcode": ["M25.571", "M25.572", "M99.06"],
+        "defaults": ["paltseverity", "Sides", "toes"],
+        "plancode": ["KylPlnSegAdjPhalan"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjLELowPal",            
+                "problems": ["MT", "PM","PIP", "DIP"],
+                "shortcodemappings":{
+                    "MT": "MCJt",
+                    "PM": "PMJt",
+                    "PIP": "PIPJt",
+                    "DIP": "DIPJt"
+                    
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjLELowPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsLft",
+                "root": "KyleObjLELowPal",
+                "problems": ["B"],
+                "shortcodemappings": {
+                    "B": "TsLft"                    
+                }
+            },
+            "toes":{
+                "default": "4th",
+                "root": "KyleObjLELowPal",
+                "problems": ["4TH"],
+                "shortcodemappings": {
+                    "4TH": "4th"                    
+                }
+            }
+        }
+    },
+
+    "R5TOE": {
+        "name": "right 5th Toe",
+        "htmlId": "soapsubcategory_660924",
+        "diagcode": ["M25.571", "M99.06"],
+        "defaults": ["paltseverity", "Sides", "toes"],
+        "plancode": ["KylPlnSegAdjPhalan"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjLELowPal",            
+                "problems": ["MT", "PM","PIP", "DIP"],
+                "shortcodemappings":{
+                    "MT": "MCJt",
+                    "PM": "PMJt",
+                    "PIP": "PIPJt",
+                    "DIP": "DIPJt"
+                    
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjLELowPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsRyt",
+                "root": "KyleObjLELowPal",
+                "problems": ["R"],
+                "shortcodemappings": {
+                    "R": "TsRyt"                    
+                }
+            },
+            "toes":{
+                "default": "5th",
+                "root": "KyleObjLELowPal",
+                "problems": ["5TH"],
+                "shortcodemappings": {
+                    "5TH": "5th"                    
+                }
+            }
+        }
+    },
+
+    "L5TOE": {
+        "name": "left 5th Toe",
+        "htmlId": "soapsubcategory_660924",
+        "diagcode": ["M25.572", "M99.06"],
+        "defaults": ["paltseverity", "Sides", "toes"],
+        "plancode": ["KylPlnSegAdjPhalan"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjLELow1Pal",            
+                "problems": ["MT", "PM","PIP", "DIP"],
+                "shortcodemappings":{
+                    "MT": "MCJt",
+                    "PM": "PMJt",
+                    "PIP": "PIPJt",
+                    "DIP": "DIPJt"
+                    
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjLELow1PalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsLft",
+                "root": "KyleObjLELow1Pal",
+                "problems": ["L"],
+                "shortcodemappings": {
+                    "L": "TsLft"                    
+                }
+            },
+            "toes":{
+                "default": "5th",
+                "root": "KyleObjLELow1Pal",
+                "problems": ["5TH"],
+                "shortcodemappings": {
+                    "5TH": "5th"                    
+                }
+            }
+        }
+    },
+
+    "B5TOE": {
+        "name": "both 5th Toes",
+        "htmlId": "soapsubcategory_660924",
+        "diagcode": ["M25.571", "M25.572", "M99.06"],
+        "defaults": ["paltseverity", "Sides", "toes"],
+        "plancode": ["KylPlnSegAdjPhalan"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjLELowPal",            
+                "problems": ["MT", "PM","PIP", "DIP"],
+                "shortcodemappings":{
+                    "MT": "MCJt",
+                    "PM": "PMJt",
+                    "PIP": "PIPJt",
+                    "DIP": "DIPJt"
+                    
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjLELowPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsLft",
+                "root": "KyleObjLELowPal",
+                "problems": ["B"],
+                "shortcodemappings": {
+                    "B": "TsLft"                    
+                }
+            },
+            "toes":{
+                "default": "5th",
+                "root": "KyleObjLELowPal",
+                "problems": ["5TH"],
+                "shortcodemappings": {
+                    "5TH": "5th"                    
+                }
+            }
+        }
+    },
+
+    "RCRANSUTR": {
+        "name": "Right Cranial Sutures",
+        "htmlId": "soapsubcategory_660926",
+        "diagcode": ["M79.12", "M62.838"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjCranSut"],
+        "listings": {
+            "paltseverity": {
+                "default": "CSut",
+                "root": "KyleObjSkl",
+                "problems": ["RCRANSUTR"],
+                "shortcodemappings":{
+                    "RCRANSUTR": "CSut"
+                }
+            },
+            "Sides":{
+                "default": "Ryt",
+                "root": "KyleObjSkull",
+                "problems": ["R"],
+                "shortcodemappings": {
+                    "R": "Ryt"                    
+                }
+            }
+        }
+    },
+
+    "LCRANSUTR": {
+        "name": "Left Cranial Sutures",
+        "htmlId": "soapsubcategory_660926",
+        "diagcode": ["M79.12", "M62.838"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjCranSut"],
+        "listings": {
+            "paltseverity": {
+                "default": "CSut",
+                "root": "KyleObj1Skl",
+                "problems": ["LCRANSUTR"],
+                "shortcodemappings":{
+                    "LCRANSUTR": "CSut"
+                }
+            },
+            "Sides":{
+                "default": "Lft",
+                "root": "KyleObj1Skull",
+                "problems": ["L"],
+                "shortcodemappings": {
+                    "L": "Lft"                    
+                }
+            }
+        }
+    },
+
+    "BCRANSUTR": {
+        "name": "Both Cranial Sutures",
+        "htmlId": "soapsubcategory_660926",
+        "diagcode": ["M79.12", "M62.838"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjCranSut"],
+        "listings": {
+            "paltseverity": {
+                "default": "CSut",
+                "root": "KyleObjSkl",
+                "problems": ["BCRANSUTR"],
+                "shortcodemappings":{
+                    "BCRANSUTR": "CSut"
+                }
+            },
+            "Sides":{
+                "default": "Lft",
+                "root": "KyleObjSkull",
+                "problems": ["B"],
+                "shortcodemappings": {
+                    "B": "Lft"                    
+                }
+            }
+        }
+    },
+
+    "RTMJ": {
+        "name": "Right Temporomandibular Joint",
+        "htmlId": "soapsubcategory_660926",
+        "diagcode": ["M26.62", "M62.838"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjTmj"],
+        "listings": {
+            "paltseverity": {
+                "default": "TMJ",
+                "root": "KyleObjSkl",
+                "problems": ["TMJ"],
+                "shortcodemappings":{
+                    "TMJ": "TMJ"
+                }
+            },
+            "Sides":{
+                "default": "Ryt",
+                "root": "KyleObjSkull",
+                "problems": ["R"],
+                "shortcodemappings": {
+                    "R": "Ryt"                    
+                }
+            }
+        }
+    },
+
+    "LTMJ": {
+        "name": "Left Temporomandibular Joint",
+        "htmlId": "soapsubcategory_660926",
+        "diagcode": ["M26.62", "M62.838"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjTmj"],
+        "listings": {
+            "paltseverity": {
+                "default": "TMJ",
+                "root": "KyleObj1Skl",
+                "problems": ["TMJ"],
+                "shortcodemappings":{
+                    "TMJ": "TMJ"
+                }
+            },
+            "Sides":{
+                "default": "Lft",
+                "root": "KyleObj1Skull",
+                "problems": ["L"],
+                "shortcodemappings": {
+                    "L": "Lft"                    
+                }
+            }
+        }
+    },
+
+    "BTMJ": {
+        "name": "Both Temporomandibular Joints",
+        "htmlId": "soapsubcategory_660926",
+        "diagcode": ["M26.62", "M62.838"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjTmj"],
+        "listings": {
+            "paltseverity": {
+                "default": "TMJ",
+                "root": "KyleObjSkl",
+                "problems": ["TMJ"],
+                "shortcodemappings":{
+                    "TMJ": "TMJ"
+                }
+            },
+            "Sides":{
+                "default": "Lft",
+                "root": "KyleObjSkull",
+                "problems": ["B"],
+                "shortcodemappings": {
+                    "B": "Lft"                    
+                }
+            }
+        }
+    },
+
+    "RFACLBNS": {
+        "name": "Facial Bones",
+        "htmlId": "soapsubcategory_660926",
+        "diagcode": ["M79.12", "M62.838"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjCranSut"],
+        "listings": {
+            "paltseverity": {
+                "default": "Fbn",
+                "root": "KyleObjSkl",
+                "problems": ["RFACLBNS"],
+                "shortcodemappings":{
+                    "RFACLBNS": "Fbn"
+                }
+            },
+            "Sides":{
+                "default": "Ryt",
+                "root": "KyleObjSkull",
+                "problems": ["R"],
+                "shortcodemappings": {
+                    "R": "Ryt"                    
+                }
+            }
+        }
+    },
+
+    "LFACLBNS": {
+        "name": "Facial Bones",
+        "htmlId": "soapsubcategory_660926",
+        "diagcode": ["M79.12", "M62.838"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjCranSut"],
+        "listings": {
+            "paltseverity": {
+                "default": "Fbn",
+                "root": "KyleObj1Skl",
+                "problems": ["LFACLBNS"],
+                "shortcodemappings":{
+                    "LFACLBNS": "Fbn"
+                }
+            },
+            "Sides":{
+                "default": "Lft",
+                "root": "KyleObj1Skull",
+                "problems": ["L"],
+                "shortcodemappings": {
+                    "L": "Lft"                    
+                }
+            }
+        }
+    },
+
+    "BFACLBNS": {
+        "name": "Facial Bones",
+        "htmlId": "soapsubcategory_660926",
+        "diagcode": ["M79.12", "M62.838"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjCranSut"],
+        "listings": {
+            "paltseverity": {
+                "default": "Fbn",
+                "root": "KyleObjSkl",
+                "problems": ["BFACLBNS"],
+                "shortcodemappings":{
+                    "BFACLBNS": "Fbn"
+                }
+            },
+            "Sides":{
+                "default": "Lft",
+                "root": "KyleObjSkull",
+                "problems": ["B"],
+                "shortcodemappings": {
+                    "B": "Lft"                    
+                }
+            }
+        }
+    },
+
+    "RHYD": {
+        "name": "Hyoid",
+        "htmlId": "soapsubcategory_660926",
+        "diagcode": ["M79.12", "M62.838"],
+        "defaults": ["paltseverity", "Sides"],
+        "listings": {
+            "paltseverity": {
+                "default": "Hbn",
+                "root": "KyleObjSkl",
+                "problems": ["HYD"],
+                "shortcodemappings":{
+                    "HYD": "Hbn"
+                }
+            },
+            "Sides":{
+                "default": "Ryt",
+                "root": "KyleObjSkull",
+                "problems": ["R"],
+                "shortcodemappings": {
+                    "R": "Ryt"                    
+                }
+            }
+        }
+    },
+
+    "LHYD": {
+        "name": "Hyoid",
+        "htmlId": "soapsubcategory_660926",
+        "diagcode": ["M79.12", "M62.838"],
+        "defaults": ["paltseverity", "Sides"],
+        "listings": {
+            "paltseverity": {
+                "default": "Hbn",
+                "root": "KyleObj1Skl",
+                "problems": ["HYD"],
+                "shortcodemappings":{
+                    "HYD": "Hbn"
+                }
+            },
+            "Sides":{
+                "default": "Lft",
+                "root": "KyleObj1Skull",
+                "problems": ["L"],
+                "shortcodemappings": {
+                    "L": "Lft"                    
+                }
+            }
+        }
+    },
+
+    "BHYD": {
+        "name": "Hyoid",
+        "htmlId": "soapsubcategory_660926",
+        "diagcode": ["M79.12", "M62.838"],
+        "defaults": ["paltseverity", "Sides"],
+        "listings": {
+            "paltseverity": {
+                "default": "Hbn",
+                "root": "KyleObjSkl",
+                "problems": ["HYD"],
+                "shortcodemappings":{
+                    "HYD": "Hbn"
+                }
+            },
+            "Sides":{
+                "default": "Lft",
+                "root": "KyleObjSkull",
+                "problems": ["B"],
+                "shortcodemappings": {
+                    "B": "Lft"                    
+                }
+            }
+        }
+    },
+
+    "RCUBD": {
+        "name": "right cuboid bone",
+        "htmlId": "soapsubcategory_660924",
+        "diagcode": ["M25.571", "M99.06"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjAnk"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjLEAnklPal",            
+                "problems": ["POST", "ANT", "POSTDF", "ANTDF", "POSTDT", "ANTDT"],
+                "shortcodemappings":{
+                    "POST": "PosCa",
+                    "ANT": "AntCa",
+                    "POSTDT": "PsDU",
+                    "ANTDT": "AtDU",
+                    "POSTDR": "PsDR",
+                    "ANTDR": "AtDR"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjLEAnklPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsRyt",
+                "root": "KyleObjLEAnklPal",
+                "problems": ["R"],
+                "shortcodemappings": {
+                    "R": "TsRyt"                    
+                }
+            }
+        }
+    },
+
+    "LCUBD": {
+        "name": "left cuboid bone",
+        "htmlId": "soapsubcategory_660924",
+        "diagcode": ["M25.572", "M99.06"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjAnk"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjLEAnklPal",            
+                "problems": ["POST", "ANT", "POSTDF", "ANTDF", "POSTDT", "ANTDT"],
+                "shortcodemappings":{
+                    "POST": "PosCa",
+                    "ANT": "AntCa",
+                    "POSTDT": "PsDU",
+                    "ANTDT": "AtDU",
+                    "POSTDR": "PsDR",
+                    "ANTDR": "AtDR"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjLEAnklPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsLft",
+                "root": "KyleObjLEAnklPal",
+                "problems": ["L"],
+                "shortcodemappings": {
+                    "L": "TsLft"                    
+                }
+            }
+        }
+    },
+
+    "BCUBD": {
+        "name": "cuboid bone",
+        "htmlId": "soapsubcategory_660924",
+        "diagcode": ["M25.571", "M25.572", "M99.06"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjAnk"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjLEAnklPal",            
+                "problems": ["POST", "ANT", "POSTDF", "ANTDF", "POSTDT", "ANTDT"],
+                "shortcodemappings":{
+                    "POST": "PosCa",
+                    "ANT": "AntCa",
+                    "POSTDT": "PsDU",
+                    "ANTDT": "AtDU",
+                    "POSTDR": "PsDR",
+                    "ANTDR": "AtDR"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjLEAnklPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsLft",
+                "root": "KyleObjLEAnklPal",
+                "problems": ["B"],
+                "shortcodemappings": {
+                    "B": "TsLft"                    
+                }
+            }
+        }
+    },
+
+    "RCALC": {
+        "name": "right calcaneus",
+        "htmlId": "soapsubcategory_660924",
+        "diagcode": ["M25.571", "M99.06"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjAnk"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjLEAnklPal",            
+                "problems": ["POST", "ANT", "POSTDF", "ANTDF", "POSTDT", "ANTDT"],
+                "shortcodemappings":{
+                    "POST": "PosCa",
+                    "ANT": "AntCa",
+                    "POSTDT": "PsDU",
+                    "ANTDT": "AtDU",
+                    "POSTDR": "PsDR",
+                    "ANTDR": "AtDR"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjLEAnklPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsRyt",
+                "root": "KyleObjLEAnklPal",
+                "problems": ["R"],
+                "shortcodemappings": {
+                    "R": "TsRyt"                    
+                }
+            }
+        }
+    },
+
+    "LCALC": {
+        "name": "left calcaneus",
+        "htmlId": "soapsubcategory_660924",
+        "diagcode": ["M25.572", "M99.06"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjAnk"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjLEAnklPal",            
+                "problems": ["POST", "ANT", "POSTDF", "ANTDF", "POSTDT", "ANTDT"],
+                "shortcodemappings":{
+                    "POST": "PosCa",
+                    "ANT": "AntCa",
+                    "POSTDT": "PsDU",
+                    "ANTDT": "AtDU",
+                    "POSTDR": "PsDR",
+                    "ANTDR": "AtDR"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjLEAnklPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsLft",
+                "root": "KyleObjLEAnklPal",
+                "problems": ["L"],
+                "shortcodemappings": {
+                    "L": "TsLft"                    
+                }
+            }
+        }
+    },
+
+    "BCALC": {
+        "name": "bilateral calcaneus",
+        "htmlId": "soapsubcategory_660924",
+        "diagcode": ["M25.571", "M25.572", "M99.06"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjAnk"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjLEAnklPal",            
+                "problems": ["POST", "ANT", "POSTDF", "ANTDF", "POSTDT", "ANTDT"],
+                "shortcodemappings":{
+                    "POST": "PosCa",
+                    "ANT": "AntCa",
+                    "POSTDT": "PsDU",
+                    "ANTDT": "AtDU",
+                    "POSTDR": "PsDR",
+                    "ANTDR": "AtDR"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjLEAnklPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsLft",
+                "root": "KyleObjLEAnklPal",
+                "problems": ["B"],
+                "shortcodemappings": {
+                    "B": "TsLft"                    
+                }
+            }
+        }
+    },
+
+    "RNAV": {
+        "name": "right navicular",
+        "htmlId": "soapsubcategory_660924",
+        "diagcode": ["M25.571", "M99.06"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjAnk"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjLEAnklPal",            
+                "problems": ["POST", "ANT", "POSTDF", "ANTDF", "POSTDT", "ANTDT"],
+                "shortcodemappings":{
+                    "POST": "PosCa",
+                    "ANT": "AntCa",
+                    "POSTDT": "PsDU",
+                    "ANTDT": "AtDU",
+                    "POSTDR": "PsDR",
+                    "ANTDR": "AtDR"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjLEAnklPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsRyt",
+                "root": "KyleObjLEAnklPal",
+                "problems": ["R"],
+                "shortcodemappings": {
+                    "R": "TsRyt"                    
+                }
+            }
+        }
+    },
+
+    "LNAV": {
+        "name": "left navicular",
+        "htmlId": "soapsubcategory_660924",
+        "diagcode": ["M25.572", "M99.06"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjAnk"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjLEAnklPal",            
+                "problems": ["POST", "ANT", "POSTDF", "ANTDF", "POSTDT", "ANTDT"],
+                "shortcodemappings":{
+                    "POST": "PosCa",
+                    "ANT": "AntCa",
+                    "POSTDT": "PsDU",
+                    "ANTDT": "AtDU",
+                    "POSTDR": "PsDR",
+                    "ANTDR": "AtDR"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjLEAnklPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsLft",
+                "root": "KyleObjLEAnklPal",
+                "problems": ["L"],
+                "shortcodemappings": {
+                    "L": "TsLft"                    
+                }
+            }
+        }
+    },
+
+    "BNAV": {
+        "name": "bilateral navicular",
+        "htmlId": "soapsubcategory_660924",
+        "diagcode": ["M25.571", "M25.572", "M99.06"],
+        "defaults": ["paltseverity", "Sides"],
+        "plancode": ["KylPlnSegAdjAnk"],
+        "listings": {
+            "paltlisting": {
+                "root": "KyleObjLEAnklPal",            
+                "problems": ["POST", "ANT", "POSTDF", "ANTDF", "POSTDT", "ANTDT"],
+                "shortcodemappings":{
+                    "POST": "PosCa",
+                    "ANT": "AntCa",
+                    "POSTDT": "PsDU",
+                    "ANTDT": "AtDU",
+                    "POSTDR": "PsDR",
+                    "ANTDR": "AtDR"
+                }
+            },
+            "paltseverity": {
+                "default": "mild",
+                "root": "KyleObjLEAnklPalTen",
+                "problems": ["N", "VMILD", "MILD", "MOD", "VMOD", "S"],
+                "shortcodemappings":{
+                    "N": "None",
+                    "VMILD": "Vmild",
+                    "MILD": "mild",
+                    "VMOD": "Vmod",
+                    "S": "Sev",
+                    "MOD": "mod"
+                }
+            },
+            "Sides":{
+                "default": "TsLft",
+                "root": "KyleObjLEAnklPal",
+                "problems": ["B"],
+                "shortcodemappings": {
+                    "B": "TsLft"                    
+                }
+            }
+        }
+    }
+}
+

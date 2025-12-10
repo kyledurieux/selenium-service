@@ -1,0 +1,17 @@
+{
+    "legchecks":{
+        "name": "legchecks",
+        "htmlId": "soapsubcategory_660918",
+        "cervicals": ["C1", "C2", "C3", "C4", "C5", "C6", "C7"],
+        "defaults": "",
+        "legcheck": {
+            "C1": "Vertical",
+            "C2": "Rotational",
+            "C3": "Medial",
+            "C4": "Lateral",
+            "C5": "C5 leg test ",
+            "C6": "CT junction", 
+            "C7": "CT junction"
+        }
+    }
+}

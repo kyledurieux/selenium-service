@@ -21,3 +21,23 @@ app/.env
 
 # Docker
 *.log
+
+# Runtime / local data
+app/run_history.jsonl
+app/users.json
+
+# Local backup
+docker-compose.yml.bak
+
+# Python cache
+__pycache__/
+*/__pycache__/
+# Runtime / local data
+app/run_history.jsonl
+app/users.json
+
+# Jobs might later have temp files
+jobs/*/__pycache__/
+jobs/*.pyc
+*.pyc
+

@@ -1,0 +1,43 @@
+{
+   "subluxes":{
+          "name:":"subluxes",
+          "bone": ["C1","C2","C3","C4","C5","C6","C7",
+               "T1","T2","T3","T4","T5","T6","T7","T8","T9","T10","T11","T12",
+               "T1RIB","T2RIB","T3RIB","T4RIB","T5RIB","T6RIB","T7RIB","T8RIB","T9RIB","T10RIB","T11RIB","T12RIB",
+               "L1","L2","L3","L4","L5",
+               "Sacrum","RSI","LSI","PLVS","CCYX",
+               "RHIP","LHIP","RKNEE","LKNEE","RANKLE","LANKLE","BHIP","BKNEE","BANKLE",
+               "R1TOE","L1TOE", "B1TOE", "R2TOE", "L2TOE", "B2TOE", "R3TOE", "L3TOE", "B3TOE", "R4TOE", "L4TOE", "B4TOE", "R5TOE", "L5TOE", "B5TOE",        
+               "RSHLD", "LSHLD", "BSHLD", "RCLAV", "LCLAV", "BCLAV", "RGH", "LGH", "BGH", "RWRST", "LWRST", "BWRST",
+               "RTHMB", "LTHMB", "BTHMB", "R2DIG", "L2DIG", "B2DIG", "R3DIG", "L3DIG", "B3DIG", "R4DIG", "L4DIG", "B4DIG", "R5DIG", "L5DIG", "B5DIG",
+               "RCRANSUTR", "LCRANSUTR", "BCRANSUTR", "RTMJ", "LTMJ", "BTMJ","RFACLBNS", "LFACLBNS", "BFACLBNS", "RHYD", "LHYD", "BHYD",
+               "RCUBD","LCUBD","BCUBD","RCALC","LCALC","BCALC","RNAV","LNAV","BNAV"],
+
+          "singleboxcode":{
+               "C1": "[2]/div[1]","C2": "[3]/div[1]","C3": "[4]/div[1]","C4": "[5]/div[1]","C5": "[6]/div[1]","C6": "[7]/div[1]","C7": "[8]/div[1]",
+               "T1": "[2]/div[2]","T2": "[3]/div[2]","T3": "[4]/div[2]","T4": "[5]/div[2]","T5": "[6]/div[2]","T6": "[7]/div[2]","T7": "[8]/div[2]",
+               "T8": "[9]/div[2]","T9": "[10]/div[2]","T10": "[11]/div[2]","T11": "[12]/div[2]","T12": "[13]/div[2]",
+               "T1RIB": "[2]/div[3]","T2RIB": "[3]/div[3]","T3RIB": "[4]/div[3]","T4RIB": "[5]/div[3]","T5RIB": "[6]/div[3]","T6RIB": "[7]/div[3]",
+               "T7RIB": "[8]/div[3]","T8RIB": "[9]/div[3]","T9RIB": "[10]/div[3]","T10RIB": "[11]/div[3]","T11RIB": "[12]/div[3]","T12RIB": "[13]/div[3]",
+               "L1": "[2]/div[4]","L2": "[3]/div[4]","L3": "[4]/div[4]","L4": "[5]/div[4]","L5": "[6]/div[4]",
+               "SCRM": "[8]/div[4]","RSI": "[9]/div[4]","LSI": "[10]/div[4]","CCYX": "[11]/div[4]","PLVS": "[12]/div[4]",
+               "RKNEE":"[2]/div[5]","LKNEE":"[3]/div[5]","RANKL":"[4]/div[5]","LANKL":"[5]/div[5]","RHIP":"[8]/div[5]","LHIP":"[9]/div[5]",
+               "R1TOE":"[6]/div[5]","L1TOE":"[7]/div[5]","R2TOE":"[6]/div[5]", "L2TOE":"[7]/div[5]", "R3TOE":"[6]/div[5]", "L3TOE":"[7]/div[5]", "R4TOE":"[6]/div[5]", "L4TOE":"[7]/div[5]", "R5TOE":"[6]/div[5]", "L5TOE":"[7]/div[5]",
+               "RCLAV":"[2]/div[6]","LCLAV":"[3]/div[6]","RSCAP":"[4]/div[6]","LSCAP":"[5]/div[6]","RGH":"[2]/div[7]","LGH":"[3]/div[7]",  
+               "RELBW":"[4]/div[7]","LELBW":"[5]/div[7]","RWRST":"[6]/div[7]","LWRST":"[7]/div[7]",
+               "RTHMB":"[8]/div[7]","LTHMB":"[9]/div[7]","R1DIG":"[8]/div[7]", "L1DIG":"[9]/div[7]", "R2DIG":"[8]/div[7]", "L2DIG":"[9]/div[7]", "R3DIG":"[8]/div[7]", "L3DIG":"[9]/div[7]", "R4DIG":"[8]/div[7]", "L4DIG":"[9]/div[7]", "R5DIG":"[8]/div[7]", "L5DIG":"[9]/div[7]",
+               "RTMJ":"[8]/div[6]","LTMJ":"[9]/div[6]","RCRANSUTR":"[10]/div[6]","LCRANSUTR":"[10]/div[6]","BCRANSUTR":"[10]/div[6]",
+               "RCALC":"[3]/div[5]","LCALC":"[4]/div[5]"
+          },
+          
+          "doubleboxcode":{
+               "BKNEE":["[2]/div[5]","[3]/div[5]"], "BANKL":["[4]/div[5]","[5]/div[5]"], "BHIP":["[8]/div[5]","[9]/div[5]"],
+               "B1TOE":["[6]/div[5]","[7]/div[5]"], "B2TOE":["[6]/div[5]","[7]/div[5]"], "B3TOE":["[6]/div[5]","[7]/div[5]"], "B4TOE":["[6]/div[5]","[7]/div[5]"], "B5TOE":["[6]/div[5]","[7]/div[5]"],
+               "BCLAV":["[2]/div[6]","[3]/div[6]"], "BSCAP":["[4]/div[6]","[5]/div[6]"], "BGH":["[2]/div[7]","[3]/div[7]"],
+               "BELBW":["[4]/div[7]","[5]/div[7]"], "BWRST":["[6]/div[7]","[7]/div[7]"], "BTHMB":["[8]/div[7]","[9]/div[7]"], "B1DIG":["[8]/div[7]","[9]/div[7]"], "B2DIG":["[8]/div[7]","[9]/div[7]"], "B3DIG":["[8]/div[7]","[9]/div[7]"], "B4DIG":["[8]/div[7]","[9]/div[7]"], "B5DIG":["[8]/div[7]","[9]/div[7]"],
+               "BTMJ":["[8]/div[7]","[9]/div[7]"]
+          }
+
+   } 
+
+}

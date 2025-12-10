@@ -1,0 +1,40 @@
+
+{
+
+    "C1": ["C1"], "C2": ["C2"], "C3": ["C3"], "C4": ["C4"], "C5": ["C5"], "C6": ["C6"], "C7": ["C7"],
+
+    "T1": ["T1"], "T2": ["T2"], "T3": ["T3"], "T4": ["T4"], "T5": ["T5"], "T6": ["T6"], "T7": ["T7"], 
+    "T8": ["T8"], "T9": ["T9"], "T10": ["T10"], "T11": ["T11"], "T12": ["T12"],
+
+    "L1": ["L1"], "L2": ["L2"], "L3": ["L3"], "L4": ["L4"], "L5": ["L5"],
+    
+    "SCRM": ["Sacrum"], "RSI": ["SI R"], "LSI": ["SI L"], "CCYX": ["Coccyx"], "PLVS": ["Pelvis"],
+
+    "T1RIB": ["rib"], "T2RIB": ["rib2"], "T3RIB": ["rib3"], "T4RIB": ["rib4"], "T5RIB": ["rib5"], "T6RIB": ["rib6"],
+    "T7RIB": ["rib7"], "T8RIB": ["rib8"], "T9RIB": ["rib9"], "T10RIB": ["rib10"], "T11RIB": ["rib11"], "T12RIB": ["rib12"],
+   
+    "RHIP": ["R Hip"], "LHIP": ["L Hip"], "RKNEE": ["R Knee"], "LKNEE": ["L Knee"], "RANKL": ["R Ankle"], "LANKL": ["L Ankle"],
+    
+    "RSHLD": ["R Shoulder"],"LSHLD": ["L Shoulder"], "LCLAV": ["Clavical L"], "RCLAV": ["Clavical R"], 
+    "RELBW": ["R Elbow"], "LELBW": ["L Elbow"],
+    
+    "RGH": ["RGH"], "LGH": ["LGH"], "RWRST": ["R Wrist"], "LWRST": ["L Wrist"],
+    "RTHUMB": ["R Phalanges"], "LTHUMB": ["L Phalanges"], "R2DIG": ["R Phalanges"], "L2DIG": ["L Phalanges"], "R3DIG": ["R Phalanges"],
+    "L3DIG": ["L Phalanges"], "R4DIG": ["R Phalanges"], "L4DIG": ["L Phalanges"], "R5DIG": ["R Phalanges"], "L5DIG": ["L Phalanges"],
+    "RSCAP": ["Scapula R"], "LSCAP": ["Scapula L"],
+
+    "R1TOE": ["R Tarsals"], "L1TOE": ["L Tarsals"], "L2TOE": ["L Tarsals"], "R2TOE": ["R Tarsals"], "L3TOE": ["L Tarsals"],
+    "R3TOE": ["R Tarsals"], "L4TOE": ["L Tarsals"], "R4TOE": ["R Tarsals"], "L5TOE": ["L Tarsals"], "R5TOE": ["R Tarsals"],
+  
+    "RTMJ": ["R TMJ"], "LTMJ": ["L TMJ"],
+    
+    "RCRANSUTR": ["Cranial Sutures"], "LCRANSUTR":["Cranial Sutures"],
+    
+    "BHip": ["R HiP", "L Hip"],"BKNEE": ["R Knee", "L Knee"],"BANKLE": ["R Ankle", "L Ankle"],"BWRST": ["R Wrist", "L Wrist"],
+    "BTHUMB": ["R Phalanges", "L Phalanges"],"B2DIG": ["R Phalanges", "L Phalanges"],"B3DIG": ["R Phalanges", "L Phalanges"],
+    "B4DIG": ["R Phalanges", "L Phalanges"],"B5DIG": ["R Phalanges", "L Phalanges"],"B1TOE": ["R Tarsals", "L Tarsals"],
+    "B2TOE": ["R Tarsals", "L Tarsals"],"B3TOE": ["R Tarsals", "L Tarsals"],"B4TOE": ["R Tarsals", "L Tarsals"],"B5TOE": ["R Tarsals", "L Tarsals"],
+    "BCLAV": ["Clavical R", "Clavical L"],"BCRANSUTR": ["Cranial Sutures"],
+    "BSI": ["SI R", "SI L"], "BGH": ["RGH", "LGH"], "BTMJ": ["R TMJ", "L TMJ"], "BSHLD": ["R Shoulder", "L Shoulder"]
+
+}

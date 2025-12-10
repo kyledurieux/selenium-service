@@ -1,5 +1,7 @@
 services:
   selenium-service:
+    build: .
+(Add FillmoreChiro job system and stabilize selenium service)
     image: ghcr.io/kyledurieux/selenium-service:latest
     ports:
       - "127.0.0.1:8080:8080"
@@ -8,4 +10,10 @@ services:
     environment:
       - TZ=America/Denver
       - API_TOKEN=9b1327ac67aac1f8a12579293a6f1d3c21c098874f40abce8b109b4eaa94b1a5
+<<<<<<< HEAD
     pull_policy: always
+=======
+    volumes:
+      - /home/ubuntu/selenium-service/jobs:/app/jobs
+      - /home/ubuntu/selenium-service/app:/app
+>>>>>>> e454f1a (Add FillmoreChiro job system and stabilize selenium service)
