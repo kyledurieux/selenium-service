@@ -38,8 +38,11 @@ jobs/*/__pycache__/
 jobs/*.pyc
 *.pyc
 
-# Runtime data (do not commit)
+# Runtime data (never commit)
 *.csv
+
+# Runtime folders
 jobs/Backup/
-logs/
 runtime/
+logs/
+
