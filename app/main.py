@@ -2,6 +2,7 @@ import os
 import logging
 import subprocess
 from pathlib import Path
+from collections import defaultdict  
 from typing import Optional
 import json
 import threading
@@ -13,19 +14,23 @@ from fastapi.responses import HTMLResponse
 from my_script import run_task  # your existing import
 
 
+
 API_TOKEN = os.getenv("API_TOKEN", "CHANGE_ME_123")
-
 app = FastAPI(title="Selenium Runner (v2)")
-
 JOBS_DIR = Path("/app/jobs")
-
 HISTORY_PATH = Path("run_history.jsonl")
-
 USERS_PATH = Path("users.json")
+LOGS_DIR = Path("logs")
+LOGS_DIR.mkdir(exist_ok=True)
+headless_flag = True  # default headless mode
 
 # Track running jobs per user so we can stop them
 RUNNING_PROCS = {}
 
+def get_log_path_for_user(username: str) -> Path:
+    # Simple: one log file per user (you can make this per-job later if you want)
+    safe_name = username.replace("/", "_")
+    return LOGS_DIR / f"{safe_name}.log"
 
 def load_users():
     """
@@ -118,6 +123,7 @@ def get_username_from_auth(authorization: str | None) -> str | None:
 class RunJob(BaseModel):
     name: Optional[str] = None
     folder: Optional[str] = None  # which jobs folder to use
+    headless: Optional[bool] = True  # new: allow admin/global to control headless
 
 class RunRequest(BaseModel):
     url: str
@@ -330,25 +336,41 @@ def run_job(payload: Optional[RunJob] = None, authorization: str | None = Header
         script_name = f"{payload.name}.py"
 
 
-
     script_path = base_dir / script_name
     if not script_path.exists():
         raise HTTPException(status_code=404, detail=f"Script not found: {script_path}")
 
-    # Log file dedicated to user script output
-    run_log_path = Path("run.log")
+    # Decide headless vs non-headless
+    headless_flag = True
+    if valid_user and username:
+        if is_admin(username) and payload is not None and payload.headless is not None:
+            headless_flag = payload.headless
+        else:
+            headless_flag = True
+    else:
+        if payload is not None and payload.headless is not None:
+            headless_flag = payload.headless
+        else:
+            headless_flag = True
+
+    # Log file dedicated to *this user*'s script output
+    run_log_path = get_log_path_for_user(who)
     run_log_file = run_log_path.open("a")
 
     # Visible separator for each run
-    run_log_file.write(f"--- started script: {script_name} ---\n")
+    run_log_file.write(f"--- started script: {script_name} (user={who}) ---\n")
     run_log_file.flush()
 
-    # Launch the script; pipe output to run.log
+    # Prepare environment for the subprocess
+    env = os.environ.copy()
+    env["HEADLESS"] = "1" if headless_flag else "0"
+
     proc = subprocess.Popen(
         ["python", str(script_path)],
         cwd=str(JOBS_DIR),
         stdout=run_log_file,
-        stderr=run_log_file
+        stderr=run_log_file,
+        env=env,
     )
 
     # Remember this process for this user so we can stop it later
@@ -423,14 +445,18 @@ def get_logs(authorization: str | None = Header(None)):
     if not (valid_global or valid_user):
         raise HTTPException(status_code=401, detail="Unauthorized")
 
-    run_log_path = Path("run.log")
+    # figure out who is asking (same logic as /run)
+    username = get_username_from_auth(authorization) if valid_user else "global"
+    who = username or "global"
+
+    run_log_path = get_log_path_for_user(who)
     if not run_log_path.exists():
         return {"logs": ["<no script log yet>"]}
 
-    with run_log_path.open("r") as f:
+    with run_log_path.open("r", errors="ignore") as f:
         lines = f.readlines()
 
-    tail = lines[-200:]  # show last 200 script lines
+    tail = lines[-200:]  # show last 200 script lines for THIS user
     return {"logs": tail}
 
 @app.post("/logs/clear")
@@ -440,8 +466,16 @@ def clear_logs(authorization: str | None = Header(None)):
     if not (valid_global or valid_user):
         raise HTTPException(status_code=401, detail="Unauthorized")
 
-    Path("run.log").write_text("")  # wipe script log
-    return {"ok": True}
+    # figure out who is asking (same logic as /run and /logs)
+    username = get_username_from_auth(authorization) if valid_user else "global"
+    who = username or "global"
+
+    run_log_path = get_log_path_for_user(who)
+    if run_log_path.exists():
+        # Truncate the file
+        run_log_path.write_text("")
+
+    return {"status": "cleared"}
 
 @app.get("/history")
 def history(authorization: str | None = Header(None)):
@@ -540,12 +574,21 @@ def index():
           <button onclick="viewLogs()">View Logs</button>
           <button onclick="viewHistory()">View History</button>
 
+          <span id="headless-wrapper">
+            <label>
+              <input type="checkbox" id="headless-toggle" checked>
+              Run headless
+            </label>
+          </span>
+
+
           <label style="margin-left:8px;">
             <input type="checkbox" id="auto" onchange="toggleAuto()"> Auto-refresh (3s)
           </label>
 
           <button onclick="clearLogs()" style="margin-left:8px;">Clear Logs</button>
-          <button onclick="logout()" style="margin-left:8px;">Logout</button>
+          <button type="button" id="logoutBtn">Logout</button>
+
 
           <!-- Admin-only script selector (hidden by default) -->
           <span id="script-selector-wrapper" style="display:none; margin-left:8px;">
@@ -641,6 +684,17 @@ def index():
           var currentRole = "user";
           var currentJobsFolder = null;
 
+          document.addEventListener("DOMContentLoaded", function () {
+            var btn = document.getElementById("logoutBtn");
+            if (btn) {
+              btn.addEventListener("click", function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                logout();   // call your existing logout()
+              });
+            }
+          });
+
           // -----------------------
           // LOGIN / LOGOUT
           // -----------------------
@@ -670,6 +724,16 @@ def index():
               currentRole = data.role || (data.username === 'kyle' ? 'admin' : 'user');
               currentJobsFolder = data.jobs_folder || null;
 
+              // ⭐ Show headless toggle ONLY for admins
+              var headlessWrapper = document.getElementById('headless-wrapper');
+              if (headlessWrapper) {
+                if (currentRole === "admin") {
+                  headlessWrapper.style.display = "inline-block";
+                } else {
+                  headlessWrapper.style.display = "none";
+                }
+              }
+
               document.getElementById('login-box').style.display = 'none';
               document.getElementById('app-box').style.display = 'block';
               document.getElementById('who').textContent = data.username;
@@ -677,6 +741,7 @@ def index():
               var adminBox = document.getElementById('admin-box');
               var adminHeader = document.getElementById('admin-header');
               var scriptWrapper = document.getElementById('script-selector-wrapper');
+              var headlessWrapper = document.getElementById('headless-wrapper');
 
               if (currentRole === 'admin') {
                 if (adminHeader) adminHeader.style.display = 'block';
@@ -706,7 +771,12 @@ def index():
             });
           }
 
-          function logout() {
+          function logout(event) {
+            if (event) event.preventDefault();
+
+            // ✅ define this inside logout so it exists here
+            var headlessWrapper = document.getElementById('headless-wrapper');
+
             var autoCb = document.getElementById('auto');
             if (autoTimer !== null) {
               clearInterval(autoTimer);
@@ -730,10 +800,13 @@ def index():
             if (outEl) outEl.textContent = "";
             if (logsEl) logsEl.textContent = "";
             if (historyEl) historyEl.textContent = "";
+
             if (adminHeader) adminHeader.style.display = 'none';
             if (adminBox) adminBox.style.display = 'none';
             if (scriptWrapper) scriptWrapper.style.display = 'none';
+            if (headlessWrapper) headlessWrapper.style.display = 'none';
 
+            // ✅ THESE are the lines that were not being reached before
             document.getElementById('login-box').style.display = 'block';
             document.getElementById('app-box').style.display = 'none';
 
@@ -742,11 +815,6 @@ def index():
             document.getElementById('login-status').textContent = "";
           }
 
-          function enterLogin(event) {
-            if (event.key === "Enter") {
-              login();
-            }
-          }
 
           // -----------------------
           // RUN / STOP
@@ -762,6 +830,7 @@ def index():
             if (currentRole === 'admin') {
               var selScript = document.getElementById('script-select');
               var selFolder = document.getElementById('folder-select');
+              var headlessCb = document.getElementById('headless-toggle');
 
               if (!selFolder || !selFolder.value) {
                 statusEl.textContent = "Please select a folder first.";
@@ -771,8 +840,10 @@ def index():
                 statusEl.textContent = "Please select a script first.";
                 return;
               }
+              // default headless = true if checkbox is missing for some reason
+              var headless = headlessCb ? headlessCb.checked : true;
 
-              payload = { name: selScript.value, folder: selFolder.value };
+              payload = { name: selScript.value, folder: selFolder.value, headless: headless };
             }
 
             fetch('/run', {
@@ -790,8 +861,13 @@ def index():
                   statusEl.textContent = "Job started (ok)";
                   setStatus('RUNNING', 'green');
                   viewLogs();
-                  viewHistory();
+
+                  // Only load history if this is NOT the FillmoreChiro jobs folder
+                  if (currentJobsFolder !== "FillmoreChiro") {
+                    viewHistory();
+                  }
                 } else {
+
                   statusEl.textContent = "ERROR " + text;
                   setStatus('ERROR', 'red');
                 }
@@ -821,7 +897,11 @@ def index():
                   statusEl.textContent = "Stop signal sent";
                   setStatus('IDLE', 'gray');
                   viewLogs();
-                  viewHistory();
+
+                  // Only load history if this is NOT the FillmoreChiro jobs folder
+                  if (currentJobsFolder !== "FillmoreChiro") {
+                    viewHistory();
+                  }
                 } else {
                   statusEl.textContent = "Error stopping: " + res.status;
                 }
@@ -926,25 +1006,26 @@ def index():
             el.style.color = color;
           }
 
-          function clearLogs() {
-            var logsEl = document.getElementById('logs');
-            logsEl.textContent = "Clearing logs...";
+          async function clearLogs() {
+            const logsEl = document.getElementById("logs");
 
-            fetch('/logs/clear', {
-              method: 'POST',
-              headers: authToken ? {'Authorization': 'Bearer ' + authToken} : {}
-            })
-            .then(function(res) {
-              if (!res.ok) {
-                logsEl.textContent = "Error clearing logs: " + res.status;
-                return;
-              }
-              logsEl.textContent = "<logs cleared>";
-            })
-            .catch(function(e) {
-              logsEl.textContent = "Network error";
-            });
+            // Clear the UI immediately
+            if (logsEl) {
+              logsEl.textContent = "";
+            }
+
+            try {
+              await fetch("/logs/clear", {
+                method: "POST",
+                headers: authToken
+                  ? { "Authorization": "Bearer " + authToken }
+                  : {},
+              });
+            } catch (err) {
+              console.error("Failed to clear logs on server:", err);
+            }
           }
+
 
           // -----------------------
           // PASSWORD CHANGE

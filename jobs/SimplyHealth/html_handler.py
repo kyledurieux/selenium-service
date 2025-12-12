@@ -13,6 +13,7 @@ import os
 import shutil
 import CNHvariablelist
 from selenium.common.exceptions import NoSuchElementException
+import subprocess
 
 
 # Create a function for setting up the driver
@@ -35,8 +36,18 @@ def setup_driver():
         """
         print("[html_handler] setup_driver: starting headless Chrome inside Docker")
 
+        # 👇 NEW: read HEADLESS env (default = "1" = headless)
+        headless_env = os.environ.get("HEADLESS", "1")
+        headless = (headless_env == "1")
+
         chrome_options = Options()
-        chrome_options.add_argument("--headless=new")
+        if headless:
+            print("[html_handler] HEADLESS=1, running in headless mode")
+            chrome_options.add_argument("--headless=new")
+        else:
+            print("[html_handler] HEADLESS=0, running WITHOUT headless (visible window if environment supports it)")
+
+
         chrome_options.add_argument("--no-sandbox")
         chrome_options.add_argument("--disable-dev-shm-usage")
         chrome_options.add_argument("--disable-gpu")
@@ -45,29 +56,24 @@ def setup_driver():
         chrome_options.add_argument("--disable-extensions")
         chrome_options.add_argument("--disable-infobars")
 
-        # This uses the ChromeDriver baked into the docker image
-        driver = webdriver.Chrome(options=chrome_options)
-        return driver
+                # This uses the ChromeDriver baked into the docker image
+        try:
+            driver = webdriver.Chrome(options=chrome_options)
+            return driver
+        except Exception as e:
+            print(f"[html_handler] First Chrome start failed (headless={headless}): {e}")
+            # If we were trying NON-headless and it failed (e.g. in a headless EC2 container),
+            # fall back to headless mode automatically.
+            if not headless:
+                print("[html_handler] Falling back to headless mode inside container...")
+                chrome_options.add_argument("--headless=new")
+                driver = webdriver.Chrome(options=chrome_options)
+                return driver
+            # If we were already headless, just re-raise
+            raise
 
-        ## old code that was not used in the recent edits as of 07/18/2025
-        # options = webdriver.ChromeOptions()
-        # options.add_argument('--no-sandbox')
-        # options.add_argument('--disable-dev-shm-usage')
-        # # options.add_argument('--headless')  # Uncomment for headless operation
 
-        # print("Installing ChromeDriver...")
-        # #driver_path = ChromeDriverManager().install()
-        # driver_path = webdriver.Chrome(options=options)
-        # print(f"ChromeDriver installed at: {driver_path}")
-
-        # if not os.path.isfile(driver_path):
-        #     raise FileNotFoundError(f"ChromeDriver executable not found at {driver_path}")
-
-        # #driver = webdriver.Chrome(service=ChromeService(driver_path), options=options)
-        # driver = webdriver.Chrome(options=options)
-        # driver.maximize_window()
-        # return driver
-
+       
     except Exception as e:
         print(f"Error setting up the driver: {e}")
         raise
