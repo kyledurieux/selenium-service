@@ -1,4 +1,6 @@
 # utils.py
+import os
+import pathlib
 
 import pandas as pd
 import csv
@@ -12,6 +14,10 @@ from data import nothandledclientsdict
 from pathlib import Path
 
 BASE_DIR = Path(__file__).parent
+RUNTIME_DIR = pathlib.Path(os.getenv("CNH_RUNTIME_DIR", "/app/runtime")) / "SimplyHealth"
+RUNTIME_DIR.mkdir(parents=True, exist_ok=True)
+DEFAULT_DATA_FILE = RUNTIME_DIR / "shcdata.csv"
+
 
 
 def print_nothandled_clients(nothandledclientsdict):
@@ -43,24 +49,27 @@ def add_to_not_handled_dict(patientname, dateofservice, typeofpatientnote, findi
     else:
         nothandledclientsdict[patientname] = [entry]
 
-def check_patientdate_exists(patientname, dateofservice, typeofpatientnote, filename='shcdata.csv'):
-    filename = BASE_DIR / filename
+def check_patientdate_exists(patientname, dateofservice, typeofpatientnote, filename=DEFAULT_DATA_FILE):
+    filename = Path(filename)  # keep absolute paths absolute
+
     print(f"Checking if {patientname} with DOS {dateofservice} is already in {filename}")
+
+    # ✅ If file doesn't exist yet, nothing can be "already handled"
+    if not filename.exists():
+        print(f"CSV not found yet (will be created on first write): {filename}")
+        return False
 
     try:
         shcdata = pd.read_csv(filename)
 
         # Normalize column names (strip spaces, remove BOM, etc.)
-        shcdata.columns = [
-            col.strip().replace('\ufeff', '') for col in shcdata.columns
-        ]
+        shcdata.columns = [col.strip().replace('\ufeff', '') for col in shcdata.columns]
         print("CSV columns detected:", list(shcdata.columns))
 
         required_cols = ['Patient Name', 'Date of Service', 'Type of Patient Note']
         for col in required_cols:
             if col not in shcdata.columns:
                 print(f"Missing expected column '{col}' in {filename}")
-                # If the structure isn't what we expect, safely treat as "not found"
                 return False
 
         for index, row in shcdata.iterrows():
@@ -70,7 +79,7 @@ def check_patientdate_exists(patientname, dateofservice, typeofpatientnote, file
                 str(row['Type of Patient Note']).strip() == str(typeofpatientnote).strip()
             ):
                 date_format = "%m/%d/%Y"
-                dateofservice1 = datetime.strptime(row['Date of Service'], date_format)
+                dateofservice1 = datetime.strptime(str(row['Date of Service']).strip(), date_format)
                 current_date = datetime.now()
                 six_months_ago = current_date - timedelta(days=30 * 6)
 
@@ -88,6 +97,52 @@ def check_patientdate_exists(patientname, dateofservice, typeofpatientnote, file
     except Exception as e:
         print(f"Error checking patient in CSV: {e}")
         return False
+
+# def check_patientdate_exists(patientname, dateofservice, typeofpatientnote, filename=DEFAULT_DATA_FILE):
+#     filename = BASE_DIR / filename
+#     print(f"Checking if {patientname} with DOS {dateofservice} is already in {filename}")
+
+#     try:
+#         shcdata = pd.read_csv(filename)
+
+#         # Normalize column names (strip spaces, remove BOM, etc.)
+#         shcdata.columns = [
+#             col.strip().replace('\ufeff', '') for col in shcdata.columns
+#         ]
+#         print("CSV columns detected:", list(shcdata.columns))
+
+#         required_cols = ['Patient Name', 'Date of Service', 'Type of Patient Note']
+#         for col in required_cols:
+#             if col not in shcdata.columns:
+#                 print(f"Missing expected column '{col}' in {filename}")
+#                 # If the structure isn't what we expect, safely treat as "not found"
+#                 return False
+
+#         for index, row in shcdata.iterrows():
+#             if (
+#                 str(row['Patient Name']).strip() == str(patientname).strip() and
+#                 str(row['Date of Service']).strip() == str(dateofservice).strip() and
+#                 str(row['Type of Patient Note']).strip() == str(typeofpatientnote).strip()
+#             ):
+#                 date_format = "%m/%d/%Y"
+#                 dateofservice1 = datetime.strptime(row['Date of Service'], date_format)
+#                 current_date = datetime.now()
+#                 six_months_ago = current_date - timedelta(days=30 * 6)
+
+#                 if dateofservice1 < six_months_ago:
+#                     print("Deleting outdated patient record")
+#                     shcdata.drop(index, inplace=True)
+#                     shcdata.to_csv(filename, index=False)
+#                     return False
+
+#                 print("Patient already handled")
+#                 return True
+
+#         return False
+
+#     except Exception as e:
+#         print(f"Error checking patient in CSV: {e}")
+#         return False
 
 # def check_patientdate_exists(patientname, dateofservice, typeofpatientnote, filename='shcdata.csv'):
 #     print(f"Checking if {patientname} with DOS {dateofservice} is already in {filename}")
@@ -121,8 +176,9 @@ def check_patientdate_exists(patientname, dateofservice, typeofpatientnote, file
 #         print(f"Error checking patient in CSV: {e}")
 #         return False
 
-def addto_data(patientname, dateofservice, typeofpatientnote, filename='shcdata.csv'):
-    filename = BASE_DIR / filename
+def addto_data(patientname, dateofservice, typeofpatientnote, filename=DEFAULT_DATA_FILE):
+    filename = Path(filename) 
+    
     try:
         with open(filename, 'a', newline='') as file:
             writer = csv.writer(file)

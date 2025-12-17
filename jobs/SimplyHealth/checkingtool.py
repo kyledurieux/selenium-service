@@ -1,9 +1,10 @@
 import pandas as pd
+from utils import DEFAULT_DATA_FILE
 
 def check_for_patient():
     try:
         # Open schdata.csv
-        df = pd.read_csv('shcdata.csv')
+        df = pd.read_csv(DEFAULT_DATA_FILE)
     except FileNotFoundError:
         print("The file 'shcdata.csv' was not found.")
         return

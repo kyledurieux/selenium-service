@@ -16,6 +16,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 import os
 import shutil
 from pathlib import Path
+import pathlib
 
 
 import html_handler
@@ -41,7 +42,17 @@ chrome_options.add_argument("--headless=new")
 
 
 BASE_DIR = Path(__file__).parent
+RUNTIME_DIR = pathlib.Path(
+    os.getenv("CNH_RUNTIME_DIR", "/app/runtime")
+) / "FillmoreChiro"
+
+RUNTIME_DIR.mkdir(parents=True, exist_ok=True)
+
+FILLMORE_DATA_FILE = RUNTIME_DIR / "fillmoredata.csv"
+
+
 driver = webdriver.Chrome(options=chrome_options)
+
 
 # Initialize global variables
 nothandledclients = []
@@ -1119,7 +1130,7 @@ def check_patientdate_exists(driver, patientname, dateofservice, typeofpatientno
 
     try:
         #using fillmoredata.csv file to store patient data and check if patient has been handled
-        shcdata = pd.read_csv(BASE_DIR / 'fillmoredata.csv')
+        shcdata = pd.read_csv(FILLMORE_DATA_FILE)
         patient_exists = False
 
         for index, row in shcdata.iterrows():
@@ -1138,7 +1149,7 @@ def check_patientdate_exists(driver, patientname, dateofservice, typeofpatientno
                     if dateofservice1 < six_months_ago:
                         print("Deleting outdated patient records")
                         shcdata.drop(index, inplace=True)
-                        shcdata.to_csv('fillmoredata.csv', index=False)
+                        shcdata.to_csv(FILLMORE_DATA_FILE, index=False)
 
 
         if patient_exists:
@@ -1160,7 +1171,7 @@ def check_patientdate_exists(driver, patientname, dateofservice, typeofpatientno
 
 def addto_data(patientname, dateofservice, typeofpatientnote):
     # Add patient information to the fillmoredata.csv file 
-    with open(BASE_DIR / 'fillmoredata.csv', 'a', newline='') as file:
+    with open(FILLMORE_DATA_FILE, 'a', newline='') as file:
         writer = csv.writer(file)
         writer.writerow([patientname, dateofservice, typeofpatientnote])
         print("Patient information added to Fillmore data")
@@ -1539,7 +1550,8 @@ def handle_type5_patient(driver, patientname, dateofservice, typeofpatientnote, 
 
     # check if np note has been handled in the csv file for the current patient
     try:
-        shcdata = pd.read_csv(BASE_DIR / 'fillmoredata.csv')
+        shcdata = pd.read_csv(FILLMORE_DATA_FILE)
+
 
         # # Debugging: Print the first few rows and column names
         # print("CSV file loaded. Here are the first few rows:")

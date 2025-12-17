@@ -1,9 +1,10 @@
 import pandas as pd
+from utils import DEFAULT_DATA_FILE
 
 def remove_patient():
     try:
         # Open schdata.csv
-        df = pd.read_csv('shcdata.csv')
+        df = pd.read_csv(DEFAULT_DATA_FILE)
     except FileNotFoundError:
         print("The file 'shcdata.csv' was not found.")
         return
@@ -22,7 +23,7 @@ def remove_patient():
 
     if mask.any():
         df = df.drop(df[mask].index)
-        df.to_csv('shcdata.csv', index=False)
+        df.to_csv(DEFAULT_DATA_FILE, index=False)
         print("Patient removed from schedule")
     else:
         print("Patient not found")

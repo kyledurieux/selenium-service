@@ -14,6 +14,8 @@ import time
 from objective_softtissue import objective, handle_soft_tissue, clear_handle_addprocedure
 from cervical_assessment_plan import handle_cervical_listings, handle_assessment, handle_plan
 from invoice_payment_diag import handle_diag_cpt, handle_payment
+from utils import DEFAULT_DATA_FILE
+
 import pathlib
 BASE_DIR = pathlib.Path(__file__).parent
 
@@ -217,7 +219,7 @@ def handle_type5_patient(driver, patientname, dateofservice, typeofpatientnote):
     # Check that an NP note already exists for this patient
     try:
         import pandas as pd
-        shcdata = pd.read_csv(BASE_DIR / "shcdata.csv")
+        shcdata = pd.read_csv(DEFAULT_DATA_FILE)
         np_exists = any(
             (row["Patient Name"] == patientname and row["Type of Patient Note"] == "NP")
             for _, row in shcdata.iterrows()
