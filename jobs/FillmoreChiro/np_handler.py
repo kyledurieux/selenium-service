@@ -183,7 +183,7 @@ def exam_note(driver, cervicalshandled_global, softtissue_global, bpartproblem):
         return True
     
     except NoSuchElementException as e:
-        print('Exam note not completed', e)
+        print('Exam note not completed')
         return False
     
 

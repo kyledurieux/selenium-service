@@ -1729,7 +1729,7 @@ def main():
         print("Finished processing.")
         print("Unprocessed patients:")
         print_nothandled_clients(nothandledclientsdict)
-        driver.quit()
+        
 
                
 
