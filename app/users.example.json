@@ -1,0 +1,35 @@
+{
+  "kyle": {
+    "password": "CHANGE_ME",
+    "role": "admin",
+    "jobs_folder": "SimplyHealth",
+    "software_credentials": {
+      "zhealthehr": {
+        "username": "",
+        "password": "CHANGE_ME"
+      }
+    }
+  },
+  "assistant": {
+    "password": "CHANGE_ME",
+    "role": "user",
+    "jobs_folder": "SimplyHealth",
+    "software_credentials": {
+      "zhealthehr": {
+        "username": "",
+        "password": "CHANGE_ME"
+      }
+    }
+  },
+  "saffron": {
+    "password": "CHANGE_ME",
+    "role": "user",
+    "jobs_folder": "FillmoreChiro",
+    "software_credentials": {
+      "zhealthehr": {
+        "username": "",
+        "password": "CHANGE_ME"
+      }
+    }
+  }
+}
