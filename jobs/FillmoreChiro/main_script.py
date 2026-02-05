@@ -1002,7 +1002,7 @@ def handle_payment(driver, patientname, dateofservice, typeofpatientnote):
 
         # if typeofpatientnote is "NP" then the amount_due is float(amount_due1) - 125
         elif typeofpatientnote == "NP":
-            amount_due = float(amount_due1) - 125 # subtract the 125 dollar fee
+            amount_due = float(amount_due1) - 150 # subtract the 150 dollar fee
 
         # if typeofpatientnote is "PB" then the amount_due is float(amount_due1)
         elif typeofpatientnote == "PB" or typeofpatientnote == "PBTPT" or typeofpatientnote == "PBOV" or typeofpatientnote =="PBNP":
@@ -1691,7 +1691,7 @@ def print_nothandled_clients(nothandledclientsdict):
 # Create main function 
 def main():
     username = "drsaffron81"
-    password = "ePSj9jdTHBFt5s"
+    password = "j4e4GA$hWm&#"
     url = 'https://www.zhealthehr.com/'
     #workbook_path = 'D:\\Documents\\kyle-python\\New Button Scrape\\zHealthfollowupexamnotelist2.xlsx'
     
