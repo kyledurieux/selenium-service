@@ -1,4 +1,5 @@
 import html_handler
+import CNHvariablelist
 from selenium.webdriver.common.keys import Keys
 
 def xr_objective(driver):
@@ -77,11 +78,26 @@ def xr_invoice_import_previous_diag(driver):
 def xr_cptcodes(driver):
     try:
         html_handler.send_keys_by_id(driver, "cptBillingCode.cptCodeWithDesc", "70486", sleep_time=3)
+    except: 
+        print("Error in sending cpt code")
+        return False
+
+    try:
         html_handler.send_keys_by_id(driver, "cptBillingCode.cptCodeWithDesc", Keys.ENTER, sleep_time=2)
-        html_handler.click_element(driver, "/html/body/section/section[1]/section[2]/div[3]/div[10]/div/div/div[2]/div[8]/div/div[1]/div[1]/div[2]/div/form/div[3]/div[9]/a/span")
+    except:
+        print("Error adding cpt code")
+        return False    
+
+    try:
+        html_handler.click_element(driver, CNHvariablelist.cptbutton)
+    except:
+        print("Error clicking cpt adding button")
+        return False
+
+    try:                                
         html_handler.clear_text_box(driver, "cptBillingCode.cptCodeWithDesc")
     except:
-        print("Error in importing previous cpt codes")
+        print("Error clearing cpt code line")
         return False
     return True
 

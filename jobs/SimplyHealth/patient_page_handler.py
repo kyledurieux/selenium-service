@@ -10,6 +10,8 @@ from html_handler import click_homebutton, push_basket_button, click_edit_button
 
 from note_type_handlers import handle_type1_patient, handle_type2_patient, handle_type3_patient, handle_type4_patient, handle_type5_patient
 
+import traceback
+
 def handle_page_patients(driver):
     print("FUNCTION - handle_page_patients")
 
@@ -38,34 +40,12 @@ def handle_page_patients(driver):
                     continue
 
                 
-
                 if already_in_not_handled_dict(patientname, dateofservice, typeofpatientnote):
                     print(f"Patient already in not handled list: {patientname} - {dateofservice} ({typeofpatientnote})")
                     print("____________________________\n")
                     print(f"Skipping patient: {patientname}\n____________________________\n")
                     continue
     
-                # skip_patient = False
-                # if patientname in nothandledclientsdict:
-                #     print("Patient found in not handled dictionary:", patientname)
-                #     # check if the date of service and type of patient note match
-                #     for record in nothandledclientsdict[patientname]:
-                #         print("checking date of service:", record ['dateofservice'])
-                #         print("checking type of patient note:", record ['typeofpatientnote'])
-                #         print(dateofservice, typeofpatientnote)
-
-                #         if (record['dateofservice'] == dateofservice and 
-                #             record['typeofpatientnote'] == typeofpatientnote):
-                #             print("Patient already in not handled list")
-                #             print("____________________________")
-                #             print()
-                #             skip_patient = True
-                #             break                            
-                # if skip_patient:
-                #     print("Skipping patient:", patientname)
-                #     print("____________________________")
-                #     print()
-                #     continue   
 
                 if not handle_patient_files(driver, patientname, dateofservice, typeofpatientnote, index):
                     continue
@@ -74,13 +54,10 @@ def handle_page_patients(driver):
                 push_basket_button(driver)
                 return handle_page_patients(driver)
 
-            # except StaleElementReferenceException:
-            #     print("Stale row; retrying")
-            #     push_basket_button(driver)
-            #     return handle_page_patients(driver)
 
             except Exception as e:
                 print(f"Error processing patient row: {e}")
+                traceback.print_exc()
                 add_to_not_handled_dict(patientname, dateofservice, typeofpatientnote, "Exception in patient row loop")
                 click_homebutton(driver)
                 push_basket_button(driver)

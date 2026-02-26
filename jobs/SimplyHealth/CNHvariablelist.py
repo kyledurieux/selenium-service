@@ -59,7 +59,8 @@ lumbarpassiveromtab = '//a[normalize-space(text())="LUMBAR PASSIVE ROM"]'
 diagnosisline = '//input[@id="diagnosisBillingCode.icdWithDiagnosisCode"]'
 cptline = '//input[@id="cptBillingCode.cptCodeWithDesc"]'
 diagnosisbutton = '//button[@onclick="addDiagnosisBilling();"]'
-cptbutton = '//a[contains(@href, "addCPTBilling()")]'
+cptbutton = '//*[@id="cptBillingInvoiceForm"]/div[3]/div[9]/a/span' 
+            #href for button '//a[contains(@href, "addCPTBilling()")]'
 
 #clearing tabs
 clearfindingsbutton = '//button[text()="Clear Findings"]'
