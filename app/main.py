@@ -12,6 +12,7 @@ from fastapi import FastAPI, HTTPException, Header
 from pydantic import BaseModel
 from fastapi.responses import HTMLResponse
 from my_script import run_task  # your existing import
+from user_secrets import set_zhealth_credentials, get_zhealth_status, get_zhealth_credentials  # for storing per-user ZHealth creds
 
 
 
@@ -136,6 +137,10 @@ class ChangePasswordReq(BaseModel):
     old_password: str
     new_password: str
 
+class ZHealthCredsReq(BaseModel):
+    zhealth_username: str
+    zhealth_password: str
+
 class AdminUser(BaseModel):
     username: str
     password: str
@@ -188,6 +193,45 @@ def change_password(req: ChangePasswordReq, authorization: str | None = Header(N
     USERS[username] = user
     save_users(USERS)
     return {"ok": True}
+
+@app.post("/me/zhealth-credentials")
+def set_my_zhealth_credentials(req: ZHealthCredsReq, authorization: str | None = Header(None)):
+    # must be logged in as a user (not just global token)
+    if authorization is None or not authorization.startswith("Bearer user-"):
+        raise HTTPException(status_code=401, detail="User token required")
+
+    username = get_username_from_auth(authorization)
+    if not username:
+        raise HTTPException(status_code=401, detail="Invalid user token")
+
+    # basic validation
+    if not req.zhealth_username or not req.zhealth_password:
+        raise HTTPException(status_code=400, detail="Both zhealth_username and zhealth_password are required")
+
+    try:
+        set_zhealth_credentials(username, req.zhealth_username, req.zhealth_password)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to save credentials: {e}")
+
+    return {"ok": True}
+
+@app.get("/me/zhealth-credentials")
+def get_my_zhealth_credentials_status(authorization: str | None = Header(None)):
+    # must be logged in as a user
+    if authorization is None or not authorization.startswith("Bearer user-"):
+        raise HTTPException(status_code=401, detail="User token required")
+
+    username = get_username_from_auth(authorization)
+    if not username:
+        raise HTTPException(status_code=401, detail="Invalid user token")
+
+    try:
+        return get_zhealth_status(username)
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Failed to read credentials status: {e}"
+        )
 
 @app.get("/admin/users")
 def admin_list_users(authorization: str | None = Header(None)):
@@ -365,6 +409,17 @@ def run_job(payload: Optional[RunJob] = None, authorization: str | None = Header
     env = os.environ.copy()
     env["HEADLESS"] = "1" if headless_flag else "0"
 
+        # If this is a normal user run, inject their zHealth creds (if configured)
+    if valid_user and username:
+        try:
+            z_u, z_p = get_zhealth_credentials(username)
+            if z_u and z_p:
+                env["ZHEALTH_USERNAME"] = z_u
+                env["ZHEALTH_PASSWORD"] = z_p
+        except Exception:
+            # Don't block the run if creds aren't set; the script can handle it
+            pass
+            
     proc = subprocess.Popen(
         ["python", str(script_path)],
         cwd=str(JOBS_DIR),
@@ -633,6 +688,17 @@ def index():
             <button onclick="changePw()">Update</button>
             <pre id="pwout"></pre>
 
+            <h4 style="margin-top:16px;">zHealth Login (for automation)</h4>
+            <label>zHealth Username:
+              <input id="zuser" />
+            </label>
+            <label style="margin-left:8px;">zHealth Password:
+              <input id="zpass" type="password" />
+            </label>
+            <button onclick="saveZHealth()" style="margin-left:8px;">Save</button>
+            <pre id="zout" style="background:#f7f7f7; padding:8px; max-height:120px; overflow:auto;"></pre>
+
+
             <!-- Admin Panel (hidden by default; shown only for admins) -->
             <h4 id="admin-header" style="display:none; margin-top:16px;">Admin Panel</h4>
             <div id="admin-box" style="display:none; border:1px solid #ccc; padding:8px; margin-top:8px;">
@@ -763,6 +829,7 @@ def index():
                 toggleAuto();
               }
               viewLogs();
+              loadZHealthStatus();
             })
             .catch(function(err) {
               if (status.textContent === "") {
@@ -861,6 +928,7 @@ def index():
                   statusEl.textContent = "Job started (ok)";
                   setStatus('RUNNING', 'green');
                   viewLogs();
+                  
 
                   // Only load history if this is NOT the FillmoreChiro jobs folder
                   if (currentJobsFolder !== "FillmoreChiro") {
@@ -897,6 +965,7 @@ def index():
                   statusEl.textContent = "Stop signal sent";
                   setStatus('IDLE', 'gray');
                   viewLogs();
+                  
 
                   // Only load history if this is NOT the FillmoreChiro jobs folder
                   if (currentJobsFolder !== "FillmoreChiro") {
@@ -1062,6 +1131,66 @@ def index():
             })
             .catch(function(e) {
               out.textContent = "Network error";
+            });
+          }
+
+          function loadZHealthStatus() {
+            var out = document.getElementById('zout');
+            if (out) out.textContent = "Loading zHealth status...";
+
+            fetch('/me/zhealth-credentials', {
+              headers: authToken ? {'Authorization': 'Bearer ' + authToken} : {}
+            })
+            .then(function(res) {
+              return res.text().then(function(txt) {
+                if (!res.ok) {
+                  if (out) out.textContent = "Error (" + res.status + "): " + txt;
+                  throw new Error("bad status");
+                }
+                var data = JSON.parse(txt);
+                document.getElementById('zuser').value = data.zhealth_username || "";
+                if (out) out.textContent = "Saved password: " + (data.has_password ? "YES" : "NO");
+              });
+            })
+            .catch(function(e) {
+              if (out && out.textContent.indexOf("Error") === -1) {
+                out.textContent = "Network error";
+              }
+            });
+          }
+
+          function saveZHealth() {
+            var zu = document.getElementById('zuser').value.trim();
+            var zp = document.getElementById('zpass').value;
+            var out = document.getElementById('zout');
+            out.textContent = "";
+
+            if (!zu || !zp) {
+              out.textContent = "Please enter both zHealth username and password.";
+              return;
+            }
+
+            fetch('/me/zhealth-credentials', {
+              method: 'POST',
+              headers: Object.assign(
+                {'Content-Type': 'application/json'},
+                authToken ? {'Authorization': 'Bearer ' + authToken} : {}
+              ),
+              body: JSON.stringify({ zhealth_username: zu, zhealth_password: zp })
+            })
+            .then(function(res) {
+              return res.text().then(function(txt) {
+                if (!res.ok) {
+                  out.textContent = "Error (" + res.status + "): " + txt;
+                  throw new Error("save failed");
+                }
+                out.textContent = "Saved ✅";
+                document.getElementById('zpass').value = "";
+                loadZHealthStatus();
+              });
+            })
+            .catch(function(e) {
+              if (out.textContent === "") out.textContent = "Network error";
             });
           }
 

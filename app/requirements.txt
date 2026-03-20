@@ -2,4 +2,4 @@ fastapi
 uvicorn[standard]
 selenium==4.25.0
 pandas
-
+cryptography

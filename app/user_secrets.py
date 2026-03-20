@@ -1,9 +1,10 @@
 import json
 from pathlib import Path
-from app.crypto_utils import encrypt_text, decrypt_text
+from crypto_utils import encrypt_text, decrypt_text
+import os
 
 
-USERS_FILE = Path(__file__).parent / "users.json"
+USERS_FILE = Path(os.getenv("USERS_PATH", "users.json"))
 
 
 def load_users():
@@ -47,3 +48,19 @@ def get_zhealth_credentials(username: str):
 
     decrypted = decrypt_text(encrypted_password)
     return z_user, decrypted
+
+def get_zhealth_status(username: str):
+    """
+    Safe status only: returns saved zHealth username and whether a password token exists.
+    Never decrypts and never returns the password.
+    """
+    users = load_users()
+
+    if username not in users:
+        raise ValueError(f"User '{username}' not found")
+
+    z = users[username].get("software_credentials", {}).get("zhealthehr", {})
+    z_user = z.get("username", "") or ""
+    z_pass = z.get("password", "") or ""
+
+    return {"zhealth_username": z_user, "has_password": bool(z_pass)}

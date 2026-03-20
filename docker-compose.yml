@@ -8,11 +8,15 @@ services:
     restart: unless-stopped
     shm_size: "2gb"        # important for Chrome stability
     
+    
+    env_file:
+      - ./app/.env
+
     environment:
       - TZ=America/Denver
       - API_TOKEN=9b1327ac67aac1f8a12579293a6f1d3c21c098874f40abce8b109b4eaa94b1a5
 
-    pull_policy: always
+    pull_policy: never
 
     volumes:
       - /home/ubuntu/selenium-service/jobs:/app/jobs
