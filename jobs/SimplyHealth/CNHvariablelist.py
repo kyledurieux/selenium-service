@@ -1,8 +1,8 @@
 
 
 #The Basket XPath Variable 
-mybasket = '//a[@id="MyBasket"]'
-homebutton = '//a[@id="homeBtn"]'
+mybasket = '//*[@id="MyBasket"]'
+homebutton = '//*[@id="homeBtn"]'
 
 # Main Soap Note tab variables
 objectivetab = "//a[text()='Objective']"
@@ -36,7 +36,7 @@ vitalstab = '//a[normalize-space(text())="VITALS"]'
 visiontab = '//a[normalize-space(text())="VISION"]'
 visualinspectiontab = '//a[normalize-space(text())="VISUAL INSPECTION"]'
 subluxationcomplexestab = '//a[normalize-space(text())="SUBLUXATION COMPLEXES"]'
-orthopedictab = '//a[normalize-space(text())="ORTHOPEDIC"]'
+orthopedictab = '//*[@id="soapcategory_660933"]'
 cervicalromtab = '//a[normalize-space(text())="CERVICAL ROM"]'
 lumbarromtab = '//a[normalize-space(text())="LUMBAR ROM"]'
 motortab = '//a[normalize-space(text())="MOTOR"]'

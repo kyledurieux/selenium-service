@@ -10,6 +10,7 @@ import ro_handler
 import xr_handler
 from objective_softtissue import handle_notes
 import time
+import traceback
 
 from objective_softtissue import objective, handle_soft_tissue, clear_handle_addprocedure
 from cervical_assessment_plan import handle_cervical_listings, handle_assessment, handle_plan
@@ -109,43 +110,59 @@ def handle_type2_patient(driver, patientname, dateofservice, typeofpatientnote):
 
         cervicalshandled_local, shortcodes_local, note, nextvisit, softtissue = result
 
+        print("NP step: objective")
         if objective(driver, patientname, dateofservice, typeofpatientnote, shortcodemapping, shortcodes_local, cervicalshandled_local, nothandledclientsdict) is False:
             return _abort(driver, patientname, dateofservice, typeofpatientnote, "Objective")
 
+        print("NP step: soft tissue")
         if handle_soft_tissue(driver, softtissue) is False:
             return _abort(driver, patientname, dateofservice, typeofpatientnote, "Soft Tissue")
 
+        print("NP step: cervicals")
         if handle_cervical_listings(driver, cervicalshandled_local) is False:
             return _abort(driver, patientname, dateofservice, typeofpatientnote, "Cervicals")
 
         if note:
             notes.append(note)
             
+        print("NP step: notes")
         if handle_notes(driver, note) is False:
             return _abort(driver, patientname, dateofservice, typeofpatientnote, "Notes")
 
+        print("NP step: plan")
         if np_handler.exam_note_plan(driver, cervicalshandled_local, shortcodemapping, nextvisit, patientname, dateofservice, typeofpatientnote) is False:
             return _abort(driver, patientname, dateofservice, typeofpatientnote, "NP plan")
 
+        print("NP step: exam")
         if np_handler.exam_note(driver, cervicalshandled_global, softtissue_global, bpartproblem, patientname, dateofservice, typeofpatientnote) is False:
             return _abort(driver, patientname, dateofservice, typeofpatientnote, "NP exam")
 
+        print("NP step: diag")
         if np_handler.exam_handle_diag(driver, cervicalshandled_local, shortcodemapping) is False:
             return _abort(driver, patientname, dateofservice, typeofpatientnote, "NP diag")
 
+        print("NP step: CPT")
         if np_handler.exam_handle_cpt(driver, cervicalshandled_local) is False:
             return _abort(driver, patientname, dateofservice, typeofpatientnote, "NP CPT")
 
+        print("NP step: payment")
         if np_handler.exam_handle_payment(driver, patientname, dateofservice, typeofpatientnote, nothandledclientsdict) is False:
             return _abort(driver, patientname, dateofservice, typeofpatientnote, "NP payment")
 
+        print("NP step: sign note")
         sign_note()
         addto_data(patientname, dateofservice, typeofpatientnote)
         print(f"✅ Completed NP: {patientname}")
 
     except Exception as e:
         print(f"Exception in NP handler: {e}")
-        add_to_not_handled_dict(patientname, dateofservice, typeofpatientnote, f"NP crash: {e}")
+        add_to_not_handled_dict(
+            patientname,
+            dateofservice,
+            typeofpatientnote,
+            f"NP crash: {type(e).__name__}: {e!r}"
+        )
+        print(traceback.format_exc())
         html_handler.clear_findings(driver)
         return False
 

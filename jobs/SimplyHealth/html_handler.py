@@ -81,6 +81,7 @@ def setup_driver():
 # Create a function for login
 def login(driver, username, password, url):
 
+    print(f"[startup] navigating to: {url}")
     driver.get(url)
     
     try:
@@ -161,7 +162,6 @@ def push_basket_button(driver):
                                                                    
     except TimeoutException:
         print("Basket button not found")
-        driver.quit()
         return False 
 
 # utility function to clear the text box

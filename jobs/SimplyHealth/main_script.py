@@ -9,19 +9,33 @@ from html_handler import setup_driver, login, push_basket_button, has_next_page,
 from patient_page_handler import handle_page_patients
 from data import nothandledclientsdict
 from utils import print_nothandled_clients
+import os
 
 
 def main():
     # TODO: we will move these into environment variables soon
-    username = "kdurieux"
-    password = "*Sublux1"
+    z_username = os.getenv("ZHEALTH_USERNAME")
+    z_password = os.getenv("ZHEALTH_PASSWORD")
+
+    if not z_username or not z_password:
+        raise RuntimeError("ZHEALTH_USERNAME or ZHEALTH_PASSWORD not set in environment")
+
+    # use z_username and z_password in your login code
+    # username = "kdurieux"
+    # password = "*Sublux1"
     url = "https://www.zhealthehr.com/"
 
     driver = setup_driver()
-
+    from data import nothandledclientsdict
+    nothandledclientsdict.clear()
+    print("[startup] cleared nothandledclientsdict")
+    
     try:
-        login(driver, username, password, url)
-        push_basket_button(driver)
+        login(driver, z_username, z_password, url)
+        ok = push_basket_button(driver)
+        if not ok:
+            print("Failed to find basket button, exiting.")
+            return
 
         while True:
             print("Handling patients on the current page")

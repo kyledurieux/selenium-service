@@ -448,98 +448,93 @@ def subluxation_complexes_tab(driver, cervicalshandled):
 
 def softtissue_write(driver, softtissue_global):
     print()
-    print("softtissue_write, opening other exam tab")
-
-    #with open(r'G:\My Drive\My folder\kyle-python\New Button Scrape\softtissuemapping.json') as s:
-    with open(BASE_DIR / 'softtissuemapping.json') as s:
-        softtissuemaping = json.load(s)
-
-    #open the other exam tab
-    try:
-        html_handler.click_element(driver, CNHvariablelist.otherexamtab)
-        print('Other Exam tab opened')
-    
-    except NoSuchElementException as e:
-        log('Other Exam tab not found', e)        
-        return False
-    
-    print()
     print("softtissue_write, softtissue_global: ", softtissue_global)
-    
-    problem = softtissuemaping['problems']
-    problemcode = softtissuemaping['shortcodemappings']
-    tissue = softtissuemaping['tissue']
-    thephrase = []
 
     softtissue = list(set(softtissue_global))
     print("softtissue_write, softtissue: ", softtissue)
 
-    if not softtissue:
-        print("There is no soft tissue to write.")
-        return True  # No soft tissue entries to process, return True
+    if not softtissue or all(not str(x).strip() for x in softtissue):
+        print("There is no soft tissue to write. Skipping Other Exam tab.")
+        return True
+
+    print("softtissue_write, opening other exam tab")
+
+    with open(BASE_DIR / 'softtissuemapping.json') as s:
+        softtissuemaping = json.load(s)
+
+    try:
+        html_handler.click_element(driver, CNHvariablelist.otherexamtab)
+        print('Other Exam tab opened')
+
+    except NoSuchElementException as e:
+        log('Other Exam tab not found', e)
+        return False
+
+    problem = softtissuemaping['problems']
+    problemcode = softtissuemaping['shortcodemappings']
     
-    else:
-        # Now separate each phrase within the entries by splitting them
-        separated_softtissues = []
-        for entry in softtissue:
-            separated_softtissues.extend(entry.split(", "))  # Splitting the string by ', '
+   
+    # Now separate each phrase within the entries by splitting them
+    separated_softtissues = []
+    for entry in softtissue:
+        separated_softtissues.extend(entry.split(", "))  # Splitting the string by ', '
 
-        print("exam, softtissue_write, separated_softtissues: ", separated_softtissues)
+    print("exam, softtissue_write, separated_softtissues: ", separated_softtissues)
 
-        for listing in separated_softtissues:
-            print("exam, softtissue_write, listing: ", listing)
+    for listing in separated_softtissues:
+        print("exam, softtissue_write, listing: ", listing)
 
-            if listing == "":
-                print("exam, softtissue_write, listing is empty, skipping")
-                return True
+        if listing == "":
+            print("exam, softtissue_write, listing is empty, skipping")
+            return True
 
-            # The rest of your code will remain the same from this point
-            splitwords = listing.split(' ')
-            firsttwowords = splitwords[0:2]
-            restofproblem = splitwords[2:] 
-            print(firsttwowords)
-            print(restofproblem)
+        # The rest of your code will remain the same from this point
+        splitwords = listing.split(' ')
+        firsttwowords = splitwords[0:2]
+        restofproblem = splitwords[2:] 
+        print(firsttwowords)
+        print(restofproblem)
 
-            for word in firsttwowords:
-                print(word)
-                #print(problemcode[word])
-                firstword = problemcode[word]
-                print(firstword)
-                #add each word to thephrase list
-                thephrase.append(firstword)
-                
-            # use the rest of the words in the problem to find the tissue codes in tissue
-            print(restofproblem)
-
-            # build the phrase from tissue
-            for word in restofproblem:
-                print(word)
-                #print(tissue[word])
-                thetissueword = tissue[word]
-                print(thetissueword)
-                #add each word to thephrase list
-                thephrase.append(thetissueword)
-
-            # build the phrase from tissue and firstword in problemcode
-            print("the phrase: ", thephrase)
-            finalphrase = ' '.join(thephrase)
-            print(finalphrase)
+        for word in firsttwowords:
+            print(word)
+            #print(problemcode[word])
+            firstword = problemcode[word]
+            print(firstword)
+            #add each word to thephrase list
+            thephrase.append(firstword)
             
-            phrase = finalphrase #"Patient presents with "+thephrasefirstword+" "+therestofthephrase+". "
-            print(phrase)
+        # use the rest of the words in the problem to find the tissue codes in tissue
+        print(restofproblem)
 
-            try:
-                print("exam, softtissue_write, entering phrase")
-                html_handler.click_element_by_id(driver, 'kpi_dailyOthrNotPNRecordNote')
-                # send the phrase to the comment box
-                html_handler.send_keys_by_id(driver, 'kpi_dailyOthrNotPNRecordNote', phrase)
-                # send a period to the comment box
-                html_handler.send_keys_by_id(driver, 'kpi_dailyOthrNotPNRecordNote', ".")
-                time.sleep(1)
+        # build the phrase from tissue
+        for word in restofproblem:
+            print(word)
+            #print(tissue[word])
+            thetissueword = tissue[word]
+            print(thetissueword)
+            #add each word to thephrase list
+            thephrase.append(thetissueword)
 
-            except NoSuchElementException as e:
-                log('softtissue_write, phrase not entered', e)
-                return False
+        # build the phrase from tissue and firstword in problemcode
+        print("the phrase: ", thephrase)
+        finalphrase = ' '.join(thephrase)
+        print(finalphrase)
+        
+        phrase = finalphrase #"Patient presents with "+thephrasefirstword+" "+therestofthephrase+". "
+        print(phrase)
+
+        try:
+            print("exam, softtissue_write, entering phrase")
+            html_handler.click_element_by_id(driver, 'kpi_dailyOthrNotPNRecordNote')
+            # send the phrase to the comment box
+            html_handler.send_keys_by_id(driver, 'kpi_dailyOthrNotPNRecordNote', phrase)
+            # send a period to the comment box
+            html_handler.send_keys_by_id(driver, 'kpi_dailyOthrNotPNRecordNote', ".")
+            time.sleep(1)
+
+        except NoSuchElementException as e:
+            log('softtissue_write, phrase not entered', e)
+            return False
 
 def orthopedic_tab(driver):
     try:
