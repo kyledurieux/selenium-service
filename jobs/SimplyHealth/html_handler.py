@@ -426,3 +426,22 @@ def go_to_next_page(driver):
         print("Element not interactable. Moving to the next iteration.")
     except Exception as e:
         print(f"Error navigating to the next page: {e}")
+
+
+def debug_element(driver, xpath):
+    elems = driver.find_elements(By.XPATH, xpath)
+    print(f"DEBUG xpath: {xpath}")
+    print(f"DEBUG matches found: {len(elems)}")
+
+    for i, el in enumerate(elems[:5], start=1):
+        try:
+            print(f"\n--- match {i} ---")
+            print("tag:", el.tag_name)
+            print("text:", repr(el.text))
+            print("displayed:", el.is_displayed())
+            print("enabled:", el.is_enabled())
+            print("id:", el.get_attribute("id"))
+            print("class:", el.get_attribute("class"))
+            print("outerHTML:", el.get_attribute("outerHTML")[:1000])
+        except Exception as e:
+            print(f"DEBUG failed on match {i}: {e}")

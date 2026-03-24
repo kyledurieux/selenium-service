@@ -472,7 +472,7 @@ def softtissue_write(driver, softtissue_global):
 
     problem = softtissuemaping['problems']
     problemcode = softtissuemaping['shortcodemappings']
-    
+    tissue = softtissuemaping['tissue']
    
     # Now separate each phrase within the entries by splitting them
     separated_softtissues = []
@@ -495,24 +495,22 @@ def softtissue_write(driver, softtissue_global):
         print(firsttwowords)
         print(restofproblem)
 
+
+        thephrase = []
+
         for word in firsttwowords:
             print(word)
-            #print(problemcode[word])
             firstword = problemcode[word]
             print(firstword)
-            #add each word to thephrase list
             thephrase.append(firstword)
-            
-        # use the rest of the words in the problem to find the tissue codes in tissue
+
+        # use the rest of the words in the problem to find the tissue codes in problem
         print(restofproblem)
 
-        # build the phrase from tissue
         for word in restofproblem:
             print(word)
-            #print(tissue[word])
             thetissueword = tissue[word]
             print(thetissueword)
-            #add each word to thephrase list
             thephrase.append(thetissueword)
 
         # build the phrase from tissue and firstword in problemcode
@@ -538,10 +536,32 @@ def softtissue_write(driver, softtissue_global):
 
 def orthopedic_tab(driver):
     try:
-        html_handler.click_element(driver, CNHvariablelist.orthopedictab)
-        print('Orthopedic tab opened')
+        tab = WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, CNHvariablelist.orthopedictab)))
+        print("Orthopedic tab is present")
+
+        driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", tab)
+        time.sleep(1)
+
+        print(f"Orthopedic tab displayed={tab.is_displayed()} enabled={tab.is_enabled()}")
+
+        debug_element(driver, CNHvariablelist.orthopedictab)
+
+        try:
+            tab.click()
+            print('Orthopedic tab opened')
+            time.sleep(2)
+
+        except ElementNotInteractableException as e:
+            driver.execute_script("arguments[0].click();", tab)
+            print('Orthopedic tab opened with JS click')
+            time.sleep(2)
 
         # click standard orthopedic exam buttons
+        print("clicking standard orthopedic buttons")
+        WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.ID, "KyleOrthoDistrctn1"))
+        )
         # the negative on the distraction button
         html_handler.click_element_by_id(driver, "KyleOrthoDistrctn1")                                     
         # click on left Negative for Foraminal Compression                                    
