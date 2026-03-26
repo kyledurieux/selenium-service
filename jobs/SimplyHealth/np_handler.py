@@ -545,7 +545,7 @@ def orthopedic_tab(driver):
 
         print(f"Orthopedic tab displayed={tab.is_displayed()} enabled={tab.is_enabled()}")
 
-        debug_element(driver, CNHvariablelist.orthopedictab)
+        # debug_element(driver, CNHvariablelist.orthopedictab)
 
         try:
             tab.click()
@@ -897,7 +897,7 @@ def exam_handle_diag(driver, cervicalshandled, data):
                 # click the add button
                 html_handler.click_element(driver, CNHvariablelist.diagnosisbutton, sleep_time=2)
                 # clear the text box                                   
-                html_handler.clear_text_box(driver, "diagnosisBillingCode.icdWithDiagnosisCode")
+                html_handler.clear_text_box(driver, "//*[@id='diagnosisBillingCode.icdWithDiagnosisCode']", 2)
                 
         cervdiag = "M54.20"
         nmrdiag = ["M79.12", "M62.838"]

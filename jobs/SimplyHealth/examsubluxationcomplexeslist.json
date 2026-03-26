@@ -18,7 +18,7 @@
     "RSHLD": ["R Shoulder"],"LSHLD": ["L Shoulder"], "LCLAV": ["Clavical L"], "RCLAV": ["Clavical R"], 
     "RELBW": ["R Elbow"], "LELBW": ["L Elbow"],
     
-    "RGH": ["RGH"], "LGH": ["LGH"], "RWRST": ["R Wrist"], "LWRST": ["L Wrist"],
+    "RGH": ["R Shoulder"], "LGH": ["L Shoulder"], "RWRST": ["R Wrist"], "LWRST": ["L Wrist"],
     "RTHUMB": ["R Phalanges"], "LTHUMB": ["L Phalanges"], "R2DIG": ["R Phalanges"], "L2DIG": ["L Phalanges"], "R3DIG": ["R Phalanges"],
     "L3DIG": ["L Phalanges"], "R4DIG": ["R Phalanges"], "L4DIG": ["L Phalanges"], "R5DIG": ["R Phalanges"], "L5DIG": ["L Phalanges"],
     "RSCAP": ["Scapula R"], "LSCAP": ["Scapula L"],
