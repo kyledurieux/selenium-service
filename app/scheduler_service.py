@@ -118,3 +118,29 @@ def set_scheduler_enabled(enabled: bool):
 
         return {"enabled": True, "message": "Scheduler enabled"}
 
+def update_scheduler_schedule(days: str, hour: int, minute: int):
+    global SCHEDULE_DAYS, SCHEDULE_HOUR, SCHEDULE_MINUTE
+
+    SCHEDULE_DAYS = days
+    SCHEDULE_HOUR = hour
+    SCHEDULE_MINUTE = minute
+
+    save_scheduler_settings()
+
+    job = scheduler.get_job("weekday_morning_run")
+
+    if job:
+        job.reschedule(
+            trigger=CronTrigger(
+                day_of_week=SCHEDULE_DAYS,
+                hour=SCHEDULE_HOUR,
+                minute=SCHEDULE_MINUTE,
+            )
+        )
+
+    return {
+        "message": "Scheduler schedule updated",
+        "schedule_days": SCHEDULE_DAYS,
+        "schedule_hour": SCHEDULE_HOUR,
+        "schedule_minute": SCHEDULE_MINUTE,
+    }

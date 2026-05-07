@@ -13,7 +13,7 @@ from pydantic import BaseModel
 from fastapi.responses import HTMLResponse
 from my_script import run_task  # your existing import
 from user_secrets import set_zhealth_credentials, get_zhealth_status, get_zhealth_credentials  # for storing per-user ZHealth creds
-from scheduler_service import start_scheduler, get_scheduler_status, set_scheduler_enabled
+from scheduler_service import start_scheduler, get_scheduler_status, set_scheduler_enabled, update_scheduler_schedule
 
 
 
@@ -47,7 +47,19 @@ def scheduled_cnh_run():
     except Exception as e:
         print(f"=== SCHEDULED RUN SKIPPED/FAILED: {e} ===")
 
-     
+class SchedulerUpdate(BaseModel):
+    days: str
+    hour: int
+    minute: int
+
+
+@app.post("/scheduler/update")
+def scheduler_update(payload: SchedulerUpdate):
+    return update_scheduler_schedule(
+        days=payload.days,
+        hour=payload.hour,
+        minute=payload.minute
+    )     
 
 @app.on_event("startup")
 def startup_event():
