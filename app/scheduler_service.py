@@ -21,7 +21,7 @@ def start_scheduler(run_callback=None):
                 hour=SCHEDULE_HOUR,
                 minute=SCHEDULE_MINUTE,
             ),
-            
+
             id="weekday_morning_run",
             replace_existing=True,
         )
@@ -29,3 +29,19 @@ def start_scheduler(run_callback=None):
         print("=== Weekday 7AM CNH schedule registered ===")
 
     scheduler.start()
+    
+def get_scheduler_status():
+    jobs = []
+
+    for job in scheduler.get_jobs():
+        jobs.append({
+            "id": job.id,
+            "next_run_time": str(job.next_run_time),
+            "trigger": str(job.trigger),
+        })
+
+    return {
+        "running": scheduler.running,
+        "timezone": str(scheduler.timezone),
+        "jobs": jobs,
+    }
