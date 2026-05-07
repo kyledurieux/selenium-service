@@ -9,6 +9,7 @@ SCHEDULE_DAYS = "mon-fri"
 SCHEDULE_HOUR = 7
 SCHEDULE_MINUTE = 0
 SCHEDULER_ENABLED = True
+RUN_CALLBACK = None
 
 SETTINGS_PATH = Path("/app/runtime/scheduler_settings.json")
 
@@ -31,6 +32,9 @@ def save_scheduler_settings():
     }, indent=2))
 
 def start_scheduler(run_callback=None):
+    global RUN_CALLBACK
+    RUN_CALLBACK = run_callback
+
     load_scheduler_settings()
 
     if scheduler.running:
@@ -85,12 +89,22 @@ def set_scheduler_enabled(enabled: bool):
     job = scheduler.get_job("weekday_morning_run")
 
     if enabled:
+        if not job and RUN_CALLBACK:
+            scheduler.add_job(
+                RUN_CALLBACK,
+                CronTrigger(
+                    day_of_week=SCHEDULE_DAYS,
+                    hour=SCHEDULE_HOUR,
+                    minute=SCHEDULE_MINUTE,
+                ),
+                id="weekday_morning_run",
+                replace_existing=True,
+            )
+
+            job = scheduler.get_job("weekday_morning_run")
+
         if job:
             job.resume()
+
         return {"enabled": True, "message": "Scheduler enabled"}
-
-    if job:
-        job.pause()
-
-    return {"enabled": False, "message": "Scheduler disabled"}
 
