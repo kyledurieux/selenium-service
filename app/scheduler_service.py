@@ -15,21 +15,31 @@ SETTINGS_PATH = Path("/app/runtime/scheduler_settings.json")
 
 
 def load_scheduler_settings():
-    global SCHEDULER_ENABLED
+    global SCHEDULER_ENABLED, SCHEDULE_DAYS, SCHEDULE_HOUR, SCHEDULE_MINUTE
 
-    if SETTINGS_PATH.exists():
-        try:
-            data = json.loads(SETTINGS_PATH.read_text())
-            SCHEDULER_ENABLED = bool(data.get("enabled", SCHEDULER_ENABLED))
-        except Exception as e:
-            print(f"=== Failed to load scheduler settings: {e} ===")
+    if not SETTINGS_PATH.exists():
+        return
 
+    try:
+        data = json.loads(SETTINGS_PATH.read_text())
+
+        SCHEDULER_ENABLED = bool(data.get("enabled", SCHEDULER_ENABLED))
+        SCHEDULE_DAYS = data.get("schedule_days", SCHEDULE_DAYS)
+        SCHEDULE_HOUR = int(data.get("schedule_hour", SCHEDULE_HOUR))
+        SCHEDULE_MINUTE = int(data.get("schedule_minute", SCHEDULE_MINUTE))
+
+    except Exception as e:
+        print(f"=== Failed to load scheduler settings: {e} ===")
 
 def save_scheduler_settings():
     SETTINGS_PATH.parent.mkdir(parents=True, exist_ok=True)
     SETTINGS_PATH.write_text(json.dumps({
-        "enabled": SCHEDULER_ENABLED
+        "enabled": SCHEDULER_ENABLED,
+        "schedule_days": SCHEDULE_DAYS,
+        "schedule_hour": SCHEDULE_HOUR,
+        "schedule_minute": SCHEDULE_MINUTE
     }, indent=2))
+
 
 def start_scheduler(run_callback=None):
     global RUN_CALLBACK
