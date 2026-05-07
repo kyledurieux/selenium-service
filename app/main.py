@@ -32,16 +32,22 @@ headless_flag = True  # default headless mode
 RUNNING_PROCS = {}
 
 def scheduled_cnh_run():
-        print("=== RUNNING SCHEDULED CNH JOB ===")
+    print("=== RUNNING SCHEDULED CNH JOB ===")
 
-        fake_auth = "Bearer user-kyle"
+    fake_auth = "Bearer user-kyle"
 
+    try:
         result = run_job(
             payload=None,
             authorization=fake_auth
         )
 
         print(f"=== SCHEDULED RESULT: {result} ===")
+
+    except Exception as e:
+        print(f"=== SCHEDULED RUN SKIPPED/FAILED: {e} ===")
+
+     
 
 @app.on_event("startup")
 def startup_event():
