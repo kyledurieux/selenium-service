@@ -13,7 +13,7 @@ from pydantic import BaseModel
 from fastapi.responses import HTMLResponse
 from my_script import run_task  # your existing import
 from user_secrets import set_zhealth_credentials, get_zhealth_status, get_zhealth_credentials  # for storing per-user ZHealth creds
-from app.scheduler_service import start_scheduler
+from scheduler_service import start_scheduler
 
 
 
