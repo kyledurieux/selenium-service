@@ -5,6 +5,7 @@ scheduler = BackgroundScheduler(timezone="America/Denver")
 SCHEDULE_DAYS = "mon-fri"
 SCHEDULE_HOUR = 7
 SCHEDULE_MINUTE = 0
+SCHEDULER_ENABLED = True
 
 def start_scheduler(run_callback=None):
     if scheduler.running:
@@ -13,7 +14,7 @@ def start_scheduler(run_callback=None):
     print("=== Scheduler started ===")
 
     # Weekdays at 7:00 AM Mountain Time
-    if run_callback:
+    if run_callback and SCHEDULER_ENABLED:
         scheduler.add_job(
             run_callback,
             CronTrigger(
@@ -42,6 +43,7 @@ def get_scheduler_status():
 
     return {
         "running": scheduler.running,
+        "enabled": SCHEDULER_ENABLED,
         "timezone": str(scheduler.timezone),
         "jobs": jobs,
     }
