@@ -22,6 +22,7 @@ API_TOKEN = os.getenv("API_TOKEN", "CHANGE_ME_123")
 app = FastAPI(title="Selenium Runner (v2)")
 @app.on_event("startup")
 def startup_event():
+    print("=== FASTAPI STARTUP EVENT FIRED ===")
     start_scheduler()
 
 JOBS_DIR = Path("/app/jobs")
@@ -466,6 +467,16 @@ def run_job(payload: Optional[RunJob] = None, authorization: str | None = Header
     logging.info(f"started script: {script_name} (user={who}, pid={proc.pid})")
 
     return {"status": "started", "script": script_name}
+
+
+@app.post("/scheduler/test-run")
+def scheduler_test_run():
+    fake_auth = "Bearer user-kyle"
+    result = run_job(payload=None, authorization=fake_auth)
+    return {
+        "status": "scheduler test triggered",
+        "result": result
+    }
 
 
 @app.post("/stop")
