@@ -23,7 +23,20 @@ app = FastAPI(title="Selenium Runner (v2)")
 @app.on_event("startup")
 def startup_event():
     print("=== FASTAPI STARTUP EVENT FIRED ===")
-    start_scheduler()
+
+    def scheduled_cnh_run():
+        print("=== RUNNING SCHEDULED CNH JOB ===")
+
+        fake_auth = "Bearer user-kyle"
+
+        result = run_job(
+            payload=None,
+            authorization=fake_auth
+        )
+
+        print(f"=== SCHEDULED RESULT: {result} ===")
+
+    start_scheduler(run_callback=scheduled_cnh_run)
 
 JOBS_DIR = Path("/app/jobs")
 HISTORY_PATH = Path("run_history.jsonl")

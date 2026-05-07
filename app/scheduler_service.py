@@ -1,25 +1,28 @@
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.cron import CronTrigger
-from datetime import datetime
-import logging
 
 scheduler = BackgroundScheduler(timezone="America/Denver")
 
-logger = logging.getLogger(__name__)
 
+def start_scheduler(run_callback=None):
+    if scheduler.running:
+        return
 
-def test_scheduled_job():
-    print(f"=== SCHEDULER TEST RUN: {datetime.now()} ===")
+    print("=== Scheduler started ===")
 
+    # Weekdays at 7:00 AM Mountain Time
+    if run_callback:
+        scheduler.add_job(
+            run_callback,
+            CronTrigger(
+                day_of_week="mon-fri",
+                hour=7,
+                minute=0,
+            ),
+            id="weekday_morning_run",
+            replace_existing=True,
+        )
 
-def start_scheduler():
-    if not scheduler.running:
-        # scheduler.add_job(
-        #     test_scheduled_job,
-        #     CronTrigger(second="0"),
-        #     id="test_job",
-        #     replace_existing=True,
-        # )
+        print("=== Weekday 7AM CNH schedule registered ===")
 
-        scheduler.start()
-        print("=== Scheduler started ===")
+    scheduler.start()
