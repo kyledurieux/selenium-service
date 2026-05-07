@@ -13,17 +13,24 @@ from pydantic import BaseModel
 from fastapi.responses import HTMLResponse
 from my_script import run_task  # your existing import
 from user_secrets import set_zhealth_credentials, get_zhealth_status, get_zhealth_credentials  # for storing per-user ZHealth creds
+from app.scheduler_service import start_scheduler
 
 
 
 API_TOKEN = os.getenv("API_TOKEN", "CHANGE_ME_123")
+
 app = FastAPI(title="Selenium Runner (v2)")
+@app.on_event("startup")
+def startup_event():
+    start_scheduler()
+
 JOBS_DIR = Path("/app/jobs")
 HISTORY_PATH = Path("run_history.jsonl")
 USERS_PATH = Path("users.json")
 LOGS_DIR = Path("logs")
 LOGS_DIR.mkdir(exist_ok=True)
 headless_flag = True  # default headless mode
+
 
 # Track running jobs per user so we can stop them
 RUNNING_PROCS = {}
