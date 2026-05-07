@@ -20,11 +20,18 @@ from scheduler_service import start_scheduler
 API_TOKEN = os.getenv("API_TOKEN", "CHANGE_ME_123")
 
 app = FastAPI(title="Selenium Runner (v2)")
-@app.on_event("startup")
-def startup_event():
-    print("=== FASTAPI STARTUP EVENT FIRED ===")
+JOBS_DIR = Path("/app/jobs")
+HISTORY_PATH = Path("run_history.jsonl")
+USERS_PATH = Path("users.json")
+LOGS_DIR = Path("logs")
+LOGS_DIR.mkdir(exist_ok=True)
+headless_flag = True  # default headless mode
 
-    def scheduled_cnh_run():
+
+# Track running jobs per user so we can stop them
+RUNNING_PROCS = {}
+
+def scheduled_cnh_run():
         print("=== RUNNING SCHEDULED CNH JOB ===")
 
         fake_auth = "Bearer user-kyle"
@@ -36,18 +43,16 @@ def startup_event():
 
         print(f"=== SCHEDULED RESULT: {result} ===")
 
+@app.on_event("startup")
+def startup_event():
+    print("=== FASTAPI STARTUP EVENT FIRED ===") 
     start_scheduler(run_callback=scheduled_cnh_run)
 
-JOBS_DIR = Path("/app/jobs")
-HISTORY_PATH = Path("run_history.jsonl")
-USERS_PATH = Path("users.json")
-LOGS_DIR = Path("logs")
-LOGS_DIR.mkdir(exist_ok=True)
-headless_flag = True  # default headless mode
+@app.post("/scheduler/run-now")
+def scheduler_run_now():
+    scheduled_cnh_run()
+    return {"status": "scheduled run triggered"}
 
-
-# Track running jobs per user so we can stop them
-RUNNING_PROCS = {}
 
 def get_log_path_for_user(username: str) -> Path:
     # Simple: one log file per user (you can make this per-job later if you want)
