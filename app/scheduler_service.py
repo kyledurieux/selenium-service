@@ -45,5 +45,8 @@ def get_scheduler_status():
         "running": scheduler.running,
         "enabled": SCHEDULER_ENABLED,
         "timezone": str(scheduler.timezone),
+        "schedule_days": SCHEDULE_DAYS,
+        "schedule_hour": SCHEDULE_HOUR,
+        "schedule_minute": SCHEDULE_MINUTE,
         "jobs": jobs,
     }
