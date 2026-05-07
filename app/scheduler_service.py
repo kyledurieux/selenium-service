@@ -50,3 +50,21 @@ def get_scheduler_status():
         "schedule_minute": SCHEDULE_MINUTE,
         "jobs": jobs,
     }
+
+def set_scheduler_enabled(enabled: bool):
+    global SCHEDULER_ENABLED
+
+    SCHEDULER_ENABLED = enabled
+
+    job = scheduler.get_job("weekday_morning_run")
+
+    if enabled:
+        if job:
+            job.resume()
+        return {"enabled": True, "message": "Scheduler enabled"}
+
+    if job:
+        job.pause()
+
+    return {"enabled": False, "message": "Scheduler disabled"}
+

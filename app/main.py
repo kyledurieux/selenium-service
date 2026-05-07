@@ -13,7 +13,7 @@ from pydantic import BaseModel
 from fastapi.responses import HTMLResponse
 from my_script import run_task  # your existing import
 from user_secrets import set_zhealth_credentials, get_zhealth_status, get_zhealth_credentials  # for storing per-user ZHealth creds
-from scheduler_service import start_scheduler, get_scheduler_status
+from scheduler_service import start_scheduler, get_scheduler_status, set_scheduler_enabled
 
 
 
@@ -58,10 +58,19 @@ def startup_event():
 def scheduler_run_now():
     scheduled_cnh_run()
     return {"status": "scheduled run triggered"}
-    
+
 @app.get("/scheduler/status")
 def scheduler_status():
     return get_scheduler_status()
+
+@app.post("/scheduler/enable")
+def scheduler_enable():
+    return set_scheduler_enabled(True)
+
+@app.post("/scheduler/disable")
+def scheduler_disable():
+    return set_scheduler_enabled(False)
+
 
 
 def get_log_path_for_user(username: str) -> Path:
