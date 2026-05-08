@@ -125,6 +125,11 @@ def set_scheduler_enabled(enabled: bool):
 
         return {"enabled": True, "message": "Scheduler enabled"}
 
+    if job:
+        job.pause()
+
+    return {"enabled": False, "message": "Scheduler disabled"}
+
 def update_scheduler_schedule(days: str, hour: int, minute: int):
     global SCHEDULE_DAYS, SCHEDULE_HOUR, SCHEDULE_MINUTE
 

@@ -47,6 +47,14 @@ def scheduled_cnh_run():
     except Exception as e:
         print(f"=== SCHEDULED RUN SKIPPED/FAILED: {e} ===")
 
+def require_admin(authorization: str | None):
+    username = get_username_from_auth(authorization)
+
+    if not username or not is_admin(username):
+        raise HTTPException(status_code=403, detail="Admin only")
+
+    return username
+
 class SchedulerUpdate(BaseModel):
     days: str
     hour: int
@@ -54,7 +62,8 @@ class SchedulerUpdate(BaseModel):
 
 
 @app.post("/scheduler/update")
-def scheduler_update(payload: SchedulerUpdate):
+def scheduler_update(payload: SchedulerUpdate, authorization: str | None = Header(None)):
+    require_admin(authorization)
     if payload.hour < 0 or payload.hour > 23:
         raise HTTPException(status_code=400, detail="Hour must be between 0 and 23")
 
@@ -70,30 +79,32 @@ def scheduler_update(payload: SchedulerUpdate):
         minute=payload.minute
     )
 
-
 @app.on_event("startup")
 def startup_event():
     print("=== FASTAPI STARTUP EVENT FIRED ===") 
     start_scheduler(run_callback=scheduled_cnh_run)
 
 @app.post("/scheduler/run-now")
-def scheduler_run_now():
+def scheduler_run_now(authorization: str | None = Header(None)):
+    require_admin(authorization)
     scheduled_cnh_run()
     return {"status": "scheduled run triggered"}
 
 @app.get("/scheduler/status")
-def scheduler_status():
+def scheduler_status(authorization: str | None = Header(None)):
+    require_admin(authorization)
     return get_scheduler_status()
 
 @app.post("/scheduler/enable")
-def scheduler_enable():
+def scheduler_enable(authorization: str | None = Header(None)):
+    require_admin(authorization)
     return set_scheduler_enabled(True)
 
+
 @app.post("/scheduler/disable")
-def scheduler_disable():
+def scheduler_disable(authorization: str | None = Header(None)):
+    require_admin(authorization)
     return set_scheduler_enabled(False)
-
-
 
 def get_log_path_for_user(username: str) -> Path:
     # Simple: one log file per user (you can make this per-job later if you want)
