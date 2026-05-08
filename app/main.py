@@ -55,11 +55,21 @@ class SchedulerUpdate(BaseModel):
 
 @app.post("/scheduler/update")
 def scheduler_update(payload: SchedulerUpdate):
+    if payload.hour < 0 or payload.hour > 23:
+        raise HTTPException(status_code=400, detail="Hour must be between 0 and 23")
+
+    if payload.minute < 0 or payload.minute > 59:
+        raise HTTPException(status_code=400, detail="Minute must be between 0 and 59")
+
+    if not payload.days.strip():
+        raise HTTPException(status_code=400, detail="Days cannot be blank")
+
     return update_scheduler_schedule(
         days=payload.days,
         hour=payload.hour,
         minute=payload.minute
-    )     
+    )
+
 
 @app.on_event("startup")
 def startup_event():

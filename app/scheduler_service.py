@@ -27,6 +27,13 @@ def load_scheduler_settings():
         SCHEDULE_DAYS = data.get("schedule_days", SCHEDULE_DAYS)
         SCHEDULE_HOUR = int(data.get("schedule_hour", SCHEDULE_HOUR))
         SCHEDULE_MINUTE = int(data.get("schedule_minute", SCHEDULE_MINUTE))
+        if SCHEDULE_HOUR < 0 or SCHEDULE_HOUR > 23:
+            print("=== Invalid schedule hour, resetting to 7 ===")
+            SCHEDULE_HOUR = 7
+
+        if SCHEDULE_MINUTE < 0 or SCHEDULE_MINUTE > 59:
+            print("=== Invalid schedule minute, resetting to 0 ===")
+            SCHEDULE_MINUTE = 0
 
     except Exception as e:
         print(f"=== Failed to load scheduler settings: {e} ===")
