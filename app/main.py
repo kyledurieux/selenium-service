@@ -1219,32 +1219,53 @@ def index():
           // -----------------------
 
           function schedulerStatus() {
-            const out = document.getElementById('schedulerout');
+            var out = document.getElementById('schedulerout');
+            if (!out) return;
 
             out.textContent = "Loading scheduler status...";
 
             fetch('/scheduler/status', {
-              headers: authToken
-                ? {'Authorization': 'Bearer ' + authToken}
-                : {}
+              headers: authToken ? {'Authorization': 'Bearer ' + authToken} : {}
             })
-            .then(res => res.json())
-            .then(data => {
-              out.textContent = JSON.stringify(data, null, 2);
-
-              if (data.schedule_days) {
-                document.getElementById('sched-days').value = data.schedule_days;
-              }
-
-              if (data.schedule_hour !== undefined) {
-                document.getElementById('sched-hour').value = data.schedule_hour;
-              }
-
-              if (data.schedule_minute !== undefined) {
-                document.getElementById('sched-minute').value = data.schedule_minute;
-              }
+            .then(function(res) {
+              return res.json();
             })
-            .catch(err => {
+            .then(function(data) {
+              var lines = [];
+
+              lines.push("Scheduler Running: " + data.running);
+              lines.push("Scheduler Enabled: " + data.enabled);
+              lines.push("Timezone: " + data.timezone);
+              lines.push("");
+              lines.push("Schedule:");
+              lines.push("  Days: " + data.schedule_days);
+              lines.push("  Hour: " + data.schedule_hour);
+              lines.push("  Minute: " + data.schedule_minute);
+              lines.push("");
+
+              if (data.jobs && data.jobs.length > 0) {
+                lines.push("Jobs:");
+
+                for (var i = 0; i < data.jobs.length; i++) {
+                  var job = data.jobs[i];
+                  lines.push("  ID: " + job.id);
+                  lines.push("  Next Run: " + job.next_run_time);
+                  lines.push("  Trigger: " + job.trigger);
+                  lines.push("");
+                }
+              }
+
+              out.textContent = lines.join("\\n");
+
+              var daysEl = document.getElementById('sched-days');
+              var hourEl = document.getElementById('sched-hour');
+              var minEl = document.getElementById('sched-minute');
+
+              if (daysEl && data.schedule_days) daysEl.value = data.schedule_days;
+              if (hourEl && data.schedule_hour !== undefined) hourEl.value = data.schedule_hour;
+              if (minEl && data.schedule_minute !== undefined) minEl.value = data.schedule_minute;
+            })
+            .catch(function(err) {
               out.textContent = "Network error";
             });
           }
@@ -1253,12 +1274,12 @@ def index():
           function schedulerEnable() {
             fetch('/scheduler/enable', {
               method: 'POST',
-              headers: authToken
-                ? {'Authorization': 'Bearer ' + authToken}
-                : {}
+              headers: authToken ? {'Authorization': 'Bearer ' + authToken} : {}
             })
-            .then(res => res.json())
-            .then(data => {
+            .then(function(res) {
+              return res.json();
+            })
+            .then(function(data) {
               schedulerStatus();
             });
           }
@@ -1267,12 +1288,12 @@ def index():
           function schedulerDisable() {
             fetch('/scheduler/disable', {
               method: 'POST',
-              headers: authToken
-                ? {'Authorization': 'Bearer ' + authToken}
-                : {}
+              headers: authToken ? {'Authorization': 'Bearer ' + authToken} : {}
             })
-            .then(res => res.json())
-            .then(data => {
+            .then(function(res) {
+              return res.json();
+            })
+            .then(function(data) {
               schedulerStatus();
             });
           }
@@ -1281,29 +1302,27 @@ def index():
           function schedulerRunNow() {
             fetch('/scheduler/run-now', {
               method: 'POST',
-              headers: authToken
-                ? {'Authorization': 'Bearer ' + authToken}
-                : {}
+              headers: authToken ? {'Authorization': 'Bearer ' + authToken} : {}
             })
-            .then(res => res.json())
-            .then(data => {
+            .then(function(res) {
+              return res.json();
+            })
+            .then(function(data) {
               schedulerStatus();
             });
           }
 
 
           function schedulerUpdate() {
-            const days = document.getElementById('sched-days').value;
-            const hour = parseInt(document.getElementById('sched-hour').value);
-            const minute = parseInt(document.getElementById('sched-minute').value);
+            var days = document.getElementById('sched-days').value;
+            var hour = parseInt(document.getElementById('sched-hour').value, 10);
+            var minute = parseInt(document.getElementById('sched-minute').value, 10);
 
             fetch('/scheduler/update', {
               method: 'POST',
               headers: Object.assign(
                 {'Content-Type': 'application/json'},
-                authToken
-                  ? {'Authorization': 'Bearer ' + authToken}
-                  : {}
+                authToken ? {'Authorization': 'Bearer ' + authToken} : {}
               ),
               body: JSON.stringify({
                 days: days,
@@ -1311,8 +1330,10 @@ def index():
                 minute: minute
               })
             })
-            .then(res => res.json())
-            .then(data => {
+            .then(function(res) {
+              return res.json();
+            })
+            .then(function(data) {
               schedulerStatus();
             });
           }
