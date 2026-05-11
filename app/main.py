@@ -792,8 +792,38 @@ def index():
             <div id="admin-box" style="display:none; border:1px solid #ccc; padding:8px; margin-top:8px;">
               <p>Admin tools: manage CNH users</p>
 
-              <button onclick="loadUsers()">Refresh User List</button>
-              <pre id="userlist" style="background:#f7f7f7; padding:8px; max-height:200px; overflow:auto;"></pre>
+              <h5 style="margin-top:16px;">Scheduler Controls</h5>
+
+              <button onclick="schedulerStatus()">Refresh Scheduler</button>
+              <button onclick="schedulerEnable()" style="margin-left:8px;">Enable</button>
+              <button onclick="schedulerDisable()" style="margin-left:8px;">Disable</button>
+              <button onclick="schedulerRunNow()" style="margin-left:8px;">Run Now</button>
+
+              <div style="margin-top:10px;">
+                <label>Days:
+                  <input id="sched-days" value="mon-fri" style="width:100px;">
+                </label>
+
+                <label style="margin-left:8px;">Hour:
+                  <input id="sched-hour" type="number" value="7" min="0" max="23" style="width:60px;">
+                </label>
+
+                <label style="margin-left:8px;">Minute:
+                  <input id="sched-minute" type="number" value="0" min="0" max="59" style="width:60px;">
+                </label>
+
+                <button onclick="schedulerUpdate()" style="margin-left:8px;">
+                  Update Schedule
+                </button>
+              </div>
+
+              <pre id="schedulerout"
+                  style="background:#efe; padding:8px; max-height:220px; overflow:auto; margin-top:10px;">
+              </pre>
+                            
+
+                            <button onclick="loadUsers()">Refresh User List</button>
+                            <pre id="userlist" style="background:#f7f7f7; padding:8px; max-height:200px; overflow:auto;"></pre>
 
               <h5>Create / Update User</h5>
               <label>Username:
@@ -905,6 +935,8 @@ def index():
                 loadUsers();
                 loadJobFolders(currentJobsFolder);
                 populateJobsFolderDropdown();
+                schedulerStatus();
+                
               } else {
                 if (adminHeader) adminHeader.style.display = 'none';
                 if (adminBox) adminBox.style.display = 'none';
@@ -1182,7 +1214,108 @@ def index():
               console.error("Failed to clear logs on server:", err);
             }
           }
+          // -----------------------
+          // SCHEDULER
+          // -----------------------
 
+          function schedulerStatus() {
+            const out = document.getElementById('schedulerout');
+
+            out.textContent = "Loading scheduler status...";
+
+            fetch('/scheduler/status', {
+              headers: authToken
+                ? {'Authorization': 'Bearer ' + authToken}
+                : {}
+            })
+            .then(res => res.json())
+            .then(data => {
+              out.textContent = JSON.stringify(data, null, 2);
+
+              if (data.schedule_days) {
+                document.getElementById('sched-days').value = data.schedule_days;
+              }
+
+              if (data.schedule_hour !== undefined) {
+                document.getElementById('sched-hour').value = data.schedule_hour;
+              }
+
+              if (data.schedule_minute !== undefined) {
+                document.getElementById('sched-minute').value = data.schedule_minute;
+              }
+            })
+            .catch(err => {
+              out.textContent = "Network error";
+            });
+          }
+
+
+          function schedulerEnable() {
+            fetch('/scheduler/enable', {
+              method: 'POST',
+              headers: authToken
+                ? {'Authorization': 'Bearer ' + authToken}
+                : {}
+            })
+            .then(res => res.json())
+            .then(data => {
+              schedulerStatus();
+            });
+          }
+
+
+          function schedulerDisable() {
+            fetch('/scheduler/disable', {
+              method: 'POST',
+              headers: authToken
+                ? {'Authorization': 'Bearer ' + authToken}
+                : {}
+            })
+            .then(res => res.json())
+            .then(data => {
+              schedulerStatus();
+            });
+          }
+
+
+          function schedulerRunNow() {
+            fetch('/scheduler/run-now', {
+              method: 'POST',
+              headers: authToken
+                ? {'Authorization': 'Bearer ' + authToken}
+                : {}
+            })
+            .then(res => res.json())
+            .then(data => {
+              schedulerStatus();
+            });
+          }
+
+
+          function schedulerUpdate() {
+            const days = document.getElementById('sched-days').value;
+            const hour = parseInt(document.getElementById('sched-hour').value);
+            const minute = parseInt(document.getElementById('sched-minute').value);
+
+            fetch('/scheduler/update', {
+              method: 'POST',
+              headers: Object.assign(
+                {'Content-Type': 'application/json'},
+                authToken
+                  ? {'Authorization': 'Bearer ' + authToken}
+                  : {}
+              ),
+              body: JSON.stringify({
+                days: days,
+                hour: hour,
+                minute: minute
+              })
+            })
+            .then(res => res.json())
+            .then(data => {
+              schedulerStatus();
+            });
+          }
 
           // -----------------------
           // PASSWORD CHANGE
