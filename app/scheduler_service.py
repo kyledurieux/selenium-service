@@ -12,6 +12,7 @@ SCHEDULER_ENABLED = True
 RUN_CALLBACK = None
 
 SETTINGS_PATH = Path("/app/runtime/scheduler_settings.json")
+USER_SCHEDULES_PATH = Path("/app/runtime/user_schedules.json")
 
 
 def load_scheduler_settings():
@@ -155,4 +156,48 @@ def update_scheduler_schedule(days: str, hour: int, minute: int):
         "schedule_days": SCHEDULE_DAYS,
         "schedule_hour": SCHEDULE_HOUR,
         "schedule_minute": SCHEDULE_MINUTE,
+    }
+
+def load_user_schedules():
+    if not USER_SCHEDULES_PATH.exists():
+        return {}
+
+    try:
+        return json.loads(USER_SCHEDULES_PATH.read_text())
+    except Exception as e:
+        print(f"=== Failed to load user schedules: {e} ===")
+        return {}
+
+
+def save_user_schedules(data: dict):
+    USER_SCHEDULES_PATH.parent.mkdir(parents=True, exist_ok=True)
+    USER_SCHEDULES_PATH.write_text(json.dumps(data, indent=2))
+
+
+def get_user_schedule(username: str):
+    schedules = load_user_schedules()
+
+    return schedules.get(username, {
+        "enabled": False,
+        "days": "mon-fri",
+        "hour": 7,
+        "minute": 0
+    })
+
+
+def update_user_schedule(username: str, enabled: bool, days: str, hour: int, minute: int):
+    schedules = load_user_schedules()
+
+    schedules[username] = {
+        "enabled": enabled,
+        "days": days,
+        "hour": hour,
+        "minute": minute
+    }
+
+    save_user_schedules(schedules)
+
+    return {
+        "username": username,
+        "schedule": schedules[username]
     }

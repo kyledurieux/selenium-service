@@ -13,7 +13,14 @@ from pydantic import BaseModel
 from fastapi.responses import HTMLResponse
 from my_script import run_task  # your existing import
 from user_secrets import set_zhealth_credentials, get_zhealth_status, get_zhealth_credentials  # for storing per-user ZHealth creds
-from scheduler_service import start_scheduler, get_scheduler_status, set_scheduler_enabled, update_scheduler_schedule
+from scheduler_service import (
+    start_scheduler,
+    get_scheduler_status,
+    set_scheduler_enabled,
+    update_scheduler_schedule,
+    get_user_schedule,
+    update_user_schedule,
+)
 
 
 
@@ -78,6 +85,32 @@ def scheduler_update(payload: SchedulerUpdate, authorization: str | None = Heade
         hour=payload.hour,
         minute=payload.minute
     )
+@app.post("/scheduler/my-schedule")
+def my_schedule_update(
+    payload: SchedulerUpdate,
+    authorization: str | None = Header(None)
+    ):
+    username = get_username_from_auth(authorization)
+
+    if not username:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    
+    if payload.hour < 0 or payload.hour > 23:
+        raise HTTPException(status_code=400, detail="Hour must be between 0 and 23")
+
+    if payload.minute < 0 or payload.minute > 59:
+        raise HTTPException(status_code=400, detail="Minute must be between 0 and 59")
+
+    if not payload.days.strip():
+        raise HTTPException(status_code=400, detail="Days cannot be blank")
+
+    return update_user_schedule(
+        username=username,
+        enabled=True,
+        days=payload.days,
+        hour=payload.hour,
+        minute=payload.minute,
+    )
 
 @app.on_event("startup")
 def startup_event():
@@ -94,6 +127,15 @@ def scheduler_run_now(authorization: str | None = Header(None)):
 def scheduler_status(authorization: str | None = Header(None)):
     require_admin(authorization)
     return get_scheduler_status()
+
+@app.get("/scheduler/my-schedule")
+def my_schedule(authorization: str | None = Header(None)):
+    username = get_username_from_auth(authorization)
+
+    if not username:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+
+    return get_user_schedule(username)
 
 @app.post("/scheduler/enable")
 def scheduler_enable(authorization: str | None = Header(None)):
