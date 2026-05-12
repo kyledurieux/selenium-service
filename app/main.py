@@ -63,6 +63,7 @@ def require_admin(authorization: str | None):
     return username
 
 class SchedulerUpdate(BaseModel):
+    enabled: bool = True
     days: str
     hour: int
     minute: int
@@ -106,7 +107,7 @@ def my_schedule_update(
 
     return update_user_schedule(
         username=username,
-        enabled=True,
+        enabled=payload.enabled,
         days=payload.days,
         hour=payload.hour,
         minute=payload.minute,
@@ -817,6 +818,34 @@ def index():
             </label>
             <button onclick="changePw()">Update</button>
             <pre id="pwout"></pre>
+            <h4 style="margin-top:16px;">My Auto Scheduler</h4>
+
+            <label>
+              <input type="checkbox" id="my-sched-enabled">
+              Enable my auto scheduler
+            </label>
+
+            <div style="margin-top:10px;">
+              <label>Days:
+                <input id="my-sched-days" value="mon-fri" style="width:100px;">
+              </label>
+
+              <label style="margin-left:8px;">Hour:
+                <input id="my-sched-hour" type="number" value="7" min="0" max="23" style="width:60px;">
+              </label>
+
+              <label style="margin-left:8px;">Minute:
+                <input id="my-sched-minute" type="number" value="0" min="0" max="59" style="width:60px;">
+              </label>
+
+              <button onclick="saveMySchedule()" style="margin-left:8px;">
+                Save My Schedule
+              </button>
+            </div>
+
+            <pre id="myschedulerout"
+                style="background:#efe; padding:8px; max-height:160px; overflow:auto; margin-top:10px;">
+            </pre>
 
             <h4 style="margin-top:16px;">zHealth Login (for automation)</h4>
             <label>zHealth Username:
@@ -978,6 +1007,7 @@ def index():
                 loadJobFolders(currentJobsFolder);
                 populateJobsFolderDropdown();
                 schedulerStatus();
+                loadMySchedule();
                 
               } else {
                 if (adminHeader) adminHeader.style.display = 'none';
@@ -1379,6 +1409,78 @@ def index():
               schedulerStatus();
             });
           }
+
+          // -----------------------
+          // MY SCHEDULER
+          // -----------------------
+
+          function loadMySchedule() {
+            var out = document.getElementById('myschedulerout');
+
+            if (!out) return;
+
+            out.textContent = "Loading...";
+
+            fetch('/scheduler/my-schedule', {
+              headers: authToken
+                ? {'Authorization': 'Bearer ' + authToken}
+                : {}
+            })
+            .then(function(res) {
+              return res.json();
+            })
+            .then(function(data) {
+
+              document.getElementById('my-sched-enabled').checked = data.enabled;
+              document.getElementById('my-sched-days').value = data.days;
+              document.getElementById('my-sched-hour').value = data.hour;
+              document.getElementById('my-sched-minute').value = data.minute;
+
+              out.textContent =
+                "Enabled: " + data.enabled + "\\n" +
+                "Days: " + data.days + "\\n" +
+                "Hour: " + data.hour + "\\n" +
+                "Minute: " + data.minute;
+            })
+            .catch(function(err) {
+              out.textContent = "Network error";
+            });
+          }
+
+
+          function saveMySchedule() {
+            var out = document.getElementById('myschedulerout');
+
+            var enabled = document.getElementById('my-sched-enabled').checked;
+            var days = document.getElementById('my-sched-days').value;
+            var hour = parseInt(document.getElementById('my-sched-hour').value, 10);
+            var minute = parseInt(document.getElementById('my-sched-minute').value, 10);
+
+            fetch('/scheduler/my-schedule', {
+              method: 'POST',
+              headers: Object.assign(
+                {'Content-Type': 'application/json'},
+                authToken
+                  ? {'Authorization': 'Bearer ' + authToken}
+                  : {}
+              ),
+              body: JSON.stringify({
+                enabled: enabled,
+                days: days,
+                hour: hour,
+                minute: minute
+              })
+            })
+            .then(function(res) {
+              return res.json();
+            })
+            .then(function(data) {
+              loadMySchedule();
+            })
+            .catch(function(err) {
+              out.textContent = "Network error";
+            });
+          }          
 
           // -----------------------
           // PASSWORD CHANGE
