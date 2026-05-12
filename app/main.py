@@ -54,6 +54,22 @@ def scheduled_cnh_run():
     except Exception as e:
         print(f"=== SCHEDULED RUN SKIPPED/FAILED: {e} ===")
 
+def scheduled_user_run(username: str):
+    print(f"=== RUNNING SCHEDULED CNH JOB FOR {username} ===")
+
+    fake_auth = f"Bearer user-{username}"
+
+    try:
+        result = run_job(
+            payload=None,
+            authorization=fake_auth
+        )
+
+        print(f"=== SCHEDULED RESULT FOR {username}: {result} ===")
+
+    except Exception as e:
+        print(f"=== SCHEDULED RUN SKIPPED/FAILED FOR {username}: {e} ===")
+
 def require_admin(authorization: str | None):
     username = get_username_from_auth(authorization)
 
@@ -116,7 +132,10 @@ def my_schedule_update(
 @app.on_event("startup")
 def startup_event():
     print("=== FASTAPI STARTUP EVENT FIRED ===") 
-    start_scheduler(run_callback=scheduled_cnh_run)
+    start_scheduler(
+        run_callback=scheduled_cnh_run,
+        user_run_callback=scheduled_user_run,
+    )
 
 @app.post("/scheduler/run-now")
 def scheduler_run_now(authorization: str | None = Header(None)):

@@ -10,6 +10,7 @@ SCHEDULE_HOUR = 7
 SCHEDULE_MINUTE = 0
 SCHEDULER_ENABLED = True
 RUN_CALLBACK = None
+USER_RUN_CALLBACK = None
 
 SETTINGS_PATH = Path("/app/runtime/scheduler_settings.json")
 USER_SCHEDULES_PATH = Path("/app/runtime/user_schedules.json")
@@ -49,9 +50,10 @@ def save_scheduler_settings():
     }, indent=2))
 
 
-def start_scheduler(run_callback=None):
-    global RUN_CALLBACK
+def start_scheduler(run_callback=None, user_run_callback=None):
+    global RUN_CALLBACK, USER_RUN_CALLBACK
     RUN_CALLBACK = run_callback
+    USER_RUN_CALLBACK = user_run_callback
 
     load_scheduler_settings()
 
@@ -77,6 +79,11 @@ def start_scheduler(run_callback=None):
         print("=== Weekday 7AM CNH schedule registered ===")
 
     scheduler.start()
+    
+    schedules = load_user_schedules()
+
+    for username, config in schedules.items():
+        register_user_schedule_job(username, config)
     
 def get_scheduler_status():
     jobs = []
@@ -173,6 +180,30 @@ def save_user_schedules(data: dict):
     USER_SCHEDULES_PATH.parent.mkdir(parents=True, exist_ok=True)
     USER_SCHEDULES_PATH.write_text(json.dumps(data, indent=2))
 
+def register_user_schedule_job(username: str, config: dict):
+    if not USER_RUN_CALLBACK:
+        return
+
+    job_id = f"user_schedule_{username}"
+
+    existing = scheduler.get_job(job_id)
+    if existing:
+        existing.remove()
+
+    if not config.get("enabled", False):
+        return
+
+    scheduler.add_job(
+        USER_RUN_CALLBACK,
+        CronTrigger(
+            day_of_week=config.get("days", "mon-fri"),
+            hour=int(config.get("hour", 7)),
+            minute=int(config.get("minute", 0)),
+        ),
+        args=[username],
+        id=job_id,
+        replace_existing=True,
+    )
 
 def get_user_schedule(username: str):
     schedules = load_user_schedules()
@@ -196,6 +227,7 @@ def update_user_schedule(username: str, enabled: bool, days: str, hour: int, min
     }
 
     save_user_schedules(schedules)
+    register_user_schedule_job(username, schedules[username])
 
     return {
         "username": username,
