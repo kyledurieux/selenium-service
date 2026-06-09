@@ -84,6 +84,9 @@ class SchedulerUpdate(BaseModel):
     hour: int
     minute: int
 
+class SoftTissueEntry(BaseModel):
+    code: str
+    value: str
 
 @app.post("/scheduler/update")
 def scheduler_update(payload: SchedulerUpdate, authorization: str | None = Header(None)):
@@ -246,6 +249,94 @@ def get_jobs_base_for_user(username: Optional[str]) -> Path:
 
     # fallback
     return JOBS_DIR / "SimplyHealth"
+
+def get_soft_tissue_path_for_user(username: Optional[str]) -> Path:
+    base = get_jobs_base_for_user(username)
+    return base / "softtissuemapping.json"
+
+@app.get("/soft-tissue")
+def get_soft_tissue(authorization: str | None = Header(None)):
+    username = get_username_from_auth(authorization)
+
+    if not username:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+
+    path = get_soft_tissue_path_for_user(username)
+
+    if not path.exists():
+        raise HTTPException(status_code=404, detail="softtissuemapping.json not found")
+
+    data = json.loads(path.read_text())
+
+    return {
+        "path": str(path),
+        "tissue": data.get("tissue", {})
+    }
+
+@app.post("/soft-tissue")
+def add_soft_tissue(
+    payload: SoftTissueEntry,
+    authorization: str | None = Header(None)
+):
+    username = get_username_from_auth(authorization)
+
+    if not username:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+
+    path = get_soft_tissue_path_for_user(username)
+
+    if not path.exists():
+        raise HTTPException(status_code=404, detail="softtissuemapping.json not found")
+
+    data = json.loads(path.read_text())
+
+    tissue = data.get("tissue", {})
+
+    tissue[payload.code] = payload.value
+
+    data["tissue"] = tissue
+
+    path.write_text(json.dumps(data, indent=4))
+
+    return {
+        "status": "success",
+        "added": {
+            payload.code: payload.value
+        }
+    }
+
+@app.delete("/soft-tissue/{code}")
+def delete_soft_tissue(
+    code: str,
+    authorization: str | None = Header(None)
+):
+    username = get_username_from_auth(authorization)
+
+    if not username:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+
+    path = get_soft_tissue_path_for_user(username)
+
+    if not path.exists():
+        raise HTTPException(status_code=404, detail="softtissuemapping.json not found")
+
+    data = json.loads(path.read_text())
+    tissue = data.get("tissue", {})
+
+    if code not in tissue:
+        raise HTTPException(status_code=404, detail=f"{code} not found")
+
+    removed_value = tissue.pop(code)
+    data["tissue"] = tissue
+
+    path.write_text(json.dumps(data, indent=4))
+
+    return {
+        "status": "success",
+        "removed": {
+            code: removed_value
+        }
+    }
 
 def append_history(rec: dict):
     with open(HISTORY_PATH, "a") as f:
@@ -876,6 +967,35 @@ def index():
             <button onclick="saveZHealth()" style="margin-left:8px;">Save</button>
             <pre id="zout" style="background:#f7f7f7; padding:8px; max-height:120px; overflow:auto;"></pre>
 
+            <h4 style="margin-top:16px;">Soft Tissue Manager</h4>
+
+            <div style="border:1px solid #ccc; padding:8px; margin-top:8px;">
+
+              <label>Code:
+                <input id="soft-code" />
+              </label>
+
+              <label style="margin-left:8px;">Value:
+                <input id="soft-value" />
+              </label>
+
+              <button onclick="addSoftTissue()" style="margin-left:8px;">
+                Add Tissue
+              </button>
+
+              <button onclick="deleteSoftTissue()" style="margin-left:8px;">
+                Delete Tissue
+              </button>
+
+              <button onclick="loadSoftTissue()" style="margin-left:8px;">
+                Refresh
+              </button>
+
+              <pre id="softtissueout"
+                  style="background:#f7f7f7; padding:8px; max-height:250px; overflow:auto; margin-top:10px;">
+              </pre>
+
+            </div>
 
             <!-- Admin Panel (hidden by default; shown only for admins) -->
             <h4 id="admin-header" style="display:none; margin-top:16px;">Admin Panel</h4>
@@ -1500,6 +1620,96 @@ def index():
               out.textContent = "Network error";
             });
           }          
+
+          // -----------------------
+          // SOFT TISSUE MANAGER
+          // -----------------------
+          async function loadSoftTissue() {
+            const out = document.getElementById("softtissueout");
+
+            try {
+              const res = await fetch("/soft-tissue", {
+                headers: {
+                  "Authorization": "Bearer " + authToken
+                }
+              });
+
+              const data = await res.json();
+
+              document.getElementById("soft-code").value = "";
+              document.getElementById("soft-value").value = "";
+
+              out.textContent = JSON.stringify(data.tissue, null, 2);
+
+            } catch (err) {
+              out.textContent = "Error loading soft tissue data";
+            }
+          }
+
+          async function addSoftTissue() {
+            const code = document.getElementById("soft-code").value.trim();
+            const value = document.getElementById("soft-value").value.trim();
+            const out = document.getElementById("softtissueout");
+
+            if (!code || !value) {
+              out.textContent = "Code and value required";
+              return;
+            }
+
+            try {
+              const res = await fetch("/soft-tissue", {
+                method: "POST",
+                headers: {
+                  "Authorization": "Bearer " + authToken,
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                  code,
+                  value
+                })
+              });
+
+              const data = await res.json();
+
+              out.textContent = JSON.stringify(data, null, 2);
+
+              loadSoftTissue();
+
+            } catch (err) {
+              out.textContent = "Error adding soft tissue";
+            }
+          }
+
+          async function deleteSoftTissue() {
+            const code = document.getElementById("soft-code").value.trim();
+            const out = document.getElementById("softtissueout");
+
+            if (!code) {
+              out.textContent = "Code required to delete";
+              return;
+            }
+
+            if (!confirm("Delete soft tissue code: " + code + "?")) {
+              return;
+            }
+
+            try {
+              const res = await fetch("/soft-tissue/" + encodeURIComponent(code), {
+                method: "DELETE",
+                headers: {
+                  "Authorization": "Bearer " + authToken
+                }
+              });
+
+              const data = await res.json();
+              out.textContent = JSON.stringify(data, null, 2);
+
+              loadSoftTissue();
+
+            } catch (err) {
+              out.textContent = "Error deleting soft tissue";
+            }
+          }
 
           // -----------------------
           // PASSWORD CHANGE

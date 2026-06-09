@@ -93,7 +93,7 @@ def exam_note(driver, cervicalshandled_global, softtissue_global, bpartproblem):
             #clear findings
             html_handler.clear_findings(driver)
             # add patient to not handled list
-            html_handler.add_to_nothandledlist(driver)
+            print("Skipping add_to_nothandledlist: parent handler will add patient to not-handled summary.")
             return False
         print("Exam tab opened successfully.")
 
@@ -103,7 +103,7 @@ def exam_note(driver, cervicalshandled_global, softtissue_global, bpartproblem):
             #clear findings
             html_handler.clear_findings(driver)
             # add patient to not handled list
-            html_handler.add_to_nothandledlist(driver)
+            print("Skipping add_to_nothandledlist: parent handler will add patient to not-handled summary.")
             return False
         print("Visual Inspection tab opened successfully.")
 
@@ -113,7 +113,7 @@ def exam_note(driver, cervicalshandled_global, softtissue_global, bpartproblem):
             #clear findings
             html_handler.clear_findings(driver)
             # add patient to not handled list
-            html_handler.add_to_nothandledlist(driver)
+            print("Skipping add_to_nothandledlist: parent handler will add patient to not-handled summary.")
             return False
         print("Subluxation Complexes tab completed successfully.")
     
@@ -123,7 +123,7 @@ def exam_note(driver, cervicalshandled_global, softtissue_global, bpartproblem):
             #clear findings
             html_handler.clear_findings(driver)
             # add patient to not handled list
-            html_handler.add_to_nothandledlist(driver)
+            print("Skipping add_to_nothandledlist: parent handler will add patient to not-handled summary.")
             return False
         print("Soft Tissue tab completed successfully.")
 
@@ -133,7 +133,7 @@ def exam_note(driver, cervicalshandled_global, softtissue_global, bpartproblem):
             #clear findings
             html_handler.clear_findings(driver)
             # add patient to not handled list
-            html_handler.add_to_nothandledlist(driver)
+            print("Skipping add_to_nothandledlist: parent handler will add patient to not-handled summary.")
             return False
         print("Orthopedic tab opened successfully.")
         
@@ -143,7 +143,7 @@ def exam_note(driver, cervicalshandled_global, softtissue_global, bpartproblem):
             #clear findings
             html_handler.clear_findings(driver)
             # add patient to not handled list
-            html_handler.add_to_nothandledlist(driver)
+            print("Skipping add_to_nothandledlist: parent handler will add patient to not-handled summary.")
             return False
         print("Cervical Exam tab opened successfully.")
 
@@ -153,7 +153,7 @@ def exam_note(driver, cervicalshandled_global, softtissue_global, bpartproblem):
             #clear findings
             html_handler.clear_findings(driver)
             # add patient to not handled list
-            html_handler.add_to_nothandledlist(driver)
+            print("Skipping add_to_nothandledlist: parent handler will add patient to not-handled summary.")
             return False
         print("Lumbar Exam tab opened successfully.")
 
@@ -163,7 +163,7 @@ def exam_note(driver, cervicalshandled_global, softtissue_global, bpartproblem):
             #clear findings
             html_handler.clear_findings(driver)
             # add patient to not handled list
-            html_handler.add_to_nothandledlist(driver)
+            print("Skipping add_to_nothandledlist: parent handler will add patient to not-handled summary.")
             return False
         print("Joint Palpation tab opened successfully.")
 
@@ -173,7 +173,7 @@ def exam_note(driver, cervicalshandled_global, softtissue_global, bpartproblem):
             #clear findings
             html_handler.clear_findings(driver)
             # add patient to not handled list
-            html_handler.add_to_nothandledlist(driver)
+            print("Skipping add_to_nothandledlist: parent handler will add patient to not-handled summary.")
             return False
         print("Muscle Palpation tab opened successfully.")
 
@@ -348,13 +348,13 @@ def subluxation_complexes_tab(driver, cervicalshandled):
         #clear findings
         html_handler.clear_findings(driver)
         # add patient to not handled list
-        html_handler.add_to_nothandledlist(driver)
+        print("Skipping add_to_nothandledlist: parent handler will add patient to not-handled summary.")
         return False
     
     # print("exam - cervicals handled:", cervicalshandled_global)    
     # cervicalshandled = cervicalshandled_global
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    mapping_file_path = os.path.join(script_dir, 'zh_CNH_Saffron', 'examsubluxationcomplexeslist.json')
+    mapping_file_path = os.path.join(script_dir, 'examsubluxationcomplexeslist.json')
     if not os.path.exists(mapping_file_path):
         print(f"Mapping file not found at {mapping_file_path}. Please check the path.")
         return False
@@ -377,7 +377,7 @@ def subluxation_complexes_tab(driver, cervicalshandled):
         #clear findings
         html_handler.clear_findings(driver)
         # add patient to not handled list
-        html_handler.add_to_nothandledlist(driver)
+        print("Skipping add_to_nothandledlist: parent handler will add patient to not-handled summary.")
         return False
     
     # THIS IS THE OLD CODE THAT WORKED
@@ -444,7 +444,10 @@ def softtissue_write(driver, softtissue_global):
     print()
     print("softtissue_write, opening other exam tab")
 
-    with open(r'G:\My Drive\My folder\kyle-python\New Button Scrape\softtissuemapping.json') as s:
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    softtissue_mapping_path = os.path.join(script_dir, 'softtissuemapping_saffron.json')
+
+    with open(softtissue_mapping_path) as s:
         softtissuemaping = json.load(s)
 
     #open the other exam tab
@@ -849,7 +852,10 @@ def exam_handle_diag(driver, cervicalshandled, data):
         listofdiaghandled = list()
         diaglist2 = data.keys()
 
-        with open('theorder.json') as o:
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        theorder_path = os.path.join(script_dir, 'theorder.json')
+
+        with open(theorder_path) as o:
             order = json.load(o)
 
         if "RETRACING" not in cervicalshandled or "N/A" not in cervicalshandled:
@@ -874,8 +880,9 @@ def exam_handle_diag(driver, cervicalshandled, data):
                 html_handler.send_keys_by_id(driver, "diagnosisBillingCode.icdWithDiagnosisCode", Keys.ENTER, sleep_time=2)
                 # click the add button
                 html_handler.click_element(driver, CNHvariablelist.diagnosisbutton, sleep_time=2)
-                # clear the text box                                   
-                html_handler.clear_text_box(driver, "diagnosisBillingCode.icdWithDiagnosisCode")
+                # clear the text box 
+                driver.find_element(By.ID, "diagnosisBillingCode.icdWithDiagnosisCode").clear()                                  
+                #(old code for above line) html_handler.clear_text_box(driver, "diagnosisBillingCode.icdWithDiagnosisCode")
                 
         cervdiag = "M54.20"
         nmrdiag = ["M79.12", "M62.838"]
@@ -888,7 +895,8 @@ def exam_handle_diag(driver, cervicalshandled, data):
                 # click the add button
                 html_handler.click_element(driver, CNHvariablelist.diagnosisbutton, sleep_time=2)
                 # clear the text box
-                #html_handler.clear_text_box(driver, "diagnosisBillingCode.icdWithDiagnosisCode")
+                driver.find_element(By.ID, "diagnosisBillingCode.icdWithDiagnosisCode").clear()                                  
+                #(old code for above line) html_handler.clear_text_box(driver, "diagnosisBillingCode.icdWithDiagnosisCode")
                 
                 listofdiaghandled.append(eachnmrdiag)
 
@@ -943,22 +951,22 @@ def exam_handle_cpt(driver, cervicalshandled):
             html_handler.send_keys_by_id(driver, "cptBillingCode.cptCodeWithDesc", "99202", sleep_time=3)
             html_handler.send_keys_by_id(driver, "cptBillingCode.cptCodeWithDesc", Keys.ENTER, sleep_time=2)
             html_handler.click_element(driver, CNHvariablelist.cptbutton)
-            html_handler.clear_text_box(driver, "cptBillingCode.cptCodeWithDesc")
+            driver.find_element(By.ID, "cptBillingCode.cptCodeWithDesc").clear()
         elif count in [1, 2]:
             html_handler.send_keys_by_id(driver, "cptBillingCode.cptCodeWithDesc", "99203", sleep_time=3)
             html_handler.send_keys_by_id(driver, "cptBillingCode.cptCodeWithDesc", Keys.ENTER, sleep_time=2)
             html_handler.click_element(driver, CNHvariablelist.cptbutton)
-            html_handler.clear_text_box(driver, "cptBillingCode.cptCodeWithDesc")
+            driver.find_element(By.ID, "cptBillingCode.cptCodeWithDesc").clear()
         elif count in [3, 4]:
             html_handler.send_keys_by_id(driver, "cptBillingCode.cptCodeWithDesc", "99204", sleep_time=3)
             html_handler.send_keys_by_id(driver, "cptBillingCode.cptCodeWithDesc", Keys.ENTER, sleep_time=2)
             html_handler.click_element(driver, CNHvariablelist.cptbutton)
-            html_handler.clear_text_box(driver, "cptBillingCode.cptCodeWithDesc")
+            driver.find_element(By.ID, "cptBillingCode.cptCodeWithDesc").clear()
         elif count >= 5:
             html_handler.send_keys_by_id(driver, "cptBillingCode.cptCodeWithDesc", "99205", sleep_time=3)
             html_handler.send_keys_by_id(driver, "cptBillingCode.cptCodeWithDesc", Keys.ENTER, sleep_time=2)
             html_handler.click_element(driver, CNHvariablelist.cptbutton)
-            html_handler.clear_text_box(driver, "cptBillingCode.cptCodeWithDesc")
+            driver.find_element(By.ID, "cptBillingCode.cptCodeWithDesc").clear()
 
     except Exception as e:
         print(f"Error handling additional diagnoses: {e}")

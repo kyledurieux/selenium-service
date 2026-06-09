@@ -28,6 +28,9 @@ def set_zhealth_credentials(username: str, z_username: str, z_password: str):
     else:
         encrypted_password = ""
 
+    users[username].setdefault("software_credentials", {})
+    users[username]["software_credentials"].setdefault("zhealthehr", {})
+
     users[username]["software_credentials"]["zhealthehr"]["username"] = z_username
     users[username]["software_credentials"]["zhealthehr"]["password"] = encrypted_password
 

@@ -422,3 +422,7 @@ def go_to_next_page(driver):
         print("Element not interactable. Moving to the next iteration.")
     except Exception as e:
         print(f"Error navigating to the next page: {e}")
+
+def add_to_nothandledlist(driver):
+    print("add_to_nothandledlist skipped: FillmoreChiro uses log summary handling instead.")
+    return True
