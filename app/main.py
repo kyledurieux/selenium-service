@@ -1092,6 +1092,13 @@ def index():
           // -----------------------
           // LOGIN / LOGOUT
           // -----------------------
+          function enterLogin(event) {
+            if (event.key === "Enter") {
+              event.preventDefault();
+              login();
+            }
+          }
+          
           function login() {
             var u = document.getElementById('username').value;
             var p = document.getElementById('password').value;
