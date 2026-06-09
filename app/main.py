@@ -20,6 +20,7 @@ from scheduler_service import (
     update_scheduler_schedule,
     get_user_schedule,
     update_user_schedule,
+    load_user_schedules,
 )
 
 
@@ -159,6 +160,37 @@ def my_schedule(authorization: str | None = Header(None)):
         raise HTTPException(status_code=401, detail="Unauthorized")
 
     return get_user_schedule(username)
+
+@app.get("/admin/user-schedules")
+def admin_user_schedules(authorization: str | None = Header(None)):
+    require_admin(authorization)
+    return load_user_schedules()
+
+
+@app.post("/admin/user-schedule/{username}")
+def admin_update_user_schedule(
+    username: str,
+    payload: SchedulerUpdate,
+    authorization: str | None = Header(None),
+):
+    require_admin(authorization)
+
+    if payload.hour < 0 or payload.hour > 23:
+        raise HTTPException(status_code=400, detail="Hour must be between 0 and 23")
+
+    if payload.minute < 0 or payload.minute > 59:
+        raise HTTPException(status_code=400, detail="Minute must be between 0 and 59")
+
+    if not payload.days.strip():
+        raise HTTPException(status_code=400, detail="Days cannot be blank")
+
+    return update_user_schedule(
+        username=username,
+        enabled=payload.enabled,
+        days=payload.days,
+        hour=payload.hour,
+        minute=payload.minute,
+    )
 
 @app.post("/scheduler/enable")
 def scheduler_enable(authorization: str | None = Header(None)):
@@ -1034,6 +1066,10 @@ def index():
 
                             <button onclick="loadUsers()">Refresh User List</button>
                             <pre id="userlist" style="background:#f7f7f7; padding:8px; max-height:200px; overflow:auto;"></pre>
+                            <h5 style="margin-top:16px;">User Scheduler Controls</h5>
+                            <button onclick="loadUserSchedules()">Refresh User Schedules</button>
+                            <div id="userschedules" style="margin-top:8px;"></div>
+                            <pre id="userschedulesout" style="background:#efe; padding:8px; max-height:180px; overflow:auto; margin-top:8px;"></pre>
 
               <h5>Create / Update User</h5>
               <label>Username:
@@ -1098,7 +1134,7 @@ def index():
               login();
             }
           }
-          
+
           function login() {
             var u = document.getElementById('username').value;
             var p = document.getElementById('password').value;
@@ -1857,6 +1893,162 @@ def index():
               if (out.textContent.indexOf("Error from /admin/users") === -1 &&
                   out.textContent.indexOf("Bad JSON") === -1 &&
                   out.textContent.indexOf("Unexpected /admin/users") === -1) {
+                out.textContent = "Network error: " + e;
+              }
+            });
+          }
+
+          function loadUserSchedules() {
+            var box = document.getElementById('userschedules');
+            var out = document.getElementById('userschedulesout');
+
+            box.innerHTML = "";
+            out.textContent = "Loading user schedules...";
+
+            fetch('/admin/user-schedules', {
+              headers: authToken ? {'Authorization': 'Bearer ' + authToken} : {}
+            })
+            .then(function(res) {
+              return res.text().then(function(txt) {
+                if (!res.ok) {
+                  out.textContent = "Error from /admin/user-schedules (" + res.status + "): " + txt;
+                  throw new Error("bad /admin/user-schedules");
+                }
+
+                var schedules = {};
+                try {
+                  schedules = JSON.parse(txt);
+                } catch (e) {
+                  out.textContent = "Bad JSON from /admin/user-schedules: " + txt;
+                  throw e;
+                }
+
+                var users = Object.keys(schedules).sort();
+
+                if (users.length === 0) {
+                  out.textContent = "No user schedules found yet.";
+                  return;
+                }
+
+                var table = document.createElement('table');
+                table.style.borderCollapse = 'collapse';
+                table.style.marginTop = '8px';
+
+                var header = document.createElement('tr');
+                ['User', 'Enabled', 'Days', 'Hour', 'Minute', 'Save'].forEach(function(label) {
+                  var th = document.createElement('th');
+                  th.textContent = label;
+                  th.style.border = '1px solid #ccc';
+                  th.style.padding = '4px';
+                  header.appendChild(th);
+                });
+                table.appendChild(header);
+
+                users.forEach(function(username) {
+                  var sched = schedules[username] || {};
+
+                  var tr = document.createElement('tr');
+
+                  function tdWrap(el) {
+                    var td = document.createElement('td');
+                    td.style.border = '1px solid #ccc';
+                    td.style.padding = '4px';
+                    td.appendChild(el);
+                    return td;
+                  }
+
+                  var userSpan = document.createElement('span');
+                  userSpan.textContent = username;
+                  tr.appendChild(tdWrap(userSpan));
+
+                  var enabled = document.createElement('input');
+                  enabled.type = 'checkbox';
+                  enabled.id = 'sched-enabled-' + username;
+                  enabled.checked = !!sched.enabled;
+                  tr.appendChild(tdWrap(enabled));
+
+                  var days = document.createElement('input');
+                  days.id = 'sched-days-' + username;
+                  days.value = sched.days || 'mon-fri';
+                  days.style.width = '90px';
+                  tr.appendChild(tdWrap(days));
+
+                  var hour = document.createElement('input');
+                  hour.id = 'sched-hour-' + username;
+                  hour.type = 'number';
+                  hour.min = '0';
+                  hour.max = '23';
+                  hour.value = sched.hour !== undefined ? sched.hour : 7;
+                  hour.style.width = '55px';
+                  tr.appendChild(tdWrap(hour));
+
+                  var minute = document.createElement('input');
+                  minute.id = 'sched-minute-' + username;
+                  minute.type = 'number';
+                  minute.min = '0';
+                  minute.max = '59';
+                  minute.value = sched.minute !== undefined ? sched.minute : 0;
+                  minute.style.width = '55px';
+                  tr.appendChild(tdWrap(minute));
+
+                  var btn = document.createElement('button');
+                  btn.textContent = 'Save';
+                  btn.onclick = function() {
+                    saveUserSchedule(username);
+                  };
+                  tr.appendChild(tdWrap(btn));
+
+                  table.appendChild(tr);
+                });
+
+                box.appendChild(table);
+                out.textContent = "Loaded " + users.length + " user schedule(s).";
+              });
+            })
+            .catch(function(e) {
+              if (out.textContent.indexOf("Error from /admin/user-schedules") === -1 &&
+                  out.textContent.indexOf("Bad JSON") === -1) {
+                out.textContent = "Network error: " + e;
+              }
+            });
+          }
+
+          function saveUserSchedule(username) {
+            var out = document.getElementById('userschedulesout');
+
+            var enabled = document.getElementById('sched-enabled-' + username).checked;
+            var days = document.getElementById('sched-days-' + username).value.trim();
+            var hour = parseInt(document.getElementById('sched-hour-' + username).value, 10);
+            var minute = parseInt(document.getElementById('sched-minute-' + username).value, 10);
+
+            out.textContent = "Saving schedule for " + username + "...";
+
+            fetch('/admin/user-schedule/' + encodeURIComponent(username), {
+              method: 'POST',
+              headers: Object.assign(
+                {'Content-Type': 'application/json'},
+                authToken ? {'Authorization': 'Bearer ' + authToken} : {}
+              ),
+              body: JSON.stringify({
+                enabled: enabled,
+                days: days,
+                hour: hour,
+                minute: minute
+              })
+            })
+            .then(function(res) {
+              return res.text().then(function(txt) {
+                if (!res.ok) {
+                  out.textContent = "Error saving schedule for " + username + " (" + res.status + "): " + txt;
+                  throw new Error("bad save schedule");
+                }
+                out.textContent = "Saved schedule for " + username + ": " + txt;
+                schedulerStatus();
+                loadUserSchedules();
+              });
+            })
+            .catch(function(e) {
+              if (out.textContent.indexOf("Error saving schedule") === -1) {
                 out.textContent = "Network error: " + e;
               }
             });
