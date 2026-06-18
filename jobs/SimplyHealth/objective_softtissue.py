@@ -162,3 +162,4 @@ def clear_handle_addprocedure(driver):
     except Exception as e:
         print(f"Error clearing or updating additional procedure area: {e}")
         return False
+    return True

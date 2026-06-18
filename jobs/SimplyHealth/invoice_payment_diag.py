@@ -75,15 +75,23 @@ def handle_diag_cpt(driver, cervicalshandled, data, patientname, dateofservice, 
     if any(x in unique for x in ["M99.06", "M99.07"]):
         cpt_codes.append("98943")  # extremities
 
-    if any(x in cervicalshandled for x in ["C1", "C2", "C3", "C4", "C5", "C6", "C7"]):
-        cpt_codes.append("97140")  # soft tissue work
+    cervical_codes = ["C1", "C2", "C3", "C4", "C5", "C6", "C7"]
+
+    if not any(x in cervicalshandled for x in cervical_codes):
+        cpt_codes.append("97140")  # add when no cervical adjustment
+    
 
     try:
-        for code in cpt_codes:
-            html_handler.send_keys_by_id(driver, CNHvariablelist.cptline, code, sleep_time=1)
-            html_handler.send_keys_by_id(driver, CNHvariablelist.cptline, Keys.ENTER, sleep_time=1)
-            html_handler.click_element(driver, CNHvariablelist.cptbutton)
-            html_handler.clear_text_box(driver, CNHvariablelist.cptline)
+        # remove duplicates while preserving order
+        cpt_codes = list(dict.fromkeys(cpt_codes))
+        print("CPT codes to apply:", cpt_codes)
+
+        try:
+            for code in cpt_codes:
+                html_handler.send_keys_by_id(driver, CNHvariablelist.cptline, code, sleep_time=1)
+                html_handler.send_keys_by_id(driver, CNHvariablelist.cptline, Keys.ENTER, sleep_time=1)
+                html_handler.click_element(driver, CNHvariablelist.cptbutton)
+                html_handler.clear_text_box(driver, CNHvariablelist.cptline)
     except Exception as e:
         print(f"Error applying CPT codes: {e}")
         return False
