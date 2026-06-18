@@ -449,6 +449,7 @@
         "FLEXPOLBREPROTIB": "flexor pollicis brevis profundus tibialis",
         "FLEXPOLBRESUPTIB": "flexor pollicis brevis superficialis tibialis",
         "EXTPOLBREPROTIB": "extensor pollicis brevis profundus tibialis",
-        "EXTPOLBRESUPTIB": "extensor pollicis brevis superficialis tibialis"
+        "EXTPOLBRESUPTIB": "extensor pollicis brevis superficialis tibialis",
+        "INTRCSTL": "intercostal"
     }
 }
