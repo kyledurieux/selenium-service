@@ -86,12 +86,13 @@ def handle_diag_cpt(driver, cervicalshandled, data, patientname, dateofservice, 
         cpt_codes = list(dict.fromkeys(cpt_codes))
         print("CPT codes to apply:", cpt_codes)
 
-        try:
-            for code in cpt_codes:
-                html_handler.send_keys_by_id(driver, CNHvariablelist.cptline, code, sleep_time=1)
-                html_handler.send_keys_by_id(driver, CNHvariablelist.cptline, Keys.ENTER, sleep_time=1)
-                html_handler.click_element(driver, CNHvariablelist.cptbutton)
-                html_handler.clear_text_box(driver, CNHvariablelist.cptline)
+       
+        for code in cpt_codes:
+            html_handler.send_keys_by_id(driver, CNHvariablelist.cptline, code, sleep_time=1)
+            html_handler.send_keys_by_id(driver, CNHvariablelist.cptline, Keys.ENTER, sleep_time=1)
+            html_handler.click_element(driver, CNHvariablelist.cptbutton)
+            html_handler.clear_text_box(driver, CNHvariablelist.cptline)
+            
     except Exception as e:
         print(f"Error applying CPT codes: {e}")
         return False
